@@ -1,7 +1,5 @@
 <template>
   <v-card >
-    <v-parallax
->
     <v-layout>
       <v-main style="min-height: 980px;">
         <v-container>
@@ -534,13 +532,12 @@
               color : 'blue'}"
               href="#"
               >
-              <router-link to="/">Efetue o Login</router-link> 
+              <router-link to="/login">Efetue o Login</router-link> 
             </a>
           </v-card-text>
         </v-container>
       </v-main>
     </v-layout>
-  </v-parallax>
   </v-card>
 </template>
 <script>
