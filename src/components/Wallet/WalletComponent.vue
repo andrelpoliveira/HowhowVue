@@ -1,12 +1,27 @@
 <template>
+  
   <div id="app" style="width:200;">
     <h1 style="padding-left:80px;">Vue Js Google Column Charts Example - nicesnippets.com</h1>
+    
+      <v-row>
+    <v-card >
     <GChart
       type="ColumnChart"
       :data="chartData"
       :options="chartOptions"
-    />    
+    />  
+  </v-card>
+  <v-card>
+    <GChart
+      type="ColumnChart"
+      :data="chartData"
+      :options="chartOptions"
+    />  
+  </v-card>
+</v-row>
+
   </div>
+
 </template>
 
 <script>
