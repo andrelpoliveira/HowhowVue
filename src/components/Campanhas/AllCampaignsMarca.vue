@@ -34,12 +34,12 @@
                             <v-card-actions>
                                 <v-row justify="center" class="ma-2">
                                     <v-col cols="12" md="6">
-                                        <v-btn append-icon="mdi-pencil" block rounded="lg" size="x-large"
+                                        <v-btn append-icon="mdi-pencil" block size="x-large"
                                             color="blue-darken-3" variant="elevated">Editar</v-btn>
                                     </v-col>
                                     <v-col cols="12" md="6">
-                                        <v-btn append-icon="mdi-trash-can" block rounded="lg" size="x-large"
-                                            color="blue-darken-3" variant="outlined">Deletar</v-btn>
+                                        <v-btn append-icon="mdi-trash-can" block size="x-large"
+                                            color="grey-darken-3" variant="outlined">Deletar</v-btn>
                                     </v-col>
                                 </v-row>
                             </v-card-actions>

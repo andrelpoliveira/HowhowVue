@@ -1,22 +1,23 @@
 <template>
-<v-app app id="inspire" theme="light">
-   <DashboardSideBar/>
+    <v-app app id="inspire" theme="light">
+        <DashboardDesign/>
 
-</v-app>
+
+    </v-app>
 </template>
 
 <script>
 
 //Import Components
-import DashboardSideBar from '../components/Dashboards/DashboardSidebar.vue';
+import DashboardDesign from '../components/Dashboards/DashboardDesign.vue';
 
 export default ({
 
     name: 'App',
 
     components: {
-        DashboardSideBar,
+        DashboardDesign,
     },
-    
+
 });
 </script>

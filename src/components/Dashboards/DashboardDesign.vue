@@ -5,7 +5,7 @@
     <!-- User avatar -->
     <v-hover v-slot="{ isHovering, props }">
       <v-card flat class="d-flex align-center justify-center flex-wrap text-center ma-2" height="70" v-bind="props"
-        :elevation="isHovering ? 24 : 6" rounded="t-xl" color="rgba(1,137,255,0.8)" variant="plain">
+        :elevation="isHovering ? 8 : 4" rounded="t-xl" color="rgba(1,137,255,0.8)" >
         <v-layout>
           <v-list>
             <v-list-item prepend-avatar="https://randomuser.me/api/portraits/women/85.jpg" title="Sandra Adams"
@@ -20,9 +20,9 @@
     <v-card flat class="mx-auto" max-width="300">
       <v-list density="compact" v-model="tab">
         <v-list-subheader class="text-h8">GERENCIAMENTO</v-list-subheader>
-        <v-tabs v-model="tab" flat direction="vertical" color="rgba(1,137,255,0.6)">
-          <v-tab v-for="([title, icon, options], i) in menu" :key="i" :value="options" rounded="shaped">
-            <v-list-item :title="title" :prepend-icon="icon" variant="plain" class="align-menu">
+        <v-tabs v-model="tab" flat direction="vertical" color="rgba(1,137,255,1)">
+          <v-tab v-for="([title, icon, options], i) in menu" :key="i" :value="options" >
+            <v-list-item :title="title" :prepend-icon="icon" class="align-menu">
             </v-list-item>
           </v-tab>
         </v-tabs>
@@ -36,11 +36,11 @@
           <v-list-group value="Eventos">
             <template v-slot:activator="{ props }">
               <v-list-item v-bind="props" prepend-icon="mdi-bullhorn-outline" title="Campanhas"
-                active-color="rgba(1,137,255,0.6)" variant="plain" rounded="shaped"></v-list-item>
+                active-color="rgba(1,137,255,1)" class="align-campanha"></v-list-item>
             </template>
-            <v-tabs v-model="tab" flat direction="vertical" color="rgba(1,137,255,0.6)">
+            <v-tabs v-model="tab" flat direction="vertical" color="rgba(1,137,255,1)">
               <v-tab v-for="([title, icon, options], i) in campanhasInf" :key="i" :value="options">
-                <v-list-item :title="title" :prepend-icon="icon" variant="plain" class="align-submenu"></v-list-item>
+                <v-list-item :title="title" :prepend-icon="icon" class="align-submenu"></v-list-item>
               </v-tab>
             </v-tabs>
           </v-list-group>
@@ -55,18 +55,18 @@
           <v-list-group value="Eventos">
             <template v-slot:activator="{ props }">
               <v-list-item v-bind="props" prepend-icon="mdi-bullhorn-outline" title="Campanhas"
-                active-color="rgba(1,137,255,0.6)" variant="plain" rounded="shaped"></v-list-item>
+                active-color="rgba(1,137,255,1)" class="align-campanha"></v-list-item>
             </template>
-            <v-tabs v-model="tab" flat direction="vertical" color="rgba(1,137,255,0.6)">
+            <v-tabs v-model="tab" flat direction="vertical" color="rgba(1,137,255,1)">
               <v-tab v-for="([title, icon, options], i) in campanhasMar" :key="i" :value="options">
-                <v-list-item :title="title" :prepend-icon="icon" variant="plain" class="align-submenu"></v-list-item>
+                <v-list-item :title="title" :prepend-icon="icon" class="align-submenu"></v-list-item>
               </v-tab>
             </v-tabs>
           </v-list-group>
         </v-list>
       </v-card>
     </div>
-    <!-- List Campanhas Influencer -->
+    <!-- List Campanhas Agência -->
     <div v-else-if="usuario.roles === 'agencia'">
       <v-card flat class="mx-auto">
         <v-list v-model:opened="open" density="compact">
@@ -74,11 +74,11 @@
           <v-list-group value="Eventos">
             <template v-slot:activator="{ props }">
               <v-list-item v-bind="props" prepend-icon="mdi-bullhorn-outline" title="Campanhas"
-                active-color="rgba(1,137,255,0.6)" variant="plain" rounded="shaped"></v-list-item>
+                active-color="rgba(1,137,255,1)" class="align-campanha"></v-list-item>
             </template>
-            <v-tabs v-model="tab" flat direction="vertical" color="rgba(1,137,255,0.6)">
+            <v-tabs v-model="tab" flat direction="vertical" color="rgba(1,137,255,1)">
               <v-tab v-for="([title, icon, options], i) in campanhasInf" :key="i" :value="options">
-                <v-list-item :title="title" :prepend-icon="icon" variant="plain" class="align-submenu"></v-list-item>
+                <v-list-item :title="title" :prepend-icon="icon" class="align-submenu"></v-list-item>
               </v-tab>
             </v-tabs>
           </v-list-group>
@@ -171,7 +171,7 @@ export default {
     value: 0,
     //Retorno da Rules da db
     usuario:{
-      roles: "marca"
+      roles: "agencia"
     }
 
   }),
@@ -202,10 +202,16 @@ export default {
 .align-menu {
   display: flex !important;
   left: -17px !important;
+  margin: 5px !important;
 }
-
+.align-campanha{
+  display: flex !important;
+  left: 10px !important;
+  margin: 5px !important;
+}
 .align-submenu {
   display: flex !important;
   left: -70px !important;
+  margin: 5px !important;
 }
 </style>

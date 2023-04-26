@@ -1,0 +1,28 @@
+/* Padrões */
+
+:root {
+    --primary-color-lighter:#4DA9FF !important;
+    --primary-color-light:#1890FF !important;
+    --primary-color-main: #2861FD !important;
+    --primary-color-dark:#035BCB !important;
+    --primary-color-darker:#094B9E !important;
+}
+html {
+    font-family: 'Public Sans' !important;
+    letter-spacing: normal !important;
+    font-size: 12px !important;
+    font-style: normal !important;
+}
+
+.v-btn {
+    letter-spacing: normal !important;
+    text-transform: none !important;
+    align-items: center !important;
+    align-content: center !important;
+    font-size: 12px !important;
+    border-radius: 30px !important;
+    padding: 25px !important;
+}
+
+/*  */
+
