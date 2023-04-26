@@ -292,7 +292,7 @@
     margin: 0 10px;
 }
 
-.ma-2 {
+v-btn.ma-2 {
     background: #F5F9FA !important;
     padding: 10px 20px !important;
     color: #262833 !important;

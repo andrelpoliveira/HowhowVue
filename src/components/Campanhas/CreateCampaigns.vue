@@ -73,7 +73,7 @@
                 </v-col>
                 <v-col cols="12" md="12" class="d-flex">
                     <v-btn append-icon="mdi-arrow-right-bold" color="blue-darken-3" variant="elevated" :width="200" location="bottom"
-                     rounded="lg">Criar Campanha</v-btn>
+                     >Criar Campanha</v-btn>
                 </v-col>
             </v-row>
         </v-form>

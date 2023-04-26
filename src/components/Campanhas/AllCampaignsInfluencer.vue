@@ -21,22 +21,21 @@
                             </v-row>
                             <v-row justify="center">
                                 <v-chip-group>
-                                    <v-chip class="ma-2" variant="outlined" prepend-icon="mdi-calendar-range"
+                                    <v-chip class="ma-4" variant="outlined" prepend-icon="mdi-calendar-range"
                                         :text="card.datein">
                                     </v-chip>
                                     <v-spacer></v-spacer>
-                                    <v-chip class="ma-2" variant="outlined" prepend-icon="mdi-calendar-range"
+                                    <v-chip class="ma-4" variant="outlined" prepend-icon="mdi-calendar-range"
                                         :text="card.dateend">
                                     </v-chip>
                                 </v-chip-group>
                             </v-row>
                             <v-card-actions>
-                                <v-row justify="center" class="ma-2">
+                                <v-row justify="center" class="ma-4">
                                     <v-col cols="12" md="6">
-                                        <v-btn block rounded="lg" size="x-large" color="blue-darken-3"
+                                        <v-btn block size="x-large" color="blue-darken-3"
                                             variant="elevated">Ver mais</v-btn>
                                     </v-col>
-
                                 </v-row>
                             </v-card-actions>
                         </v-card>
