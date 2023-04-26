@@ -1,18 +1,26 @@
 <template>
-  <HelloWorld />
+  <v-app app class="d-flex align-start">
+    <!-- Logo Howhow-->
+    <v-card flat height="150px" rounded="0">
+      <v-col cols="12" lg="4" class="mx-auto">
+        <v-img :width="200" aspect-ratio="16/9" src="../assets/logo.degrade.svg" class="pa-md-16">
+        </v-img>
+      </v-col>
+    </v-card>
+  </v-app>
 </template>
 
 <script>
-import { defineComponent } from 'vue';
 
-// Components
-import HelloWorld from '../components/HelloWorld.vue';
+export default {
 
-export default defineComponent({
-  name: 'HomeView',
+  name: 'App',
 
-  components: {
-    HelloWorld,
-  },
-});
+  data: () => ({
+
+  }),
+
+};
 </script>
+
+<style></style>

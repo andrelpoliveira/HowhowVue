@@ -1,67 +1,149 @@
 <template>
-  <v-app id="inspire">
-    <!-- <v-navigation-drawer v-model="drawer"> -->
-      <!--  -->
-    <!-- </v-navigation-drawer> -->
-    <v-navigation-drawer
-        class="bg-deep-gray"
-        theme="dark"
-        v-model="drawer"
-        app
+  <v-container>
+    <v-row class="text-center">
+      <v-col cols="12">
+        <v-img
+          :src="require('../assets/logo.svg')"
+          class="my-3"
+          contain
+          height="200"
+        />
+      </v-col>
+
+      <v-col class="mb-4">
+        <h1 class="display-2 font-weight-bold mb-3">
+          Welcome to the Vuetify 3 Beta
+        </h1>
+
+
+        <p class="subheading font-weight-regular">
+          For help and collaboration with other Vuetify developers,
+          <br>please join our online
+          <a
+            href="https://community.vuetifyjs.com"
+            target="_blank"
+          >Discord Community</a>
+        </p>
+      </v-col>
+
+      <v-col
+        class="mb-5"
+        cols="12"
       >
-        <v-list-item-content>
-          <v-list-item
-            nav
-            prepend-avatar="https://randomuser.me/api/portraits/men/75.jpg"
-            title="Name"
-          ></v-list-item>
-          <v-list-item-subtitle class="pa-2">
-            Ocupation
-          </v-list-item-subtitle>
-        </v-list-item-content>
-        <v-divider></v-divider>
-        <v-list color="transparent">
-          <v-list-item prepend-icon="mdi-view-dashboard" title="Dashboard"></v-list-item>
-          <v-list-item prepend-icon="mdi-account-box" title="Account"></v-list-item>
-          <v-list-item prepend-icon="mdi-gavel" title="Admin"></v-list-item>
-        </v-list>
+        <h2 class="headline font-weight-bold mb-5">
+          What's next?
+        </h2>
 
-        <template v-slot:append>
-          <div class="pa-2">
-            <v-btn block>
-              Logout
-            </v-btn>
-          </div>
-        </template>
-      </v-navigation-drawer>
+        <v-row justify="center">
+          <a
+            v-for="(next, i) in whatsNext"
+            :key="i"
+            :href="next.href"
+            class="subheading mx-3"
+            target="_blank"
+          >
+            {{ next.text }}
+          </a>
+        </v-row>
+      </v-col>
 
-    <v-app-bar class="bg-deep-indigo-lighten-1" theme="dark">
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-col
+        class="mb-5"
+        cols="12"
+      >
+        <h2 class="headline font-weight-bold mb-5">
+          Important Links
+        </h2>
 
-      <v-toolbar-title>Application</v-toolbar-title>
-    </v-app-bar>
+        <v-row justify="center">
+          <a
+            v-for="(link, i) in importantLinks"
+            :key="i"
+            :href="link.href"
+            class="subheading mx-3"
+            target="_blank"
+          >
+            {{ link.text }}
+          </a>
+        </v-row>
+      </v-col>
 
-    <v-main class="bg-deep-grey">
-        <v-container fluid>
-          <v-row dense>
-            <v-col
-              v-for="n in 12"
-              :key="n"
-              cols="4"
-            >
-              <v-sheet
-                color="grey-lighten-2"
-                height="96"
-              ></v-sheet>
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-main>
-  </v-app>
+      <v-col
+        class="mb-5"
+        cols="12"
+      >
+        <h2 class="headline font-weight-bold mb-5">
+          Ecosystem
+        </h2>
+
+        <v-row justify="center">
+          <a
+            v-for="(eco, i) in ecosystem"
+            :key="i"
+            :href="eco.href"
+            class="subheading mx-3"
+            target="_blank"
+          >
+            {{ eco.text }}
+          </a>
+        </v-row>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-  export default {
-    data: () => ({ drawer: null }),
-  }
+
+export default {
+  name: 'HelloWorld',
+
+  data: () => ({
+    ecosystem: [
+      {
+        text: 'vuetify-loader',
+        href: 'https://github.com/vuetifyjs/vuetify-loader/tree/next',
+      },
+      {
+        text: 'github',
+        href: 'https://github.com/vuetifyjs/vuetify/tree/next',
+      },
+      {
+        text: 'awesome-vuetify',
+        href: 'https://github.com/vuetifyjs/awesome-vuetify',
+      },
+    ],
+    importantLinks: [
+      {
+        text: 'Chat',
+        href: 'https://community.vuetifyjs.com',
+      },
+      {
+        text: 'Made with Vuetify',
+        href: 'https://madewithvuejs.com/vuetify',
+      },
+      {
+        text: 'Twitter',
+        href: 'https://twitter.com/vuetifyjs',
+      },
+      {
+        text: 'Articles',
+        href: 'https://medium.com/vuetify',
+      },
+    ],
+    whatsNext: [
+      {
+        text: 'Explore components',
+        href: 'https://vuetifyjs.com',
+      },
+      {
+        text: 'Roadmap',
+        href: 'https://vuetifyjs.com/introduction/roadmap/',
+      },
+      {
+        text: 'Frequently Asked Questions',
+        href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions',
+      },
+    ],
+  }),
+}
 </script>
