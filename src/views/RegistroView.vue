@@ -5,9 +5,9 @@
 <script>
 
 // Components
-import RegistroComponent from "@/components/Registro/RegistroComponent";
+import RegistroComponent from '../components/Registro/RegistroComponent.vue';
 
-export default defineComponent({
+export default ({
   name: 'RegistroView',
 
   components: {

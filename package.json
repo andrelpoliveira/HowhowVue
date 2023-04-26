@@ -13,7 +13,7 @@
     "apexcharts": "^3.39.0",
     "chart.js": "^4.2.1",
     "core-js": "^3.8.3",
-    "dashblocks": "^0.5.37",
+    "dashblocks": "^0.5.22",
     "register-service-worker": "^1.7.2",
     "roboto-fontface": "*",
     "vee-validate": "^4.8.6",
