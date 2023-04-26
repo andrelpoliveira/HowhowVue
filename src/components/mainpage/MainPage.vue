@@ -235,7 +235,7 @@
         <v-btn class="sections-btns">Cadastrar-se</v-btn>
       </div>
       <v-img class="redes-img-section overflow-visible" height="480px">
-        <v-container class="redes-cards-section ">
+        <v-container class="redes-cards-section">
           <v-card class="redes-card-inlfuencers" width="400px" height="100px">
             <v-img class="redes-card-profile" src="./../../assets/images/influencers/6.png" cover />
             <v-img class="redes-card-avatar" src="./../../assets/images/redes/redes-icons/instagram.svg" />
