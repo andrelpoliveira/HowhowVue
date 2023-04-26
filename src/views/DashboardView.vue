@@ -1,5 +1,5 @@
 <template>
-<v-app app id="inspire" theme="dark">
+<v-app app id="inspire" theme="light">
    <DashboardSideBar/>
 
 </v-app>

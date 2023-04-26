@@ -171,7 +171,7 @@ export default {
     value: 0,
     //Retorno da Rules da db
     usuario:{
-      roles: "agencia"
+      roles: "marca"
     }
 
   }),
