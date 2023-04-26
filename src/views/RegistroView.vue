@@ -1,18 +1,18 @@
 <template>
-  <HelloWorld />
+  <RegistroComponent />
 </template>
 
 <script>
 import { defineComponent } from 'vue';
 
 // Components
-import HelloWorld from '../components/HelloWorld.vue';
+import RegistroComponent from "@/components/Registro/RegistroComponent";
 
 export default defineComponent({
-  name: 'HomeView',
+  name: 'RegistroView',
 
   components: {
-    HelloWorld,
+    RegistroComponent,
   },
 });
 </script>

@@ -1,12 +1,31 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import RegistroView from '../views/RegistroView.vue'
+import TermosView  from '../views/TermosView.vue'
+import PoliticaView from '../views/PoliticaView.vue'
+import WalletView from '../views/WalletView.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: RegistroView
   },
+  {
+    path: '/termosdeuso',
+    name: 'TermosDeuso',
+    component: TermosView 
+  },
+  {
+    path: '/wallet',
+    name: 'Wallet',
+    component: WalletView
+  },
+  {
+    path: '/politicadeprivacidade',
+    name: 'PoliticaDePrivacidade',
+    component: PoliticaView
+  },
+  
   {
     path: '/about',
     name: 'about',
@@ -16,7 +35,6 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   }
 ]
-
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
