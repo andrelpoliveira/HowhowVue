@@ -8,6 +8,10 @@
 
 <script>
 
+//styles
+import './assets/css/main.css';
+import './assets/css/components.css';
+
 export default {
   name: 'App',
 
