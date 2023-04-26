@@ -1,4 +1,4 @@
-# howhow
+# panel-login
 
 ## Project setup
 ```

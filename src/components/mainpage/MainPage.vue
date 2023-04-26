@@ -71,7 +71,7 @@
   <v-layout class="main-servico-section">
     <v-container class="sub-servico-section">
       <v-sheet class="categorias-slideshow mx-auto" max-width="1000">
-        <v-slide-group show-arrows>
+        <v-slide-group show-arrows class="p-4">
           <v-slide-group-item v-slot="{ toggle }">
             <v-btn class="ma-2" rounded @click="toggle">
               <v-img class="categorias-icon" src="./../../assets/images/emoji-categorias/ninja.png" />
@@ -297,6 +297,7 @@
           </div>
         </v-container>
       </v-img>
+      
     </v-container>
   </v-layout>
   <!--/ home redes-section -->
