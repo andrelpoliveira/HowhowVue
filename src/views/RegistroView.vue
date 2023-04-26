@@ -7,7 +7,7 @@
 // Components
 import RegistroComponent from "@/components/Registro/RegistroComponent";
 
-export default defineComponent({
+export default ({
   name: 'RegistroView',
 
   components: {

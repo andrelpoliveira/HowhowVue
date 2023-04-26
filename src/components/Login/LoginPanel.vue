@@ -4,7 +4,8 @@
     <!-- Info Login-->
     <v-card-title class="text-h8 text-md-h6 text-lg-h4 font-weight-bold pb-2">Entre na Howhow</v-card-title>
     <v-card-text class="pb-4">Não tem conta?<a href="#" class="text-decoration-none font-wheight-bold">
-        Registre-se</a></v-card-text>
+      <router-link to="/registro">Registre-se</router-link>
+        </a></v-card-text>
     <v-sheet class="d-flex align-center justify-center flex-wrap text-center ma-2" elevation="4" height="94" rounded
       color="rgb(202,253,245)" floating>
       <div class="ma-2">

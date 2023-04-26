@@ -8,8 +8,8 @@ import WalletView from '../views/WalletView.vue'
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
+    path: '/registro',
+    name: 'Registro',
     component: RegistroView
   },
   {
