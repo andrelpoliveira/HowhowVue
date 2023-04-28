@@ -1,539 +1,344 @@
 <template>
-  <v-card >
+  <v-card>
     <v-layout>
       <v-main style="min-height: 980px;">
         <v-container>
-        <v-sheet class="mx-auto" density="comfortable" color="transparent" max-width="580">
-          
-          <!-- logo Howhow --> 
-          <v-img
-            class="mx-auto"
-            height="80"
-            max-width="200"
-            :width=" 240 "
-            aspect-ratio="16/9"
-            :src="require('@/assets/logo-degrade.svg')" 
-          />
+          <v-sheet class="mx-auto" density="comfortable" color="transparent" max-width="580">
 
-          <!-- Tabela seletiva (influenciador, marca e agência) -->
-          <v-tabs v-model="tab" align-tabs="center" bg-color="transparent" density="comfortable">
-            <v-tab value="one" color="blue">Influenciador </v-tab>
-            <v-tab value="two" color="blue">Marca </v-tab>
-            <v-tab value="three" color="blue">Agência </v-tab>
-          </v-tabs>
+            <!-- logo Howhow -->
+            <v-img class="registro-logo mx-auto" height="80" max-width="200" :width="240" aspect-ratio="16/9"
+              :src="require('../../assets/images/logo/logo-degrade.svg')" />
 
-          <v-card-text>
-            <!-- Model principal tab -->
-            <v-window v-model="tab">
+            <!-- Tabela seletiva (influenciador, marca e agência) -->
+            <div class="registro-tabs">
+              <v-tabs v-model="tab" align-tabs="center" bg-color="transparent" density="comfortable">
+                <v-tab class="registro-tab" value="one" color="blue">Influenciador </v-tab>
+                <v-tab class="registro-tab" value="two" color="blue">Marca </v-tab>
+                <v-tab class="registro-tab" value="three" color="blue">Agência </v-tab>
+              </v-tabs>
+            </div>
 
-              <!-- Tab Influenciador-->
-              <v-window-item value="one">
-                <v-form ref="form">
-                  <v-container>
-                    <h2 :style="{color : '#000000'}"> Olá, <span class="text-blue">Influenciador</span> seja bem-vindo!</h2>
-                    <v-card-text :style="{color : 'grey'}">Insira seus dados abaixo.</v-card-text>
-                    <v-row>
+            <v-card-text>
+              <!-- Model principal tab -->
+              <v-window v-model="tab">
 
-                      <!-- Form nome completo influenciador -->
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          text-color="blue"
-                          label="Nome Completo"
-                          variant="solo"
-                          prepend-inner-icon="mdi-account-circle"
-                          v-model="nomeCompleto"
-                          :rules="nomeCompletoRules">
-                        </v-text-field>
-                      </v-col>
+                <!-- Tab Influenciador-->
+                <v-window-item value="one">
+                  <v-form ref="form">
+                    <v-container>
+                      <v-text class="registro-welcome" :style="{ color: '#000000' }"> Olá, <span
+                          class="text-blue">Influenciador</span> seja bem-vindo!</v-text>
+                      <v-card-text class="registro-guia" :style="{ color: 'grey' }">Insira seus dados abaixo.</v-card-text>
+                      <v-row>
 
-                      <!-- Form e-mail influenciador -->
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          label="Email"
-                          persistent-hint
-                          variant="solo"
-                          prepend-inner-icon="mdi-email"
-                          :counter="10"
-                          :rules="emailRules">
-                        </v-text-field>
-                      </v-col>
+                        <!-- Form nome completo influenciador -->
+                        <v-col class="registro-inputs" cols="12" sm="6">
+                          <v-text-field bg-color="rgba(255,255,255,0)" text-color="blue" label="Nome Completo"
+                            prepend-inner-icon="mdi-account-circle" v-model="nomeCompleto" :rules="nomeCompletoRules">
+                          </v-text-field>
+                        </v-col>
 
-                      <!-- Form senha influenciador -->
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          :prepend-inner-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                          :rules="[passwordRules.required, passwordRules.min]"
-                          :type="show1 ? 'text' : 'password'"
-                          name="input-10-1"
-                          label="Senha"
-                          persistent-hint
-                          variant="solo"
-                          counter
-                          @click:prepend-inner="show1 = !show1"
-                          v-model="password">
-                        </v-text-field>
-                      </v-col>
+                        <!-- Form e-mail influenciador -->
+                        <v-col class="registro-inputs" cols="12" sm="6">
+                          <v-text-field bg-color="rgba(255,255,255,0)" label="Email" persistent-hint
+                            prepend-inner-icon="mdi-email" :counter="10" :rules="emailRules">
+                          </v-text-field>
+                        </v-col>
 
-                      <!-- Form confirmação de senha influenciador -->
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          :prepend-inner-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
-                          :rules="[confirmPasswordRules.required,passwordConfirmationRule]"
-                          :type="show2 ? 'text' : 'password'"
-                          name="input-10-1"
-                          label="Confirme a Senha"
-                          persistent-hint
-                          variant="solo"
-                          counter
-                          @click:prepend-inner="show2 = !show2"
-                          v-model="confirmPassword">
-                        </v-text-field>
-                      </v-col>
+                        <!-- Form senha influenciador -->
+                        <v-col class="registro-inputs" cols="12" sm="6">
+                          <v-text-field bg-color="rgba(255,255,255,0)"
+                            :prepend-inner-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                            :rules="[passwordRules.required, passwordRules.min]" :type="show1 ? 'text' : 'password'"
+                            name="input-10-1" label="Senha" persistent-hint counter @click:prepend-inner="show1 = !show1"
+                            v-model="password">
+                          </v-text-field>
+                        </v-col>
 
-                      <!-- Form checkbox Termos de serviço  e as política de Privacidade influenciador -->
-                      <v-col cols="30" sm="12">
-                        <v-checkbox
-                          v-model="agreement"
-                          :rules="[checkboxRegistroRules.checkboxrequired]"
-                          color="#0189FF">
-                          <template v-slot:label>
-                            <span :style="{fontSize : '11px',}">Eu concordo com os&nbsp;</span>
-                            <a
-                              :style="{
-                              fontSize : '11px',
-                              color : 'blue'}"
-                              >
-                              <router-link to="/termosdeuso">Termos de uso</router-link>
-                            </a>
-                            <span :style="{fontSize : '11px',}">&nbsp;e&nbsp; </span>
-                            <a
-                              :style="{
-                              fontSize : '11px',
-                              color : 'blue'}"
-                              >
-                              <router-link to="/politicadeprivacidade">Políticas de privacidade</router-link>
-                            </a>
-                            <span :style="{fontSize : '11px',}">*</span>
-                          </template>
-                        </v-checkbox>
-                      </v-col>
+                        <!-- Form confirmação de senha influenciador -->
+                        <v-col class="registro-inputs" cols="12" sm="6">
+                          <v-text-field bg-color="rgba(255,255,255,0)"
+                            :prepend-inner-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+                            :rules="[confirmPasswordRules.required, passwordConfirmationRule]"
+                            :type="show2 ? 'text' : 'password'" name="input-10-1" label="Confirme a Senha" persistent-hint
+                            counter @click:prepend-inner="show2 = !show2" v-model="confirmPassword">
+                          </v-text-field>
+                        </v-col>
 
-                      <!-- Botão criar conta influenciador -->
-                      <v-col cols="12" sm="6" offset-sm="3">
-                        <v-btn
-                          prepend-icon="mdi-account"
-                          :disabled="loading"
-                          :loading="loading"
-                          block
-                          class="text-shades-white mb-4"
-                          color="#0189FF"
-                          size="x-large"
-                          variant="flat"
-                          @click="validate">
-                          Criar Conta
-                        </v-btn>
-                      </v-col>
-                    </v-row>
-                  </v-container>
-                </v-form >
-              </v-window-item>
+                        <!-- Form checkbox Termos de serviço  e as política de Privacidade influenciador -->
+                        <v-col cols="30" sm="12">
+                          <v-checkbox v-model="agreement" :rules="[checkboxRegistroRules.checkboxrequired]"
+                            color="#0189FF">
+                            <template v-slot:label>
+                              <span :style="{ fontSize: '14px', }">Eu concordo com os&nbsp;</span>
+                              <router-link class="registro-link-router" to="/termosdeuso">Termos de uso</router-link>
+                              <span :style="{ fontSize: '14px', }">&nbsp;e&nbsp; </span>
+                              <router-link class="registro-link-router" to="/politicadeprivacidade">Políticas de
+                                privacidade</router-link>
+                              <span :style="{ fontSize: '14px', }">*</span>
+                            </template>
+                          </v-checkbox>
+                        </v-col>
 
-              <!-- Tab Marca-->
-              <v-window-item value="two">
-                <v-form ref="form">
-                  <v-container>
-                    <h2 :style="{color : '#000000'}"> Olá, <span class="text-blue">Marca</span> seja bem-vindo!</h2>
-                    <v-card-text :style="{color : 'grey'}">Insira seus dados abaixo.</v-card-text>
-                    <v-row>
+                        <!-- Botão criar conta influenciador -->
+                        <v-col cols="12" sm="6" offset-sm="3">
+                          <v-btn prepend-icon="mdi-account" :disabled="loading" :loading="loading" block
+                            class="criar-conta-btn" color="#0189FF" size="x-large" variant="flat" @click="validate">
+                            Criar Conta
+                          </v-btn>
+                        </v-col>
+                      </v-row>
+                    </v-container>
+                  </v-form>
+                </v-window-item>
 
-                      <!-- Form nome fantasia Marca -->
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          label="Nome Fantasia"
-                          persistent-hint
-                          variant="solo"
-                          prepend-inner-icon="mdi-pencil"
-                          v-model="nomeFantasia"
-                          :rules="nomeFantasiaRules">
-                        </v-text-field>
-                      </v-col>
+                <!-- Tab Marca-->
+                <v-window-item value="two">
+                  <v-form ref="form">
+                    <v-container>
+                      <v-text class="registro-welcome" :style="{ color: '#000000' }"> Olá, <span
+                          class="text-blue">Marca</span> seja bem-vindo!</v-text>
+                      <v-card-text class="registro-guia" :style="{ color: 'grey' }">Insira seus dados abaixo.</v-card-text>
+                      <v-row>
 
-                      <!-- Form e-mail Marca -->
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          label="Email"
-                          persistent-hint
-                          variant="solo"
-                          prepend-inner-icon="mdi-email"
-                          :counter="10"
-                          :rules="emailRules">
-                        </v-text-field>
-                      </v-col>
+                        <!-- Form nome fantasia Marca -->
+                        <v-col class="registro-inputs" cols="12" sm="6">
+                          <v-text-field label="Nome Fantasia" persistent-hint variant="solo"
+                            prepend-inner-icon="mdi-pencil" v-model="nomeFantasia" :rules="nomeFantasiaRules">
+                          </v-text-field>
+                        </v-col>
 
-                      <!-- Form CNPJ Marca -->
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          label="CNPJ"
-                          persistent-hint
-                          variant="solo"
-                          prepend-inner-icon="mdi-office-building-outline"
-                          v-model="cnpj"
-                          :counter="18"
-                          :rules="cnpjRules">
-                        </v-text-field>
-                      </v-col>
+                        <!-- Form e-mail Marca -->
+                        <v-col class="registro-inputs" cols="12" sm="6">
+                          <v-text-field label="Email" persistent-hint variant="solo" prepend-inner-icon="mdi-email"
+                            :counter="10" :rules="emailRules">
+                          </v-text-field>
+                        </v-col>
 
-                      <!-- Form telefone Marca -->
-                      <v-col cols="12" sm="6">
-                        <v-card varient="solo">
-                          <vue-tel-input
-                            v-model="phone"
-                            mode="international"
-                            autoFormat
-                            :style="{
-                            height: '57px',
-                            border : 'transparent'}"
-                            :rules="phoneRules">
-                          </vue-tel-input>
-                        </v-card>
-                      </v-col>
+                        <!-- Form CNPJ Marca -->
+                        <v-col class="registro-inputs" cols="12" sm="6">
+                          <v-text-field label="CNPJ" persistent-hint variant="solo"
+                            prepend-inner-icon="mdi-office-building-outline" v-model="cnpj" :counter="18"
+                            :rules="cnpjRules">
+                          </v-text-field>
+                        </v-col>
 
-                      <!-- Form Ramo Marca -->
-                      <v-col cols="12" sm="6">
-                        <v-autocomplete
-                          ref="Categoria"
-                          v-model="Categoria"
-                          :rules="categoriaRules"
-                          :items="Category"
-                          label="Ramo"
-                          placeholder="Select..."
-                          required
-                          variant="solo"
-                          prepend-inner-icon="mdi-clipboard-edit-outline">
-                        </v-autocomplete>
-                      </v-col>
+                        <!-- Form telefone Marca -->
+                        <v-col class="registro-inputs" cols="12" sm="6">
+                          <v-card varient="solo">
+                            <vue-tel-input v-model="phone" mode="international" autoFormat :style="{
+                                height: '57px',
+                                border: 'transparent'
+                              }" :rules="phoneRules">
+                            </vue-tel-input>
+                          </v-card>
+                        </v-col>
 
-                      <!-- Form razão social Marca -->
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          label="Razão Social"
-                          persistent-hint
-                          variant="solo"
-                          prepend-inner-icon="mdi-lead-pencil"
-                          v-model="razaoSocial"
-                          :counter="30"
-                          :rules="razaoSocialRules">
-                        </v-text-field>
-                      </v-col>
+                        <!-- Form Ramo Marca -->
+                        <v-col class="registro-inputs" cols="12" sm="6">
+                          <v-autocomplete ref="Categoria" v-model="Categoria" :rules="categoriaRules" :items="Category"
+                            label="Ramo" placeholder="Select..." required variant="solo"
+                            prepend-inner-icon="mdi-clipboard-edit-outline">
+                          </v-autocomplete>
+                        </v-col>
 
-                      <!-- Form senha Marca -->
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          :prepend-inner-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                          :rules="[passwordRules.required, passwordRules.min]"
-                          :type="show1 ? 'text' : 'password'"
-                          name="input-10-1"
-                          label="Senha"
-                          persistent-hint
-                          variant="solo"
-                          counter
-                          @click:prepend-inner="show1 = !show1"
-                          v-model="password">
-                        </v-text-field>
-                      </v-col>
+                        <!-- Form razão social Marca -->
+                        <v-col class="registro-inputs" cols="12" sm="6">
+                          <v-text-field label="Razão Social" persistent-hint variant="solo"
+                            prepend-inner-icon="mdi-lead-pencil" v-model="razaoSocial" :counter="30"
+                            :rules="razaoSocialRules">
+                          </v-text-field>
+                        </v-col>
 
-                      <!-- Form confirmação de senha Marca -->
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          :prepend-inner-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
-                          :rules="[confirmPasswordRules.required, passwordConfirmationRule]"
-                          :type="show2 ? 'text' : 'password'"
-                          name="input-10-1"
-                          label="Confirme a Senha"
-                          persistent-hint
-                          variant="solo"
-                          counter
-                          @click:prepend-inner="show2 = !show2"
-                          v-model="confirmPassword">
-                        </v-text-field>
-                      </v-col>
+                        <!-- Form senha Marca -->
+                        <v-col class="registro-inputs" cols="12" sm="6">
+                          <v-text-field :prepend-inner-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                            :rules="[passwordRules.required, passwordRules.min]" :type="show1 ? 'text' : 'password'"
+                            name="input-10-1" label="Senha" persistent-hint variant="solo" counter
+                            @click:prepend-inner="show1 = !show1" v-model="password">
+                          </v-text-field>
+                        </v-col>
 
-                      <!-- Form checkbox Termos de serviço  e as política de Privacidade Marca -->
-                      <v-col cols="30" sm="12">
-                        <v-checkbox
-                          v-model="agreement"
-                          :rules="[checkboxRegistroRules.checkboxrequired]"
-                          color="#0189FF">
-                          <template v-slot:label>
-                            <span :style="{fontSize : '11px',}">Eu concordo com os&nbsp;</span>
-                            <a
-                              :style="{
-                              fontSize : '11px',
-                              color : 'blue'}"
-                              >
-                              <router-link to="/termosdeuso">Termos de uso</router-link>
-                            </a>
-                            <span :style="{fontSize : '11px',}">&nbsp;e&nbsp; </span>
-                            <a
-                              :style="{
-                              fontSize : '11px',
-                              color : 'blue'}"
-                              >
-                              <router-link to="/politicadeprivacidade">Políticas de privacidade</router-link>
-                            </a>
-                            <span :style="{fontSize : '11px',}">*</span>
-                          </template>
-                        </v-checkbox>
-                      </v-col>
+                        <!-- Form confirmação de senha Marca -->
+                        <v-col class="registro-inputs" cols="12" sm="6">
+                          <v-text-field :prepend-inner-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+                            :rules="[confirmPasswordRules.required, passwordConfirmationRule]"
+                            :type="show2 ? 'text' : 'password'" name="input-10-1" label="Confirme a Senha" persistent-hint
+                            variant="solo" counter @click:prepend-inner="show2 = !show2" v-model="confirmPassword">
+                          </v-text-field>
+                        </v-col>
 
-                      <!-- Botão criar conta Marca -->
-                      <v-col cols="12" sm="6" offset-sm="3">
-                        <v-btn
-                          prepend-icon="mdi-account"
-                          :disabled="loading"
-                          :loading="loading"
-                          block
-                          class="text-shades-white mb-4"
-                          color="#0189FF"
-                          size="x-large"
-                          variant="flat"
-                          @click="validate">
-                          Criar Conta
-                        </v-btn>
-                      </v-col>
-                    </v-row>
-                  </v-container>
-                </v-form>
-              </v-window-item>
+                        <!-- Form checkbox Termos de serviço  e as política de Privacidade Marca -->
+                        <v-col class="registro-inputs" cols="30" sm="12">
+                          <v-checkbox v-model="agreement" :rules="[checkboxRegistroRules.checkboxrequired]"
+                            color="#0189FF">
+                            <template v-slot:label>
+                              <span :style="{ fontSize: '14px', }">Eu concordo com os&nbsp;</span>
+                              <router-link class="registro-link-router" to="/termosdeuso">Termos de uso</router-link>
+                              <span :style="{ fontSize: '14px', }">&nbsp;e&nbsp; </span>
+                              <router-link class="registro-link-router" to="/politicadeprivacidade">Políticas de
+                                privacidade</router-link>
+                              <span :style="{ fontSize: '14px', }">*</span>
+                            </template>
+                          </v-checkbox>
+                        </v-col>
 
-              <!-- Tab Agência-->
-              <v-window-item value="three">
-                <v-form ref="form">
-                  <v-container>
-                    <h2 :style="{color : '#000000'}"> Olá, <span class="text-blue">Agência</span> seja bem-vindo!</h2>
-                    <v-card-text :style="{color : 'grey'}">Insira seus dados abaixo.</v-card-text>
-                    <v-row>
+                        <!-- Botão criar conta Marca -->
+                        <v-col cols="12" sm="6" offset-sm="3">
+                          <v-btn prepend-icon="mdi-account" :disabled="loading" :loading="loading" block
+                            class="criar-conta-btn" color="#0189FF" size="x-large" variant="flat" @click="validate">
+                            Criar Conta
+                          </v-btn>
+                        </v-col>
+                      </v-row>
+                    </v-container>
+                  </v-form>
+                </v-window-item>
 
-                      <!-- Form nome fantasia Agência -->
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          label="Nome Fantasia"
-                          persistent-hint
-                          variant="solo"
-                          prepend-inner-icon="mdi-pencil"
-                          v-model="nomeFantasia"
-                          :rules="nomeFantasiaRules">
-                        </v-text-field>
-                      </v-col>
+                <!-- Tab Agência-->
+                <v-window-item value="three">
+                  <v-form ref="form">
+                    <v-container>
+                      <v-text class="registro-welcome" :style="{ color: '#000000' }"> Olá, <span
+                          class="text-blue">Agência</span> seja bem-vindo!</v-text>
+                      <v-card-text class="registro-guia" :style="{ color: 'grey' }">Insira seus dados abaixo.</v-card-text>
+                      <v-row>
 
-                      <!-- Form e-mail Agência -->
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          label="Email"
-                          persistent-hint
-                          variant="solo"
-                          prepend-inner-icon="mdi-email"
-                          :counter="10"
-                          :rules="emailRules">
-                        </v-text-field>
-                      </v-col>
+                        <!-- Form nome fantasia Agência -->
+                        <v-col class="registro-inputs" cols="12" sm="6">
+                          <v-text-field label="Nome Fantasia" persistent-hint variant="solo"
+                            prepend-inner-icon="mdi-pencil" v-model="nomeFantasia" :rules="nomeFantasiaRules">
+                          </v-text-field>
+                        </v-col>
 
-                      <!-- Form CNPJ Agência -->
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          label="CNPJ"
-                          persistent-hint
-                          variant="solo"
-                          prepend-inner-icon="mdi-office-building-outline"
-                          v-model="cnpj"
-                          :counter="18"
-                          :rules="cnpjRules">
-                        </v-text-field>
-                      </v-col>
+                        <!-- Form e-mail Agência -->
+                        <v-col class="registro-inputs" cols="12" sm="6">
+                          <v-text-field label="Email" persistent-hint variant="solo" prepend-inner-icon="mdi-email"
+                            :counter="10" :rules="emailRules">
+                          </v-text-field>
+                        </v-col>
 
-                      <!-- Form telefone Agência -->
-                      <v-col cols="12" sm="6">
-                        <v-card varient="solo">
-                          <vue-tel-input
-                            v-model="phone"
-                            mode="international"
-                            autoFormat
-                            :style="{
-                            height: '57px',
-                            border : 'transparent'}"
-                            :rules="phoneRules">
-                          </vue-tel-input>
-                        </v-card>
-                      </v-col>
+                        <!-- Form CNPJ Agência -->
+                        <v-col class="registro-inputs" cols="12" sm="6">
+                          <v-text-field label="CNPJ" persistent-hint variant="solo"
+                            prepend-inner-icon="mdi-office-building-outline" v-model="cnpj" :counter="18"
+                            :rules="cnpjRules">
+                          </v-text-field>
+                        </v-col>
 
-                      <!-- Form Ramo Agência -->
-                      <v-col cols="12" sm="6">
-                        <v-autocomplete
-                          ref="Categoria"
-                          v-model="Categoria"
-                          :rules="categoriaRules"
-                          :items="Category"
-                          label="Ramo"
-                          placeholder="Select..."
-                          required
-                          variant="solo"
-                          prepend-inner-icon="mdi-clipboard-edit-outline">
-                        </v-autocomplete>
-                      </v-col>
+                        <!-- Form telefone Agência -->
+                        <v-col class="registro-inputs" cols="12" sm="6">
+                          <v-card varient="solo">
+                            <vue-tel-input v-model="phone" mode="international" autoFormat :style="{
+                                height: '57px',
+                                border: 'transparent'
+                              }" :rules="phoneRules">
+                            </vue-tel-input>
+                          </v-card>
+                        </v-col>
 
-                      <!-- Form razão social Agência -->
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          label="Razão Social"
-                          persistent-hint
-                          variant="solo"
-                          prepend-inner-icon="mdi-lead-pencil"
-                          v-model="razaoSocial"
-                          :counter="30"
-                          :rules="razaoSocialRules">
-                        </v-text-field>
-                      </v-col>
+                        <!-- Form Ramo Agência -->
+                        <v-col class="registro-inputs" cols="12" sm="6">
+                          <v-autocomplete ref="Categoria" v-model="Categoria" :rules="categoriaRules" :items="Category"
+                            label="Ramo" placeholder="Select..." required variant="solo"
+                            prepend-inner-icon="mdi-clipboard-edit-outline">
+                          </v-autocomplete>
+                        </v-col>
 
-                      <!-- Form senha Agência -->
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          :prepend-inner-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                          :rules="[passwordRules.required, passwordRules.min]"
-                          :type="show1 ? 'text' : 'password'"
-                          name="input-10-1"
-                          label="Senha"
-                          persistent-hint
-                          variant="solo"
-                          counter
-                          @click:prepend-inner="show1 = !show1"
-                          v-model="password">
-                        </v-text-field>
-                      </v-col>
+                        <!-- Form razão social Agência -->
+                        <v-col class="registro-inputs" cols="12" sm="6">
+                          <v-text-field label="Razão Social" persistent-hint variant="solo"
+                            prepend-inner-icon="mdi-lead-pencil" v-model="razaoSocial" :counter="30"
+                            :rules="razaoSocialRules">
+                          </v-text-field>
+                        </v-col>
 
-                      <!-- Form confirmação de senha Agência -->
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          :prepend-inner-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
-                          :rules="[confirmPasswordRules.required, passwordConfirmationRule]"
-                          :type="show2 ? 'text' : 'password'"
-                          name="input-10-1"
-                          label="Confirme a Senha"
-                          persistent-hint
-                          variant="solo"
-                          counter
-                          @click:prepend-inner="show2 = !show2"
-                          v-model="confirmPassword">
-                        </v-text-field>
-                      </v-col>
+                        <!-- Form senha Agência -->
+                        <v-col class="registro-inputs" cols="12" sm="6">
+                          <v-text-field :prepend-inner-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                            :rules="[passwordRules.required, passwordRules.min]" :type="show1 ? 'text' : 'password'"
+                            name="input-10-1" label="Senha" persistent-hint variant="solo" counter
+                            @click:prepend-inner="show1 = !show1" v-model="password">
+                          </v-text-field>
+                        </v-col>
 
-                      <!-- Form checkbox Termos de serviço  e as política de Privacidade Agência -->
-                      <v-col cols="30" sm="12">
-                        <v-checkbox
-                          v-model="agreement"
-                          :rules="[checkboxRegistroRules.checkboxrequired]"
-                          color="#0189FF">
-                          <template v-slot:label>
-                            <span :style="{fontSize : '11px',}">Eu concordo com os&nbsp;</span>
-                            <a
-                              :style="{
-                              fontSize : '11px',
-                              color : 'blue'}"
-                              >
-                              <router-link to="/termosdeuso">Termos de uso</router-link>
-                            </a>
-                            <span :style="{fontSize : '11px',}">&nbsp;e&nbsp; </span>
-                            <a
-                              :style="{
-                              fontSize : '11px',
-                              color : 'blue'}"
-                              >
-                              <router-link to="/politicadeprivacidade">Políticas de privacidade</router-link>
-                            </a>
-                            <span :style="{fontSize : '11px',}">*</span>
-                          </template>
-                        </v-checkbox>
-                      </v-col>
+                        <!-- Form confirmação de senha Agência -->
+                        <v-col class="registro-inputs" cols="12" sm="6">
+                          <v-text-field :prepend-inner-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+                            :rules="[confirmPasswordRules.required, passwordConfirmationRule]"
+                            :type="show2 ? 'text' : 'password'" name="input-10-1" label="Confirme a Senha" persistent-hint
+                            variant="solo" counter @click:prepend-inner="show2 = !show2" v-model="confirmPassword">
+                          </v-text-field>
+                        </v-col>
 
-                      <!-- Botão criar conta Agência -->
-                      <v-col cols="12" sm="6" offset-sm="3">
-                        <v-btn
-                          prepend-icon="mdi-account"
-                          :disabled="loading"
-                          :loading="loading"
-                          block
-                          class="text-shades-white mb-4"
-                          color="#0189FF"
-                          size="x-large"
-                          variant="flat"
-                          @click="validate">
-                          Criar Conta
-                        </v-btn>
-                      </v-col>
-                    </v-row>
-                  </v-container>
-                </v-form>
-              </v-window-item>
-            </v-window>
-          </v-card-text>
-        </v-sheet>
+                        <!-- Form checkbox Termos de serviço  e as política de Privacidade Agência -->
+                        <v-col cols="30" sm="12">
+                          <v-checkbox v-model="agreement" :rules="[checkboxRegistroRules.checkboxrequired]"
+                            color="#0189FF">
+                            <template v-slot:label>
+                              <span :style="{ fontSize: '14px', }">Eu concordo com os&nbsp;</span>
+                              <router-link class="registro-link-router" to="/termosdeuso">Termos de uso</router-link>
+                              <span :style="{ fontSize: '14px', }">&nbsp;e&nbsp; </span>
+                              <router-link class="registro-link-router" to="/politicadeprivacidade">Políticas de
+                                privacidade</router-link>
+                              <span :style="{ fontSize: '14px', }">*</span>
+                            </template>
+                          </v-checkbox>
+                        </v-col>
 
-        <!-- Observações inferiores da pagina sobre termos e política -->
-          <v-card-text
-            :style="{color : 'black',
-            fontSize : '14px',}"
-            align="center"> Importante:
+                        <!-- Botão criar conta Agência -->
+                        <v-col cols="12" sm="6" offset-sm="3">
+                          <v-btn prepend-icon="mdi-account" :disabled="loading" :loading="loading" block
+                            class="criar-conta-btn" color="#0189FF" size="x-large" variant="flat" @click="validate">
+                            Criar Conta
+                          </v-btn>
+                        </v-col>
+                      </v-row>
+                    </v-container>
+                  </v-form>
+                </v-window-item>
+              </v-window>
+            </v-card-text>
+          </v-sheet>
 
-            <span class="text-grey"
-              :style="{
-              color : 'grey',
-              fontSize : '14px',}">Ao criar uma conta da Howhow você concorda com os&nbsp;
+          <!-- Observações inferiores da pagina sobre termos e política -->
+          <v-card-text :style="{
+              color: 'black',
+              fontSize: '14px',
+            }" align="center"> Importante:
+
+            <span class="text-grey" :style="{
+                color: 'grey',
+                fontSize: '14px',
+              }">Ao criar uma conta da Howhow você concorda com os&nbsp;
             </span>
 
-            <a 
-              :style="{
-              fontSize : '14px',
-              color : 'blue'}"
-              >
-              <router-link to="/termosdeuso">Termos de uso</router-link>
-            </a>
+            <router-link class="registro-link-router" to="/termosdeuso">Termos de uso</router-link>
 
-            <span
-              :style="{
-              color : 'grey',
-              fontSize : '14px',}">&nbsp;e as&nbsp;
+            <span :style="{
+                color: 'grey',
+                fontSize: '14px',
+              }">&nbsp;e as&nbsp;
             </span>
 
-            <a
-              :style="{
-              fontSize : '14px',
-              color : 'blue'}"
-              >
-              <router-link to="/politicadeprivacidade">Políticas de privacidade</router-link>
-            </a>
+            <router-link class="registro-link-router" to="/politicadeprivacidade">Políticas de privacidade</router-link>
 
-            <span
-              :style="{
-              color : 'grey',
-              fontSize : '14px',}">*
+            <span :style="{
+                color: 'grey',
+                fontSize: '14px',
+              }">*
             </span>
           </v-card-text>
-          
+
           <!-- Observações inferiores da pagina caso ja tenha um login -->
-          <v-card-text
-            align="center">
-            <span
-              :style="{
-              color : 'grey',
-              fontSize : '14px',}">Já tem uma conta? &nbsp;
+          <v-card-text align="center">
+            <span :style="{
+                color: 'grey',
+                fontSize: '14px',
+              }">Já tem uma conta? &nbsp;
             </span>
-            <a
-              :style="{
-              fontSize : '14px',
-              color : 'blue'}"
-              href="#"
-              >
-              <router-link to="/login">Efetue o Login</router-link> 
-            </a>
+
+              <router-link class="registro-link-router" to="/login">Efetue o Login</router-link>
           </v-card-text>
         </v-container>
       </v-main>
@@ -551,7 +356,7 @@ export default {
       tab: null,
 
       // script dos cards de registros
-      
+
       // script form nome completo registro (influenciador,marca e agência)
       nomeCompleto: '',
       nomeCompletoRules: [
@@ -568,7 +373,7 @@ export default {
       nomeFantasiaRules: [
         v => !!v || 'O nome fantasia é obrigatório',
         v => (v && v.length >= 2) || 'O nome deve ter o minimo 2 caracteres',
-       
+
       ],
 
       // script form e-mail registro (influenciador,marca e agência)
@@ -670,12 +475,12 @@ export default {
 
   // script metodos de validação de dados
   methods: {
-    async validate () {
+    async validate() {
       const { valid } = await this.$refs.form.validate()
 
-      if (valid){
+      if (valid) {
         alert('Form is valid')
-        this.loading=true
+        this.loading = true
         setTimeout(() => (this.loading = false), 2000)
       }
     },

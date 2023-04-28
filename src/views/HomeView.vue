@@ -1,6 +1,5 @@
 <template>
   <MainPage />
-
 </template>
 
 <script>
