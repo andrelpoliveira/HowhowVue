@@ -1,15 +1,16 @@
 <template>
   <v-navigation-drawer v-model="drawer">
     <!-- Logo Howhow -->
-    <LogoHowhow />
+    <LogoHowhow  class="sidebar-logo"/>
     <!-- User avatar -->
     <v-hover v-slot="{ isHovering, props }">
-      <v-card flat class="d-flex align-center justify-center flex-wrap text-center ma-2" height="70" v-bind="props"
-        :elevation="isHovering ? 8 : 4" rounded="t-xl" color="rgba(1,137,255,0.5)" variant="flat">
+      <v-card flat class="sidebar-profile-card d-flex align-center justify-center flex-wrap text-center ma-2" height="70" v-bind="props"
+        :elevation="isHovering ? 2 : 1" >
         <v-layout>
           <v-list>
             <v-list-item prepend-avatar="https://randomuser.me/api/portraits/women/85.jpg" title="Sandra Adams"
-              :subtitle="`${usuario.roles.toString()}`"></v-list-item>
+              :subtitle="`${usuario.roles.toString()}`" class="sidebar-profile-info">
+            </v-list-item>
           </v-list>
         </v-layout>
       </v-card>
@@ -88,20 +89,16 @@
 
   </v-navigation-drawer>
 
-  <v-app-bar floating>
-    <v-layout :elevation="0" class="overflow-visible" style="height: 60px;" floating>
-      <v-bottom-navigation v-model="value" :bg-color="color" mode="shift">
-        <v-btn density="compact" rounded="circle" @click="drawer = !drawer">
-          <v-icon>mdi-menu</v-icon>
-          <span>Menu</span>
+  <v-app-bar flat class="dashboard-topbar" color="rgba(255,255,255,0)">
+        <v-btn density="compact" @click="drawer = !drawer">
+          <v-icon size="x-large">mdi-menu</v-icon>
+          <span class="dashboard-topbar-icons">Menu</span>
         </v-btn>
 
         <v-spacer></v-spacer>
 
         <DashboardTopbar />
 
-      </v-bottom-navigation>
-    </v-layout>
   </v-app-bar>
 
 <!-- Dashboard tab main-->
@@ -180,8 +177,8 @@ export default {
     idCampanha: null,
     //Retorno da Rules da db
     usuario:{
-      roles: "marca"
-    },
+      roles: "influencer"
+    }
 
   }),
   
@@ -218,20 +215,3 @@ export default {
   },
 }
 </script>
-<style>
-.align-menu {
-  display: flex !important;
-  left: -17px !important;
-  margin: 5px !important;
-}
-.align-campanha{
-  display: flex !important;
-  left: 10px !important;
-  margin: 5px !important;
-}
-.align-submenu {
-  display: flex !important;
-  left: -70px !important;
-  margin: 5px !important;
-}
-</style>

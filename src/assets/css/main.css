@@ -6,6 +6,9 @@
     --primary-color-main: #2861FD !important;
     --primary-color-dark:#035BCB !important;
     --primary-color-darker:#094B9E !important;
+
+    --secundary-color-light:#59646f !important;
+    --secundary-color-main:rgba(117,139,159,.05) !important;
 }
 html {
     font-family: 'Public Sans' !important;
@@ -22,7 +25,19 @@ html {
     font-size: 12px !important;
     border-radius: 30px !important;
     padding: 25px !important;
+    
 }
 
+/* adicionar ao elemento v-text-field bg-color="rgba(255,255,255,0) */
+.v-field {
+    border-radius: 16px !important;
+    border: solid 1px rgba(145, 158, 171, 0.32) !important;
+    box-shadow: none !important;
+    height: 60px !important;
+    padding: 0px 10px;
+}
+.v-field__outline {
+    position: unset !important;
+}
 /*  */
 
