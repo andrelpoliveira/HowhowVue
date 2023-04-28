@@ -1,14 +1,11 @@
 <template>
     <v-window-item value="my-campanha-marca">
-        <v-app>
-            <v-card>
-                <v-tabs v-model="modelCampaigns" color="blue-lighten-4" align-tabs="center">
-                    <v-tab :value="infoCampanha">Informações Campanha</v-tab>
-                    <v-tab :value="editCampanha">Editar Campanha</v-tab>
-                </v-tabs>
-
+        <v-card>
+            <v-tabs v-model="modelCampaigns" color="blue-lighten-4" align-tabs="center">
+                <v-tab value="infoCampanha">Informações Campanha</v-tab>
+                <v-tab value="editCampanha">Editar Campanha</v-tab>
+            </v-tabs>
                 <!-- Dashboards Tab-->
-                <v-sheet>
                 <v-window v-model="modelCampaigns">
                     <v-window-item value="infoCampanha">
                         <p>Info Campanha</p>
@@ -20,10 +17,12 @@
                 </v-window>
 
                 <v-divider></v-divider>
-            </v-sheet>
-            </v-card>
-        </v-app>
+
+        </v-card>
     </v-window-item>
+    <v-card>
+
+    </v-card>
 </template>
 <script setup>
 import { defineProps } from 'vue';
