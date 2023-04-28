@@ -33,8 +33,8 @@
                             <v-card-actions>
                                 <v-row justify="center" class="ma-4">
                                     <v-col cols="12" md="6">
-                                        <v-btn block size="x-large" color="blue-darken-3"
-                                            variant="elevated">Ver mais</v-btn>
+                                        <v-btn block size="x-large" color="blue-darken-1"
+                                            variant="flat">Ver mais</v-btn>
                                     </v-col>
                                 </v-row>
                             </v-card-actions>
@@ -47,6 +47,7 @@
 </template>
 <script>
 export default {
+    name: 'AllCampaignsInfluencer',
     data: () => ({
         show: false,
         cards: [

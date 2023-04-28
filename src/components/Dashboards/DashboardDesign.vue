@@ -5,7 +5,7 @@
     <!-- User avatar -->
     <v-hover v-slot="{ isHovering, props }">
       <v-card flat class="d-flex align-center justify-center flex-wrap text-center ma-2" height="70" v-bind="props"
-        :elevation="isHovering ? 8 : 4" rounded="t-xl" color="rgba(1,137,255,0.8)" >
+        :elevation="isHovering ? 8 : 4" rounded="t-xl" color="rgba(1,137,255,0.5)" variant="flat">
         <v-layout>
           <v-list>
             <v-list-item prepend-avatar="https://randomuser.me/api/portraits/women/85.jpg" title="Sandra Adams"
@@ -128,14 +128,16 @@
           <!-- Criação de Campanhas da Marca -op07 -->
           <CreateCampaigns />
           <!-- Todas as Campanhas Marca -op08 -->
-          <AllCampaignsMarca />
+          <AllCampaignsMarca @open-edit="openEdit"/>
+          <!-- Editar campanhas Marca -edit-campanha -->
+          <MyCampaignsMarca teste="teste" />
         </v-window>
       </v-container>
     </v-app>
   </v-main>
 </template>
-  
-<script>
+
+<script setup>
 //Import Components
 import LogoHowhow from '../LogoHowhow.vue';
 import DashboardTopbar from './DashboardTopbar.vue';
@@ -143,6 +145,10 @@ import MyCampaigns from './../Campanhas/MyCampaigns.vue';
 import AllCampaignsInfluencer from '../Campanhas/AllCampaignsInfluencer.vue';
 import CreateCampaigns from '../Campanhas/CreateCampaigns.vue';
 import AllCampaignsMarca from '../Campanhas/AllCampaignsMarca.vue';
+import MyCampaignsMarca from '../Campanhas/MyCampaignsMarca.vue';
+</script>
+
+<script>
 
 export default {
   data: () => ({
@@ -167,14 +173,27 @@ export default {
       ['Wallet', 'mdi-wallet', 'op3'],
       ['Analytics', 'mdi-google-analytics', 'op4'],
     ],
+    //Refere-se a tabulação dentro do Dashboard (Abre as páginas de acordo com os valores)
     tab: null,
     value: 0,
+    //Recebe o Id da campanha selecionada
+    idCampanha: null,
     //Retorno da Rules da db
     usuario:{
-      roles: "agencia"
-    }
+      roles: "marca"
+    },
 
   }),
+  
+  methods:{
+    //Método Abrir tab de edição Campanhas pela marca e trazer os dados
+    openEdit(data) {
+      this.tab = "my-campanha-marca";
+      this.idCampanha = data;
+      console.log(this.idCampanha)
+    },
+    
+  },
   //Topbar Menu
   computed: {
     color() {
@@ -194,7 +213,8 @@ export default {
     MyCampaigns,
     AllCampaignsInfluencer,
     CreateCampaigns,
-    AllCampaignsMarca
+    AllCampaignsMarca,
+    MyCampaignsMarca
   },
 }
 </script>
