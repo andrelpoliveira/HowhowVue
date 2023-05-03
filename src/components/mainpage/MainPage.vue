@@ -18,11 +18,19 @@
           </div>
 
             <div>
-              <v-btn class="main-nav-btn-login">Log in</v-btn>
+              <v-btn class="main-nav-btn-login">
+                <router-link to="/login" custom v-slot="{ navigate }">
+                  <button @click="navigate" role="link">Log in</button>
+                </router-link>
+              </v-btn>
             </div>
             <v-divider :thickness="2" color="rgba(255,255,255)" vertical></v-divider>
             <div class="nav-btns-sign">
-              <v-btn class="main-nav-btn-register">Registrar-se</v-btn>
+              <v-btn class="main-nav-btn-register">
+                <router-link to="/registro" custom v-slot="{ navigate }">
+                  <button @click="navigate" role="link">Registrar-se</button>
+                </router-link>
+              </v-btn>
             </div>
         </v-app-bar>
         <!--/ home Nav-bar -->
@@ -485,9 +493,21 @@
     <v-container class="privacy-section">
       <v-text class="copyright-area">Copyright Howhow. Inc © 2023 All Rights reserved</v-text>
       <div>
-        <v-text class="terms-links">Termos de Uso</v-text>
-        <v-text class="terms-links">Cookies</v-text>
-        <v-text class="terms-links">Política de Privacidade</v-text>
+        <v-text class="terms-links">
+            <router-link to="/termosdeuso" custom v-slot="{ navigate }">
+              <button @click="navigate" role="link">Termos de Uso</button>
+            </router-link>
+        </v-text>
+        <v-text class="terms-links">
+            <router-link to="/" custom v-slot="{ navigate }">
+              <button @click="navigate" role="link">Cookies</button>
+            </router-link>
+        </v-text>
+        <v-text class="terms-links">
+            <router-link to="/politicadeprivacidade" custom v-slot="{ navigate }">
+              <button @click="navigate" role="link">Política de Privacidade</button>
+            </router-link>
+        </v-text>
       </div>
     </v-container>
   </v-layout>

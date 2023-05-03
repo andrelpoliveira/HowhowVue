@@ -6,8 +6,7 @@
         <v-sheet class="mx-auto" density="comfortable" color="transparent" max-width="580">
           
           <!-- logo Howhow --> 
-          <v-img
-            class="mx-auto"
+          <v-img class="mx-auto"
             height="80"
             max-width="200"
             :width=" 240 "
@@ -92,25 +91,14 @@
 
                       <!-- Form checkbox Termos de serviço  e as política de Privacidade influenciador -->
                       <v-col cols="30" sm="12">
-                        <v-checkbox
-                          v-model="agreement"
-                          :rules="[checkboxRegistroRules.checkboxrequired]"
-                          color="#0189FF">
+                        <v-checkbox v-model="agreement" :rules="[checkboxRegistroRules.checkboxrequired]" color="#0189FF">
                           <template v-slot:label>
                             <span :style="{fontSize : '11px',}">Eu concordo com os&nbsp;</span>
-                            <a
-                              :style="{
-                              fontSize : '11px',
-                              color : 'blue'}"
-                              >
+                            <a :style="{ fontSize : '11px', color : 'blue'}">
                               <router-link to="/termosdeuso">Termos de uso</router-link>
                             </a>
                             <span :style="{fontSize : '11px',}">&nbsp;e&nbsp; </span>
-                            <a
-                              :style="{
-                              fontSize : '11px',
-                              color : 'blue'}"
-                              >
+                            <a :style="{ fontSize : '11px', color : 'blue'}">
                               <router-link to="/politicadeprivacidade">Políticas de privacidade</router-link>
                             </a>
                             <span :style="{fontSize : '11px',}">*</span>
@@ -260,25 +248,14 @@
 
                       <!-- Form checkbox Termos de serviço  e as política de Privacidade Marca -->
                       <v-col cols="30" sm="12">
-                        <v-checkbox
-                          v-model="agreement"
-                          :rules="[checkboxRegistroRules.checkboxrequired]"
-                          color="#0189FF">
+                        <v-checkbox v-model="agreement" :rules="[checkboxRegistroRules.checkboxrequired]" color="#0189FF">
                           <template v-slot:label>
                             <span :style="{fontSize : '11px',}">Eu concordo com os&nbsp;</span>
-                            <a
-                              :style="{
-                              fontSize : '11px',
-                              color : 'blue'}"
-                              >
+                            <a :style="{ fontSize : '11px', color : 'blue'}">
                               <router-link to="/termosdeuso">Termos de uso</router-link>
                             </a>
                             <span :style="{fontSize : '11px',}">&nbsp;e&nbsp; </span>
-                            <a
-                              :style="{
-                              fontSize : '11px',
-                              color : 'blue'}"
-                              >
+                            <a :style="{ fontSize : '11px', color : 'blue'}">
                               <router-link to="/politicadeprivacidade">Políticas de privacidade</router-link>
                             </a>
                             <span :style="{fontSize : '11px',}">*</span>
@@ -428,25 +405,14 @@
 
                       <!-- Form checkbox Termos de serviço  e as política de Privacidade Agência -->
                       <v-col cols="30" sm="12">
-                        <v-checkbox
-                          v-model="agreement"
-                          :rules="[checkboxRegistroRules.checkboxrequired]"
-                          color="#0189FF">
+                        <v-checkbox v-model="agreement" :rules="[checkboxRegistroRules.checkboxrequired]" color="#0189FF">
                           <template v-slot:label>
                             <span :style="{fontSize : '11px',}">Eu concordo com os&nbsp;</span>
-                            <a
-                              :style="{
-                              fontSize : '11px',
-                              color : 'blue'}"
-                              >
+                            <a :style="{ fontSize : '11px', color : 'blue'}">
                               <router-link to="/termosdeuso">Termos de uso</router-link>
                             </a>
                             <span :style="{fontSize : '11px',}">&nbsp;e&nbsp; </span>
-                            <a
-                              :style="{
-                              fontSize : '11px',
-                              color : 'blue'}"
-                              >
+                            <a :style="{ fontSize : '11px', color : 'blue'}">
                               <router-link to="/politicadeprivacidade">Políticas de privacidade</router-link>
                             </a>
                             <span :style="{fontSize : '11px',}">*</span>
@@ -478,63 +444,26 @@
         </v-sheet>
 
         <!-- Observações inferiores da pagina sobre termos e política -->
-          <v-card-text
-            :style="{color : 'black',
-            fontSize : '14px',}"
-            align="center"> Importante:
-
-            <span class="text-grey"
-              :style="{
-              color : 'grey',
-              fontSize : '14px',}">Ao criar uma conta da Howhow você concorda com os&nbsp;
-            </span>
-
-            <a 
-              :style="{
-              fontSize : '14px',
-              color : 'blue'}"
-              >
+          <v-card-text :style="{ color : 'black', fontSize : '14px',}" align="center"> Importante:
+            <span class="text-grey" :style="{ color : 'grey', fontSize : '14px',}">Ao criar uma conta da Howhow você concorda com os&nbsp;</span>
+            <a :style="{ fontSize : '14px', color : 'blue'}">
               <router-link to="/termosdeuso">Termos de uso</router-link>
             </a>
-
-            <span
-              :style="{
-              color : 'grey',
-              fontSize : '14px',}">&nbsp;e as&nbsp;
-            </span>
-
-            <a
-              :style="{
-              fontSize : '14px',
-              color : 'blue'}"
-              >
+            <span :style="{ color : 'grey', fontSize : '14px',}">&nbsp;e as&nbsp; </span>
+            <a :style="{ fontSize : '14px', color : 'blue'}">
               <router-link to="/politicadeprivacidade">Políticas de privacidade</router-link>
             </a>
-
-            <span
-              :style="{
-              color : 'grey',
-              fontSize : '14px',}">*
-            </span>
+            <span :style="{ color : 'grey', fontSize : '14px',}">*</span>
           </v-card-text>
           
           <!-- Observações inferiores da pagina caso ja tenha um login -->
-          <v-card-text
-            align="center">
-            <span
-              :style="{
-              color : 'grey',
-              fontSize : '14px',}">Já tem uma conta? &nbsp;
-            </span>
-            <a
-              :style="{
-              fontSize : '14px',
-              color : 'blue'}"
-              href="#"
-              >
+          <v-card-text align="center">
+            <span :style="{color : 'grey', fontSize : '14px',}">Já tem uma conta?&nbsp;</span>
+            <a :style="{ fontSize : '14px', color : 'blue'}">
               <router-link to="/login">Efetue o Login</router-link> 
             </a>
           </v-card-text>
+
         </v-container>
       </v-main>
     </v-layout>

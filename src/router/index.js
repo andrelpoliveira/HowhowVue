@@ -5,7 +5,7 @@ import LoginView from '../views/LoginView.vue'
 import RegistroView from '../views/RegistroView.vue'
 import TermosView  from '../views/TermosView.vue'
 import PoliticaView from '../views/PoliticaView.vue'
-import WalletView from '../views/WalletView.vue'
+import WallettestView from '../views/WallettestView.vue'
 
 const routes = [
   {
@@ -36,7 +36,7 @@ const routes = [
   {
     path: '/wallet',
     name: 'Wallet',
-    component: WalletView
+    component: WallettestView
   },
   {
     path: '/politicadeprivacidade',
