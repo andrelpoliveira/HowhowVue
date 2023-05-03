@@ -10,13 +10,14 @@
     --secundary-color-light:#59646f !important;
     --secundary-color-main:rgba(117,139,159,.05) !important;
 }
+/* Padrão Padrão para estilo e tamanho de fontes */
 html {
     font-family: 'Public Sans' !important;
     letter-spacing: normal !important;
     font-size: 12px !important;
     font-style: normal !important;
 }
-
+/* Padrão estético para v-btns */
 .v-btn {
     letter-spacing: normal !important;
     text-transform: none !important;
@@ -25,7 +26,6 @@ html {
     font-size: 12px !important;
     border-radius: 30px !important;
     padding: 25px !important;
-    
 }
 
 /* adicionar ao elemento v-text-field bg-color="rgba(255,255,255,0) */
@@ -36,8 +36,18 @@ html {
     height: 60px !important;
     padding: 0px 10px;
 }
+/* Desligar estilo underline dos componentes text-field*/
 .v-field__outline {
     position: unset !important;
 }
-/*  */
-
+.v-divider {
+    margin: 0px 20px !important;
+}
+/* Padrão estético para os cards de campanhas */
+.campanhas-cards {
+    border-radius: 12px !important;
+    box-shadow: rgba(145, 158, 171, 0.2) 0px 0px 2px 0px, rgba(145, 158, 171, 0.12) 0px 12px 24px -4px, 0 7px 0px -5px #7777771c !important;
+    background-color: #fff !important;
+    background-clip: border-box !important;
+    border: 0 solid rgba(34, 41, 47, 0.125) !important;
+}

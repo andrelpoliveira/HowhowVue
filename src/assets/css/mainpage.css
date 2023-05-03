@@ -1,4 +1,4 @@
-/* Padrões */
+/* Padrões  usados para mainpage*/
 .sub-title {
     font-weight: 700;
     font-size: 12px !important;
@@ -57,7 +57,7 @@
 .main-nav-btns {
     color: white !important;
     display: flex !important;
-    margin-right: 60px !important;
+    margin-right: 100px !important;
 }
 .main-nav-btn {
     background-color: transparent !important;
