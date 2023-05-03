@@ -4,41 +4,41 @@
         <v-form v-model="valid">
             <v-row class="ma-2">
                 <v-col cols="12" md="6">
-                    <v-text-field density="comfortable" label="Nome da marca" 
+                    <v-text-field density="comfortable" label="Nome da marca"
                         disabled="true"></v-text-field>
                 </v-col>
                 <v-col cols="12" md="6">
-                    <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable" label="Nome da campanha" ></v-text-field>
+                    <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable" label="Nome da campanha"></v-text-field>
                 </v-col>
                 <v-col cols="12" md="3">
-                    <v-autocomplete :items="types" label="Tipo de custo" placeholder="Selecione.." 
+                    <v-autocomplete :items="types" label="Tipo de custo" placeholder="Selecione.."
                         density="comfortable">
 
                     </v-autocomplete>
                 </v-col>
                 <v-col cols="12" md="3">
                     <v-text-field prepend-inner-icon="mdi-currency-usd" density="comfortable" label="valor"
-                        ></v-text-field>
+                       ></v-text-field>
                 </v-col>
                 <v-col cols="12" md="6">
                     <v-text-field prepend-inner-icon="mdi-currency-usd" density="comfortable" label="Orçamento planejado"
-                        ></v-text-field>
+                       ></v-text-field>
                 </v-col>
                 <v-col cols="12" md="6">
                     <v-autocomplete :items="states" prepend-inner-icon="mdi-map-marker" label="Localização da audiência" placeholder="Selecione.."
-                         density="comfortable">
+                        density="comfortable">
 
                     </v-autocomplete>
                 </v-col>
                 <v-col cols="12" md="6">
                     <v-select :items="category" prepend-inner-icon="mdi-shape" label="Categorias do Influenciador"
-                        placeholder="Selecione máximo 3 opções"  density="comfortable" chips multiple>
+                        placeholder="Selecione máximo 3 opções" density="comfortable" chips multiple>
 
                     </v-select>
                 </v-col>
                 <v-col cols="12" md="6">
                     <v-text-field prepend-inner-icon="mdi-account-group-outline" density="comfortable"
-                        label="Alcance mínimo" ></v-text-field>
+                        label="Alcance mínimo"></v-text-field>
                 </v-col>
                 <v-col cols="12" md="3">
                     <v-card-text>Visibilidade da campanha</v-card-text>
@@ -66,10 +66,10 @@
                 <v-card-title class="text-h8 text-md-h6 text-lg-h4 font-weight-bold pb-2">Opções da campanha</v-card-title>
                 <v-col cols="12" md="12">
                     <v-file-input :rules="rulesFile" accept="image/png, image/jpeg, image/bmp" prepend-icon="mdi-camera" label="Logo da Campanha"
-                        density="comfortable" ></v-file-input>
+                        density="comfortable"></v-file-input>
                 </v-col>
                 <v-col cols="12" md="12">
-                    <v-textarea label="Propósito da Campanha"  density="comfortable"></v-textarea>
+                    <v-textarea label="Propósito da Campanha" density="comfortable"></v-textarea>
                 </v-col>
                 <v-col cols="12" md="12" class="d-flex">
                     <v-btn append-icon="mdi-arrow-right-bold" color="blue-darken-3" variant="elevated" :width="200" location="bottom"
