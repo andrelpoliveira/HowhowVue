@@ -7,26 +7,24 @@
             </v-tabs>
                 <!-- Dashboards Tab-->
                 <v-window v-model="modelCampaigns">
-                    <v-window-item value="infoCampanha">
+                    <!-- <v-window-item value="infoCampanha">
                         <p>Info Campanha</p>
-                    </v-window-item>
+                    </v-window-item> -->
                     <!-- <v-window-item value="editCampanha">
                         <p>Edit Campanha</p>
                     </v-window-item> -->
+                    <InfoCampaignsMarca/>
                     <EditCampaignsMarca />
                 </v-window>
 
-                <v-divider></v-divider>
-
         </v-card>
     </v-window-item>
-    <v-card>
-
-    </v-card>
+    
 </template>
 <script setup>
 import { defineProps } from 'vue';
 import EditCampaignsMarca from './EditCampaignsMarca.vue';
+import InfoCampaignsMarca from './InfoCampaignsMarca.vue';
 
 const props = defineProps({
     teste: {
@@ -48,7 +46,8 @@ export default {
     }),
 
     components: {
-        EditCampaignsMarca
+        EditCampaignsMarca,
+        InfoCampaignsMarca
     }
 
 }
