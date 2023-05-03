@@ -10,7 +10,11 @@
 
 //styles
 import './assets/css/main.css';
-import './assets/css/components.css';
+import './assets/css/mainpage.css';
+import './assets/css/campanhas.css';
+import './assets/css/dashboard.css';
+import './assets/css/login-registro.css';
+import './assets/css/profile.css';
 
 export default {
   name: 'App',

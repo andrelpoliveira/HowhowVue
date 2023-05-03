@@ -1,15 +1,16 @@
 <template>
   <v-navigation-drawer v-model="drawer">
     <!-- Logo Howhow -->
-    <LogoHowhow />
+    <LogoHowhow class="sidebar-logo" />
     <!-- User avatar -->
     <v-hover v-slot="{ isHovering, props }">
-      <v-card flat class="d-flex align-center justify-center flex-wrap text-center ma-2" height="70" v-bind="props"
-        :elevation="isHovering ? 8 : 4" rounded="t-xl" color="rgba(1,137,255,0.8)" >
+      <v-card flat class="sidebar-profile-card d-flex align-center justify-center flex-wrap text-center ma-2" height="70"
+        v-bind="props" :elevation="isHovering ? 2 : 1">
         <v-layout>
           <v-list>
             <v-list-item prepend-avatar="https://randomuser.me/api/portraits/women/85.jpg" title="Sandra Adams"
-              :subtitle="`${usuario.roles.toString()}`"></v-list-item>
+              :subtitle="`${usuario.roles.toString()}`" class="sidebar-profile-info">
+            </v-list-item>
           </v-list>
         </v-layout>
       </v-card>
@@ -21,7 +22,7 @@
       <v-list density="compact" v-model="tab">
         <v-list-subheader class="text-h8">GERENCIAMENTO</v-list-subheader>
         <v-tabs v-model="tab" flat direction="vertical" color="rgba(1,137,255,1)">
-          <v-tab v-for="([title, icon, options], i) in menu" :key="i" :value="options" >
+          <v-tab v-for="([title, icon, options], i) in menu" :key="i" :value="options">
             <v-list-item :title="title" :prepend-icon="icon" class="align-menu">
             </v-list-item>
           </v-tab>
@@ -88,23 +89,19 @@
 
   </v-navigation-drawer>
 
-  <v-app-bar floating>
-    <v-layout :elevation="0" class="overflow-visible" style="height: 60px;" floating>
-      <v-bottom-navigation v-model="value" :bg-color="color" mode="shift">
-        <v-btn density="compact" rounded="circle" @click="drawer = !drawer">
-          <v-icon>mdi-menu</v-icon>
-          <span>Menu</span>
-        </v-btn>
+  <v-app-bar flat class="dashboard-topbar" color="rgba(255,255,255,0)">
+    <v-btn density="compact" @click="drawer = !drawer">
+      <v-icon size="x-large">mdi-menu</v-icon>
+      <span class="dashboard-topbar-icons">Menu</span>
+    </v-btn>
 
-        <v-spacer></v-spacer>
+    <v-spacer></v-spacer>
 
-        <DashboardTopbar />
+    <DashboardTopbar />
 
-      </v-bottom-navigation>
-    </v-layout>
   </v-app-bar>
 
-<!-- Dashboard tab main-->
+  <!-- Dashboard tab main-->
   <v-main>
     <v-app>
       <v-container class="py-8 px-6" fluid>
@@ -113,7 +110,6 @@
             <p>Dashboard</p>
           </v-window-item>
           <v-window-item value="op2">
-            <p>Profile</p>
           </v-window-item>
           <v-window-item value="op3">
             <p>Wallet</p>
@@ -121,6 +117,8 @@
           <v-window-item value="op4">
             <p>Analytics</p>
           </v-window-item>
+          <!-- Profile Influenciador -op02 -->
+          <ProfileInfluencer />
           <!-- Todas as Campanhas Influenciador -op05 -->
           <AllCampaignsInfluencer />
           <!-- Campanhas do Influenciador -op06 -->
@@ -128,14 +126,16 @@
           <!-- Criação de Campanhas da Marca -op07 -->
           <CreateCampaigns />
           <!-- Todas as Campanhas Marca -op08 -->
-          <AllCampaignsMarca />
+          <AllCampaignsMarca @open-edit="openEdit" />
+          <!-- Editar campanhas Marca -edit-campanha -->
+          <MyCampaignsMarca teste="teste" />
         </v-window>
       </v-container>
     </v-app>
   </v-main>
 </template>
-  
-<script>
+
+<script setup>
 //Import Components
 import LogoHowhow from '../LogoHowhow.vue';
 import DashboardTopbar from './DashboardTopbar.vue';
@@ -143,6 +143,11 @@ import MyCampaigns from './../Campanhas/MyCampaigns.vue';
 import AllCampaignsInfluencer from '../Campanhas/AllCampaignsInfluencer.vue';
 import CreateCampaigns from '../Campanhas/CreateCampaigns.vue';
 import AllCampaignsMarca from '../Campanhas/AllCampaignsMarca.vue';
+import MyCampaignsMarca from '../Campanhas/MyCampaignsMarca.vue';
+import ProfileInfluencer from './ProfileInfluencer.vue';
+</script>
+
+<script>
 
 export default {
   data: () => ({
@@ -167,14 +172,27 @@ export default {
       ['Wallet', 'mdi-wallet', 'op3'],
       ['Analytics', 'mdi-google-analytics', 'op4'],
     ],
+    //Refere-se a tabulação dentro do Dashboard (Abre as páginas de acordo com os valores)
     tab: null,
     value: 0,
+    //Recebe o Id da campanha selecionada
+    idCampanha: null,
     //Retorno da Rules da db
-    usuario:{
-      roles: "agencia"
+    usuario: {
+      roles: "marca"
     }
 
   }),
+
+  methods: {
+    //Método Abrir tab de edição Campanhas pela marca e trazer os dados
+    openEdit(data) {
+      this.tab = "my-campanha-marca";
+      this.idCampanha = data;
+      console.log(this.idCampanha)
+    },
+
+  },
   //Topbar Menu
   computed: {
     color() {
@@ -194,24 +212,9 @@ export default {
     MyCampaigns,
     AllCampaignsInfluencer,
     CreateCampaigns,
-    AllCampaignsMarca
+    AllCampaignsMarca,
+    MyCampaignsMarca,
+    ProfileInfluencer,
   },
 }
 </script>
-<style>
-.align-menu {
-  display: flex !important;
-  left: -17px !important;
-  margin: 5px !important;
-}
-.align-campanha{
-  display: flex !important;
-  left: 10px !important;
-  margin: 5px !important;
-}
-.align-submenu {
-  display: flex !important;
-  left: -70px !important;
-  margin: 5px !important;
-}
-</style>

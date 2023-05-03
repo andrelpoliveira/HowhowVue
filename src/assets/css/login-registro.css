@@ -1,0 +1,151 @@
+/* login */
+
+.main-login-section {
+    background: rgba(117,139,159,.05) !important;
+    width: 60% !important;
+}
+
+.login-banner {
+    display: flex !important;
+    flex-direction: column !important;
+    padding-left: 30px !important;
+    padding-top: 30px !important;
+}
+
+.login-logo {
+    width: 240px !important;
+    height: 64px !important;
+    margin: 0px 20px !important;
+    margin-bottom: 10px !important;
+}
+
+.login-menu-section {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    width: 40% !important;
+}
+
+.login-menu-sub-section {
+    margin-left: 30px !important;
+    margin-right: 30px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    padding-top: 50px !important;
+}
+
+.login-registro-link {
+    font-weight: 400 !important;
+    font-size: 1.2rem !important;
+    margin-top: 15px !important;
+}
+
+.login-link-router {
+    color: var(--primary-color-light) !important;
+    text-decoration: none !important;
+}
+
+.login-comunicado {
+    display: flex !important;
+    flex-direction: row !important;
+    padding: 6px 16px 6px 16px !important;
+    border-radius: 10px !important;
+    margin: 0px 10px !important;
+    font-size: 1.2rem !important;
+    font-weight: 400 !important;
+    margin-bottom: 20px !important;
+}
+
+.login-comunicado-icon {
+    margin-top: 20px !important;
+}
+
+.login-comunicado-text {
+    display: flex !important;
+    align-items: center !important;
+    text-align: center !important;
+    margin-left: 10px !important;
+}
+
+
+.esqueceu-senha-link {
+    color: var(--primary-color-light) !important;
+    text-decoration: none !important;
+    font-weight: 400 !important;
+    font-size: 1.2rem !important;
+}
+
+.login-submit-btn {
+    background-color: var(--primary-color-main) !important;
+    color: white !important;
+    font-weight: 700 !important;
+    font-size: 1.2rem !important;
+    border-radius: 16px !important;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    box-shadow: 0 8px 16px 0 rgb(24 144 255 / 24%);
+}
+/*  */
+
+/* registro */
+
+.registro-logo {
+    margin-bottom: 30px;
+}
+.registro-tabs {
+    display: flex !important;
+    justify-content: space-evenly;
+    flex-direction: row;
+    border-radius: 12px;
+    background: #eff3f8;
+    padding: 10px !important;
+    margin: 0px 30px 10px 30px !important;
+
+}
+.registro-tab {
+    margin: 0px 20px 0px 20px !important;
+    border-radius: 12px !important;
+    font-size: 1.2rem !important;
+    padding: 10px !important;
+}
+.registro-welcome {
+    font-weight: 700 !important;
+    font-size: 2rem !important;
+}
+.registro-guia {
+    font-size: 1.2rem !important;
+    margin: 0px 0px 10px -10px !important;
+    padding-bottom: 30px !important;
+}
+.registro-inputs {
+    padding: 0px 5px !important;
+}
+.criar-conta-btn {
+    background-color: var(--primary-color-light) !important;
+    color: white !important;
+    font-weight: 700 !important;
+    font-size: 1.2rem !important;
+    border-radius: 16px !important;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    box-shadow: 0 8px 16px 0 rgb(24 144 255 / 24%);
+    
+}
+.criar-conta-btn:hover {
+    background-color: var(--primary-color-dark) !important;
+}
+
+.registro-link-router {
+    color: var(--primary-color-light) !important;
+    text-decoration: none !important;
+    font-size: 14px !important;
+}
+/*  */

@@ -1,4 +1,4 @@
-/* Padrões */
+/* Padrões  usados para mainpage*/
 .sub-title {
     font-weight: 700;
     font-size: 12px !important;
@@ -57,7 +57,7 @@
 .main-nav-btns {
     color: white !important;
     display: flex !important;
-    margin-right: 60px !important;
+    margin-right: 100px !important;
 }
 .main-nav-btn {
     background-color: transparent !important;
@@ -280,8 +280,8 @@
 }
 
 .categorias-slideshow {
-    background: #f5f9fa;
-    padding: 0px 20px 0px 20px;
+    background: white;
+    padding: 0px px 20px 0px 20px;
     height: 60px;
     border-radius: 16px;
     position: relative;
