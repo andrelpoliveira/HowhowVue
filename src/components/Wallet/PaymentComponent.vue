@@ -49,7 +49,7 @@
 
       <v-col cols="12" sm="6">
       <br>
-        <v-card color="green" class="rounded-lg mx-2" flat>
+        <v-card color="green" class="rounded-lg mx-auto" flat>
           <v-card class="mx-auto" max-width="368">
             <v-card-title>
               Pagamentos recentes
@@ -85,7 +85,7 @@
       <br>
         <v-card color="green" class="rounded-lg mx-2" flat>
           <v-card class="mx-auto" max-width="368">
-            
+           
           </v-card>
         </v-card>
       </v-col>
