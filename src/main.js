@@ -8,6 +8,7 @@ import 'vue-tel-input/vue-tel-input.css'
 import { loadFonts } from './plugins/webfontloader'
 import { loadIcon } from '@iconify/vue'
 import VueApexCharts from 'vue3-apexcharts'
+import PrimeVue from 'primevue/config';
 
 const globalOptions = {
     mode: 'auto',
@@ -22,4 +23,5 @@ createApp(App)
   .use(VueTelInput)
   .use(VueTelInput, globalOptions) // Define default global options here (optional)
   .use(VueApexCharts)
+  .use(PrimeVue, {inputStyle: 'filled'})
   .mount('#app')
