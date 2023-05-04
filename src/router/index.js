@@ -6,6 +6,7 @@ import RegistroView from '../views/RegistroView.vue'
 import TermosView  from '../views/TermosView.vue'
 import PoliticaView from '../views/PoliticaView.vue'
 import WallettestView from '../views/WallettestView.vue'
+import ProfileMarcatoInfluencer from '../components/Dashboards/ProfileMarcatoInfluencer.vue'
 
 const routes = [
   {
@@ -42,6 +43,11 @@ const routes = [
     path: '/politicadeprivacidade',
     name: 'PoliticaDePrivacidade',
     component: PoliticaView
+  },
+  {
+  path: '/influencerProfile',
+  name: 'MarcatoInfluencer',
+  component: ProfileMarcatoInfluencer
   },
   
 ]

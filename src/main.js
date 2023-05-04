@@ -7,7 +7,7 @@ import VueTelInput from 'vue-tel-input'
 import 'vue-tel-input/vue-tel-input.css'
 import { loadFonts } from './plugins/webfontloader'
 import { loadIcon } from '@iconify/vue'
-import VueApexCharts from 'vue3-apexcharts'
+import vue3apexcharts from 'vue3-apexcharts';
 
 const globalOptions = {
     mode: 'auto',
@@ -21,5 +21,5 @@ createApp(App)
   .use(vuetify)
   .use(VueTelInput)
   .use(VueTelInput, globalOptions) // Define default global options here (optional)
-  .use(VueApexCharts)
+  .use(vue3apexcharts)
   .mount('#app')

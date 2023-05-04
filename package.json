@@ -10,7 +10,6 @@
   "dependencies": {
     "@mdi/font": "5.9.55",
     "@vuelidate/core": "^2.0.2",
-    "apexcharts": "^3.39.0",
     "axios": "^1.4.0",
     "chart.js": "^4.2.1",
     "core-js": "^3.8.3",
@@ -20,7 +19,6 @@
     "vee-validate": "^4.8.6",
     "vue": "^3.2.13",
     "vue-advanced-chat": "^2.0.7",
-    "vue-apexcharts": "^1.6.2",
     "vue-chartjs": "^5.2.0",
     "vue-google-charts": "^1.1.0",
     "vue-phone-number-input": "^1.12.13",

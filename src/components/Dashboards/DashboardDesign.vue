@@ -109,8 +109,6 @@
           <v-window-item value="op1">
             <p>Dashboard</p>
           </v-window-item>
-          <v-window-item value="op2">
-          </v-window-item>
           <v-window-item value="op3">
             <p>Wallet</p>
           </v-window-item>
@@ -118,7 +116,24 @@
             <p>Analytics</p>
           </v-window-item>
           <!-- Profile Influenciador -op02 -->
-          <ProfileInfluencer />
+          <v-window-item value="op2">
+            <div v-if="usuario.roles === 'influencer'">
+              <ProfileInfluencer />
+            </div>
+            <div v-if="usuario.roles === 'marca'">
+              <ProfileMarca />
+            </div>
+            <div v-if="usuario.roles === 'agencia'">
+              <ProfileAgencia />
+            </div>
+          </v-window-item>
+
+          <v-window-item value="op09">
+            <div v-if="usuario.roles === 'marca'">
+              <ProfileMarcatoInfluencer />
+            </div>
+          </v-window-item>
+
           <!-- Todas as Campanhas Influenciador -op05 -->
           <AllCampaignsInfluencer />
           <!-- Campanhas do Influenciador -op06 -->
@@ -129,6 +144,8 @@
           <AllCampaignsMarca @open-edit="openEdit" />
           <!-- Editar campanhas Marca -edit-campanha -->
           <MyCampaignsMarca teste="teste" />
+          <!-- Apresentar profile do influencer acessado via marca -->
+
         </v-window>
       </v-container>
     </v-app>
@@ -145,6 +162,9 @@ import CreateCampaigns from '../Campanhas/CreateCampaigns.vue';
 import AllCampaignsMarca from '../Campanhas/AllCampaignsMarca.vue';
 import MyCampaignsMarca from '../Campanhas/MyCampaignsMarca.vue';
 import ProfileInfluencer from './ProfileInfluencer.vue';
+import ProfileMarca from './ProfileMarca.vue';
+import ProfileAgencia from './ProfileAgencia.vue';
+import ProfileMarcatoInfluencer from './ProfileMarcatoInfluencer.vue';
 </script>
 
 <script>
@@ -215,6 +235,9 @@ export default {
     AllCampaignsMarca,
     MyCampaignsMarca,
     ProfileInfluencer,
+    ProfileMarca,
+    ProfileAgencia,
+    ProfileMarcatoInfluencer,
   },
 }
 </script>
