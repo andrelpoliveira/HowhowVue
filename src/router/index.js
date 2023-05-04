@@ -7,6 +7,7 @@ import TermosView  from '../views/TermosView.vue'
 import PoliticaView from '../views/PoliticaView.vue'
 import WalletView from '../views/WalletView.vue'
 import DataView from '../views/DataView.vue'
+import ProfileMarcatoInfluencer from '../components/Dashboards/ProfileMarcatoInfluencer.vue'
 
 const routes = [
   {
@@ -48,6 +49,11 @@ const routes = [
     path: '/dataview',
     name: 'DataView',
     component: DataView
+  },
+  {
+    path: '/influencerProfile',
+    name: 'MarcatoInfluencer',
+    component: ProfileMarcatoInfluencer
   },
   
 ]

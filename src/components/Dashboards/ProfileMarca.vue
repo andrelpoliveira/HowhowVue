@@ -1,4 +1,5 @@
 <template>
+
         <v-card class="profile-banner-section mx-auto">
             <v-container fluid>
                 <v-row dense>
@@ -31,7 +32,7 @@
                     <div class="profile-detalhes-section">
                         <div class="profile-sobre-section">
                             <v-card width="1020">
-                                <v-card-title class="profile-titles">SOBRE MIM</v-card-title>
+                                <v-card-title class="profile-titles">SOBRE NÓS</v-card-title>
                                 <div class="profile-content">
                                     <v-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non veniam eos
                                         eligendi blanditiis ullam. Obcaecati repudiandae repellendus vitae, velit voluptates
@@ -43,28 +44,16 @@
                         <div class="profile-columns">
                             <div class="profile-main-section">
 
-                                <v-card width="500" class="pessoal-section">
-                                    <v-card-title class="profile-titles">DADOS PESSOAIS</v-card-title>
+                                <v-card width="500" class="profissional-section">
+                                    <v-card-title class="profile-titles">DADOS PROFISSIONAIS</v-card-title>
                                     <div class="dados-direcao">
                                         <v-title>NOME</v-title>
                                         <v-text>dado1</v-text>
                                     </div>
                                     <div class="dados-direcao">
-                                        <v-title>SE IDENTIFICA</v-title>
+                                        <v-title>PAÍS DE ORIGEM</v-title>
                                         <v-text>dado1</v-text>
                                     </div>
-                                    <div class="dados-direcao">
-                                        <v-title>IDADE</v-title>
-                                        <v-text>dado1</v-text>
-                                    </div>
-                                    <div class="dados-direcao">
-                                        <v-title>IDIOMA NATIVO</v-title>
-                                        <v-text>dado1</v-text>
-                                    </div>
-                                </v-card>
-
-                                <v-card width="500" class="profissional-section">
-                                    <v-card-title class="profile-titles">DADOS PROFISSIONAIS</v-card-title>
                                     <div class="dados-direcao">
                                         <v-title>CATEGORIA(S)</v-title>
                                         <v-text>dado1</v-text>
@@ -82,14 +71,18 @@
                                         <v-text>dado1</v-text>
                                     </div>
                                     <div class="dados-direcao">
-                                        <v-title>TELEFONE</v-title>
+                                        <v-title>TELEFONE 1</v-title>
+                                        <v-text>dado1</v-text>
+                                    </div>
+                                    <div class="dados-direcao">
+                                        <v-title>TELEFONE 2</v-title>
                                         <v-text>dado1</v-text>
                                     </div>
                                 </v-card>
                             </div>
                             <div class="profile-residencial-section">
-                                <v-card width="500" height="354">
-                                    <v-card-title class="profile-titles">DADOS RESIDENCIAIS</v-card-title>
+                                <v-card width="500">
+                                    <v-card-title class="profile-titles">DADOS DE LOCALIZAÇÃO</v-card-title>
                                     <div class="text-disposition">
                                         <div class="dados-direcao">
                                         <v-title>RUA</v-title>
@@ -127,66 +120,23 @@
 
                     </div>
 
-                    <div class="profile-redes-section">
-                        <v-card width="1020" class="card-bg">
-                            <v-card-title class="profile-titles">REDES</v-card-title>
-                            <div class="redes-section">
-                                <v-card class=" ma-2">
-                                    <!-- <v-img src="./../../assets/images/redes/redes-icons/youtube.svg" class="youtube-chart-icon"/> -->
-                                    <YoutubeInscritoChart />
-                                </v-card>
-                                <v-card class="ma-2">
-                                    <InstagramInscritoChart />
-                                </v-card>
-                                <v-card class="ma-2">
-                                    <TwitterInscritoChart />
-                                </v-card>
-                                <v-card class="ma-2">
-                                    <FacebookInscritoChart />
-                                </v-card>
-                                <v-card class="ma-2">
-                                    <TiktokInscritoChart />
-                                </v-card>
-                                <v-card class="ma-2">
-                                    <KwaiInscritoChart />
-                                </v-card>
-                            </div>
-
-                        </v-card>
-                    </div>
                 </v-window-item>
                 <v-window-item value="editProfile">
-                    <v-card-title class="profile-edit-title">Dados Pessoais</v-card-title>
-                    <v-divider></v-divider>
-
                     <v-form v-model="valid">
                         <v-row class="ma-2">
-                            
+                            <v-card-title class="profile-influencer-edit-title">Dados
+                                Profissionais</v-card-title>
+                            <v-divider></v-divider>
+
                             <v-col cols="12" md="6">
                                 <v-text-field density="comfortable" prepend-inner-icon="mdi-account-circle"
                                     label="Nome"></v-text-field>
                             </v-col>
                             <v-col cols="12" md="6">
-                                <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable"
-                                    label="Como se identifica">
-                                </v-text-field>
+                                <v-text-field density="comfortable" prepend-inner-icon="mdi-map-marker-distance"
+                                    label="País de origem"></v-text-field>
                             </v-col>
                             <v-col cols="12" md="6">
-                                <v-text-field :items="types" prepend-inner-icon="mdi-cake-variant-outline"
-                                    label="Data de nascimento" density="comfortable">
-                                </v-text-field>
-                            </v-col>
-
-                            <v-col cols="12" md="6">
-                                <v-text-field prepend-inner-icon="mdi-translate-variant" density="comfortable"
-                                    label="Idioma nativo"></v-text-field>
-                            </v-col>
-
-                            <v-card-title class="profile-edit-title">Dados
-                                Profissionais</v-card-title>
-                            <v-divider></v-divider>
-
-                            <v-col cols="12" md="12">
                                 <v-textarea label="Categorias" prepend-inner-icon="mdi-clipboard-edit-outline"
                                     density="comfortable"></v-textarea>
                             </v-col>
@@ -202,16 +152,20 @@
                             </v-col>
                             <v-col cols="12" md="6">
                                 <v-text-field prepend-inner-icon="mdi-cellphone-message" density="comfortable"
-                                    label="Telefone"></v-text-field>
+                                    label="Telefone 1"></v-text-field>
                             </v-col>
                             <v-col cols="12" md="6">
                                 <v-text-field prepend-inner-icon="mdi-email" density="comfortable"
                                     label="E-mail 2"></v-text-field>
                             </v-col>
+                            <v-col cols="12" md="6">
+                                <v-text-field prepend-inner-icon="mdi-cellphone-message" density="comfortable"
+                                    label="Telefone 2"></v-text-field>
+                            </v-col>
 
 
-                            <v-card-title class="profile-edit-title">Dados
-                                Residenciais</v-card-title>
+                            <v-card-title class="profile-influencer-edit-title">Dados
+                                de Localização</v-card-title>
                             <v-divider></v-divider>
 
                             <v-col cols="12" md="6">
@@ -247,11 +201,11 @@
                                     label="CEP"></v-text-field>
                             </v-col>
 
-                            <v-card-title class="profile-edit-title">Sobre
+                            <v-card-title class="profile-influencer-edit-title">Sobre
                                 mim</v-card-title>
                             <v-divider></v-divider>
                             <v-col cols="12" md="12">
-                                <v-textarea label="Fale mais sobre você! Curiosidades, hábitos interesses e feitos profissionais."
+                                <v-textarea label="Se apresente para os Influencers"
                                     density="comfortable"></v-textarea>
                             </v-col>
                             <v-col cols="12" md="12">
@@ -261,29 +215,6 @@
                             <v-col cols="12" md="12">
                                 <v-file-input :rules="rulesFile" accept="image/png, image/jpeg, image/bmp"
                                     prepend-icon="mdi-camera" label="Wallpaper" density="comfortable"></v-file-input>
-                            </v-col>
-
-                            <v-card-title class="profile-edit-title">Redes
-                                Sociais</v-card-title>
-                            <v-divider></v-divider>
-
-                            <v-col cols="12" md="6">
-                                <v-text-field prepend-inner-icon="" density="comfortable" label="Youtube"></v-text-field>
-                            </v-col>
-                            <v-col cols="12" md="6">
-                                <v-text-field prepend-inner-icon="" density="comfortable" label="Instagram"></v-text-field>
-                            </v-col>
-                            <v-col cols="12" md="6">
-                                <v-text-field prepend-inner-icon="" density="comfortable" label="Twitter"></v-text-field>
-                            </v-col>
-                            <v-col cols="12" md="6">
-                                <v-text-field prepend-inner-icon="" density="comfortable" label="Facebook"></v-text-field>
-                            </v-col>
-                            <v-col cols="12" md="6">
-                                <v-text-field prepend-inner-icon="" density="comfortable" label="TikTok"></v-text-field>
-                            </v-col>
-                            <v-col cols="12" md="6">
-                                <v-text-field prepend-inner-icon="" density="comfortable" label="Kwai"></v-text-field>
                             </v-col>
 
                             <v-col cols="12" md="12" class="d-flex">
@@ -296,9 +227,10 @@
                 </v-window-item>
             </v-window>
         </v-card>
+
 </template>
 
-<style>
+<!-- <style>
 .youtube-chart-icon {
     height: 32px;
     width: 32px;
@@ -307,21 +239,10 @@
     display: flex !important;
     top: 30px !important;
 }
-
-.label {
-  white-space: pre-wrap !important;
-}
-</style>
+</style> -->
 
 <script setup>
 //Import Components
-import YoutubeInscritoChart from './../ChartsAnalytics/YoutubeInscritoChart.vue';
-import InstagramInscritoChart from './../ChartsAnalytics/InstagramInscritoChart.vue';
-import TwitterInscritoChart from './../ChartsAnalytics/TwitterInscritoChart.vue';
-import FacebookInscritoChart from './../ChartsAnalytics/FacebookInscritoChart.vue';
-import TiktokInscritoChart from './../ChartsAnalytics/TiktokInscritoChart.vue';
-import KwaiInscritoChart from './../ChartsAnalytics/KwaiInscritoChart.vue';
-
 
 </script>
 
@@ -329,12 +250,7 @@ import KwaiInscritoChart from './../ChartsAnalytics/KwaiInscritoChart.vue';
 export default {
     
     components: {
-        YoutubeInscritoChart,
-        InstagramInscritoChart,
-        TwitterInscritoChart,
-        FacebookInscritoChart,
-        TiktokInscritoChart,
-        KwaiInscritoChart
+
     },
 
     data: () => ({

@@ -1,5 +1,5 @@
+/* toppx rightpx bottompx leftpx */
 /* Padrões */
-
 .profile-banner-section {
     box-shadow: none !important;
     border: transparent !important;
@@ -46,6 +46,15 @@
     color: #fff;
     background-color: var(--primary-color-lighter);
 }
+.profile-columns {
+    display: flex !important;
+    flex-direction: row !important;
+}
+/*  */
+
+
+/* Padrões estéticos para ProfileInfluencer.vue */
+
 .profile-detalhes-section {
     display: flex !important;
     flex-direction: column !important;
@@ -53,11 +62,12 @@
     align-items: center !important;
     align-content: center !important;
     text-align: center !important;
+    padding-bottom: 20px !important;
 }
 .profile-main-section {
     display: flex !important;
-    flex-direction: row !important;
-    margin: 20px !important;
+    flex-direction: column !important;
+    margin: 10px !important;
 }
 .dados-direcao {
     display: flex !important;
@@ -67,10 +77,10 @@
     padding: 0px 20px;
 }
 .pessoal-section {
-    margin: 0px 10px !important;
+    margin: 0px 5px 5px 0px !important;
 }
 .profissional-section {
-    margin: 0px 10px !important;
+    margin: 5px 5px 0px 0px !important;
 }
 .profile-redes-section {
     display: flex !important;
@@ -100,12 +110,13 @@
 }
 .profile-residencial-section {
     display: flex !important;
-    justify-content: center !important;
     align-items: center !important;
-    align-content: center !important;
-    text-align: center !important;
-    margin: 20px !important;
+    margin-left: 5px !important;
     border-radius: 12px !important;
+}
+.text-disposition {
+    display: flex !important;
+    flex-direction: column !important;
 }
 .profile-content {
     margin: 20px !important;
@@ -118,5 +129,30 @@
     box-shadow: none !important;
     border: transparent !important;
     background-color: transparent !important;
+}
+.profile-influencer-edit-title {
+    font-size: 1.6rem !important;
+    font-weight: bold !important;
+}
+/*  */
+
+/* Padrões estéticos para ProfileMarca.vue */
+
+/*  */
+
+/* Padrões estéticos para ProfileAgencia.vue */
+/*  */
+
+/* Padrões estéticos para ProfileMarcatoAgencia.vue */
+.show-influencer-content {
+    margin: 20px !important;
+    padding: 0px 20px 0px 20px;
+}
+.show-dados-direcao {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    margin: 10px 0px !important;
+    padding: 5px 50px 5px 50px;
 }
 /*  */
