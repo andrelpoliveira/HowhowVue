@@ -199,7 +199,7 @@ export default {
     idCampanha: null,
     //Retorno da Rules da db
     usuario: {
-      roles: "marca"
+      roles: "influencer"
     }
 
   }),
