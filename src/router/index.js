@@ -5,7 +5,8 @@ import LoginView from '../views/LoginView.vue'
 import RegistroView from '../views/RegistroView.vue'
 import TermosView  from '../views/TermosView.vue'
 import PoliticaView from '../views/PoliticaView.vue'
-import WallettestView from '../views/WallettestView.vue'
+import WalletView from '../views/WalletView.vue'
+import DataView from '../views/DataView.vue'
 import ProfileMarcatoInfluencer from '../components/Dashboards/ProfileMarcatoInfluencer.vue'
 
 const routes = [
@@ -37,7 +38,7 @@ const routes = [
   {
     path: '/wallet',
     name: 'Wallet',
-    component: WallettestView
+    component: WalletView
   },
   {
     path: '/politicadeprivacidade',
@@ -45,9 +46,14 @@ const routes = [
     component: PoliticaView
   },
   {
-  path: '/influencerProfile',
-  name: 'MarcatoInfluencer',
-  component: ProfileMarcatoInfluencer
+    path: '/dataview',
+    name: 'DataView',
+    component: DataView
+  },
+  {
+    path: '/influencerProfile',
+    name: 'MarcatoInfluencer',
+    component: ProfileMarcatoInfluencer
   },
   
 ]

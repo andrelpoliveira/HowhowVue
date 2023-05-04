@@ -1,8 +1,19 @@
-import { http } from "./config";
+export const state = ()=>({
+    user:{
+        data:[]
+    }
+})
 
-export default{
+export const mutations ={
+    setUser(state, data){
+        state.user = data
+    }
+}
 
-    listar: () =>{
-        return http.get('influencers')
+export const actions={
+    selectUser({commit}){
+        this.$axios.get('http://localhost/HowhowVue/howhow/src/services/dados.php').then((data)=>{
+            commit('setUser', data.data)
+        })
     }
 }

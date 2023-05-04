@@ -110,7 +110,7 @@
             <p>Dashboard</p>
           </v-window-item>
           <v-window-item value="op3">
-            <p>Wallet</p>
+            <WalletView/>
           </v-window-item>
           <v-window-item value="op4">
             <p>Analytics</p>
@@ -162,6 +162,7 @@ import CreateCampaigns from '../Campanhas/CreateCampaigns.vue';
 import AllCampaignsMarca from '../Campanhas/AllCampaignsMarca.vue';
 import MyCampaignsMarca from '../Campanhas/MyCampaignsMarca.vue';
 import ProfileInfluencer from './ProfileInfluencer.vue';
+import WalletView from './../../views/WalletView.vue';
 import ProfileMarca from './ProfileMarca.vue';
 import ProfileAgencia from './ProfileAgencia.vue';
 import ProfileMarcatoInfluencer from './ProfileMarcatoInfluencer.vue';
@@ -238,6 +239,7 @@ export default {
     ProfileMarca,
     ProfileAgencia,
     ProfileMarcatoInfluencer,
+    WalletView,
   },
 }
 </script>

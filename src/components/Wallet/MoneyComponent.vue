@@ -3,8 +3,8 @@
     <v-row>
       <v-col cols="12" sm="8">
         <br>
-        <v-card color="blue" class="rounded-lg mx-2" flat>
-          <v-card class="mx-auto" max-width="500">
+        <v-card color="blue" class="rounded-lg mx-auto" flat>
+          <v-card class="mx-auto" >
           <v-card-item>
               <v-card-title>Atividades</v-card-title>
             <apexchart type="line" height="250" :options="chartOptions" :series="GraficoAtividades"></apexchart>
