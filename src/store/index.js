@@ -1,4 +1,6 @@
-import { createStore } from 'vuex'
+import { createStore } from 'vuex';
+import axios from 'axios';
+var url_estados = "http://localhost/HowhowVue/howhow/src/services/estados.php";
 
 export default createStore({
   state: {
@@ -14,16 +16,28 @@ export default createStore({
     //Retorno da Rules da db
     roles: 'marca',
     campaignInfo: '',
+    estados: [],
       
   },
   getters: {
+    // allStates(state){
+    //   return state.estados;
+    // }
   },
   mutations: {
     openCampaign(state, data){
       state.campaignInfo = data
     },
+    setStates(state, estados){
+      state.estados = estados;
+    },
   },
   actions: {
+    getStates({commit}) {
+      axios.get(url_estados).then(response=>{
+        commit('setStates', response.data)
+      })
+    },
   },
   modules: {
   }
