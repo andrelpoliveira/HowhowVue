@@ -1,4 +1,5 @@
 <template>
+  <!-- Card Grafico colunas de atividades -->
   <v-card color="#eff3f8" class="rounded-lg" flat>
     <v-row>
       <v-col cols="12" sm="8">
@@ -13,126 +14,79 @@
         </v-card>
         <br>
       </v-col>
- 
-      <v-col cols="12" sm="4">
-      <br>
 
+   <!-- Card Top 5 campanhas da semana -->
+      <v-col cols="12" sm="4">
+        <br>
         <v-card color="black" class="rounded-lg mx-2" flat>
           <v-card class="mx-auto" max-width="368">
-            <v-card class="mx-auto" max-width="350"
-  >
-    <v-img
-      src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
-      height="188px"
-      cover
-    ></v-img>
+            <v-card class="mx-auto" max-width="350">
+              <v-img src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg" height="188px" cover></v-img>
+              <v-card-title>Top 5 Campanhas</v-card-title>
+              <v-card-subtitle>Campanhas mais rentáveis da semana</v-card-subtitle>
+              <v-card-actions>
+                <v-text color="blue" variant="text">Mostrar</v-text>
+                <v-spacer></v-spacer>
+                <v-btn :icon="show ? 'mdi-chevron-up' : 'mdi-chevron-down'" @click="show = !show"></v-btn>
+              </v-card-actions>
+              <v-expand-transition>
+                <div v-show="show">
+                  <v-divider></v-divider>
+                  <v-card class="mx-auto" max-width="425">
 
-    <v-card-title>
-      Top 5 Campanhas
-    </v-card-title>
+                    <!-- lista Top 5 campanhas da semana -->
+                    <v-list lines="two">
+                      <!-- titulo Top 5 campanhas da semana -->
+                      <v-list-subheader>hoje</v-list-subheader>
 
-    <v-card-subtitle>
-      Campanhas mais rentáveis da semana
-    </v-card-subtitle>
+                      <!-- Top 1 campanhas da semana -->
+                      <v-list-item prepend-avatar="https://cdn.vuetifyjs.com/images/lists/1.jpg" title="Brunch this weekend?">
+                        <template v-slot:subtitle>
+                          <span class="font-weight-bold">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?
+                        </template>
+                      </v-list-item>
+                      <v-divider inset></v-divider>
 
-    <v-card-actions>
-      <v-text
-        color="blue"
-        variant="text"
-      >
-        Mostrar
-      </v-text>
+                      <!-- Top 2 campanhas da semana -->
+                      <v-list-item prepend-avatar="https://cdn.vuetifyjs.com/images/lists/2.jpg">
+                        <template v-slot:title> Summer BBQ <span class="text-grey-lighten-1">4</span></template>
+                        <template v-slot:subtitle>
+                          <span class="font-weight-bold">to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend.</template>
+                      </v-list-item>
+                      <v-divider inset></v-divider>
 
-      <v-spacer></v-spacer>
+                      <!-- Top 3 campanhas da semana -->
+                      <v-list-item prepend-avatar="https://cdn.vuetifyjs.com/images/lists/3.jpg" title="Oui oui">
+                        <template v-slot:subtitle>
+                          <span class="font-weight-bold">Sandra Adams</span> &mdash; Do you have Paris recommendations? Have you ever been?</template>
+                      </v-list-item>
+                      <v-divider inset></v-divider>
 
-      <v-btn
-        :icon="show ? 'mdi-chevron-up' : 'mdi-chevron-down'"
-        @click="show = !show"
-      ></v-btn>
-    </v-card-actions>
+                      <!-- Top 4 campanhas da semana -->
+                      <v-list-item prepend-avatar="https://cdn.vuetifyjs.com/images/lists/2.jpg">
+                        <template v-slot:title> Summer BBQ <span class="text-grey-lighten-1">4</span> </template>
+                        <template v-slot:subtitle>
+                          <span class="font-weight-bold">to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend.
+                        </template>
+                      </v-list-item>
+                      <v-divider inset></v-divider>
 
-    <v-expand-transition>
-      <div v-show="show">
-        <v-divider></v-divider>
-
-        <v-card
-    class="mx-auto"
-    max-width="425"
-  >
-    <v-list lines="two">
-      <v-list-subheader>hoje</v-list-subheader>
-
-      <v-list-item
-        prepend-avatar="https://cdn.vuetifyjs.com/images/lists/1.jpg"
-        title="Brunch this weekend?"
-      >
-        <template v-slot:subtitle>
-          <span class="font-weight-bold">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?
-        </template>
-      </v-list-item>
-
-      <v-divider inset></v-divider>
-
-      <v-list-item
-        prepend-avatar="https://cdn.vuetifyjs.com/images/lists/2.jpg"
-      >
-        <template v-slot:title>
-          Summer BBQ <span class="text-grey-lighten-1">4</span>
-        </template>
-
-        <template v-slot:subtitle>
-          <span class="font-weight-bold">to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend.
-        </template>
-      </v-list-item>
-
-      <v-divider inset></v-divider>
-
-      <v-list-item
-        prepend-avatar="https://cdn.vuetifyjs.com/images/lists/3.jpg"
-        title="Oui oui"
-      >
-        <template v-slot:subtitle>
-          <span class="font-weight-bold">Sandra Adams</span> &mdash; Do you have Paris recommendations? Have you ever been?
-        </template>
-      </v-list-item>
-      <v-divider inset></v-divider>
-
-      <v-list-item
-        prepend-avatar="https://cdn.vuetifyjs.com/images/lists/2.jpg"
-      >
-        <template v-slot:title>
-          Summer BBQ <span class="text-grey-lighten-1">4</span>
-        </template>
-
-        <template v-slot:subtitle>
-          <span class="font-weight-bold">to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend.
-        </template>
-      </v-list-item>
-
-      <v-divider inset></v-divider>
-
-      <v-list-item
-        prepend-avatar="https://cdn.vuetifyjs.com/images/lists/2.jpg"
-      >
-        <template v-slot:title>
-          Summer BBQ <span class="text-grey-lighten-1">4</span>
-        </template>
-
-        <template v-slot:subtitle>
-          <span class="font-weight-bold">to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend.
-        </template>
-      </v-list-item>
-
-    </v-list>
-  </v-card>
-      </div>
-    </v-expand-transition>
-  </v-card>
+                      <!-- Top 5 campanhas da semana -->
+                      <v-list-item prepend-avatar="https://cdn.vuetifyjs.com/images/lists/2.jpg">
+                        <template v-slot:title>Summer BBQ <span class="text-grey-lighten-1">4</span></template>
+                        <template v-slot:subtitle>
+                          <span class="font-weight-bold">to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend.
+                        </template>
+                      </v-list-item>
+                    </v-list>
+                  </v-card>
+                </div>
+              </v-expand-transition>
+            </v-card>
           </v-card>
         </v-card>
         <br>
       </v-col>
-
     </v-row>
   </v-card>
 </template>
@@ -142,8 +96,10 @@ export default {
 
 data: function() {
   return {
+    // script botao mostrar card top 5 campanhas
     show: false,
 
+    // script Graficos atividades
     GraficoAtividades: [
       
       {name: 'Saidas', type: 'column', color: '#f99a7f', data: [1.4, 2, 2.5, 1.5, 2.5, 2.8, 3.8, 4.6, 2.5, 2.8, 3.8, 4.6,],}, 
