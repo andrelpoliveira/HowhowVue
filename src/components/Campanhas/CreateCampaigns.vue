@@ -25,7 +25,7 @@
                        ></v-text-field>
                 </v-col>
                 <v-col cols="12" md="6">
-                    <v-autocomplete :items="states" prepend-inner-icon="mdi-map-marker" label="Localização da audiência" placeholder="Selecione.."
+                    <v-autocomplete v-model="values" :items="estados" prepend-inner-icon="mdi-map-marker" label="Localização da audiência" placeholder="Selecione.."
                         density="comfortable">
 
                     </v-autocomplete>
@@ -80,6 +80,8 @@
     </v-window-item>
 </template>
 <script>
+import { mapActions, mapState} from 'vuex';
+
 export default {
     data: () => ({
         //Switch campanha
@@ -89,13 +91,14 @@ export default {
         locationAlign: 'center',
         originSide: 'auto',
         originAlign: '',
+        values: 'Escolha seu estado',
         //Tipos de Custo Campanha
         types: ['CPM Marca', 'CPM Howhow', 'Tabelado', 'Comissão'],
         //Cidades campanha
-        states: ['Acre', 'Alagoas', 'Amapá', 'Amazonas', 'Bahia', 'Ceará', 'Espírito Santo', 'Goiás',
-            'Maranhão', 'Mato Grosso', 'Mato Grosso do Sul', 'Minas Gerais', 'Pará', 'Paraíba',
-            'Paraná', 'Pernambuco', 'Piauí', 'Rio de Janeiro', 'Rio Grande do Norte', 'Rio Grande do Sul',
-            'Rondônia', 'Roraima', 'Santa Catarina', 'São Paulo', 'Sergipe', 'Tocantins'],
+        // states: ['Acre', 'Alagoas', 'Amapá', 'Amazonas', 'Bahia', 'Ceará', 'Espírito Santo', 'Goiás',
+        //     'Maranhão', 'Mato Grosso', 'Mato Grosso do Sul', 'Minas Gerais', 'Pará', 'Paraíba',
+        //     'Paraná', 'Pernambuco', 'Piauí', 'Rio de Janeiro', 'Rio Grande do Norte', 'Rio Grande do Sul',
+        //     'Rondônia', 'Roraima', 'Santa Catarina', 'São Paulo', 'Sergipe', 'Tocantins'],
         //Categoria Influenciador
         category: ['Anime & Cartoon', 'Apps & Serviços', 'Comédia & Humor', 'Curiosidades', 'Dança Profissional',
             'Dublagem', 'Entretenimento', 'Fashion/Moda', 'Games', 'Gastronomia/Comida', 'Life Skills (Comportamento na vida)',
@@ -107,6 +110,15 @@ export default {
             },
         ],
     }),
+    methods:{
+        // loadStates(){
+        //     this.$store.dispatch('estados/getStates');
+        // }
+        ...mapActions(['getStates']),
+    },
+    created() {
+      this.getStates()  
+    },
     //Localização do tooltip
     computed: {
         location() {
@@ -115,7 +127,9 @@ export default {
         origin() {
             return this.originDisabled ? this.originSide : `${this.originSide} ${this.originAlign}`
         },
-    }
+        ...mapState(["estados"]),
+    },
+    
 }
 </script>
 <style>
