@@ -14,7 +14,7 @@
                 <v-row dense>
                     <v-col>
                         <v-slide-group class="card-campanhas-marca-position" v-model="model" show-arrows>
-                            <v-slide-group-item v-for="card in cards" :key="card.title" :cols="card.flex">
+                            <v-slide-group-item v-for="card in $store.state.campaigns" :key="card.title" :cols="card.flex">
                                 <v-card :loading="loading" class="campanhas-cards ma-1" width="400px">
                                     <template v-slot:loader="{ isActive }">
                                         <v-progress-linear :active="isActive" color="deep-purple" height="4" indeterminate>
@@ -68,7 +68,7 @@
                 <v-row dense>
                     <v-col>
                         <v-slide-group v-model="model" class="card-campanhas-marca-position" show-arrows>
-                            <v-slide-group-item class="campanha-section-title" v-for="card in cards" :key="card.title"
+                            <v-slide-group-item class="campanha-section-title" v-for="card in $store.state.campaigns" :key="card.title"
                                 :cols="card.flex">
                                 <v-card :loading="loading" class="campanhas-cards ma-1" width="400px">
                                     <template v-slot:loader="{ isActive }">
@@ -124,7 +124,7 @@
                 <v-row dense>
                     <v-col>
                         <v-slide-group v-model="model" class="card-campanhas-marca-position" show-arrows>
-                            <v-slide-group-item class="campanha-section-title" v-for="card in cards" :key="card.title"
+                            <v-slide-group-item class="campanha-section-title" v-for="card in $store.state.campaigns" :key="card.title"
                                 :cols="card.flex">
                                 <v-card :loading="loading" class="campanhas-cards ma-1" width="400px">
                                     <template v-slot:loader="{ isActive }">
@@ -179,7 +179,7 @@
                 <v-row dense>
                     <v-col>
                         <v-slide-group v-model="model" class="card-campanhas-marca-position" show-arrows>
-                            <v-slide-group-item class="campanha-section-title" v-for="card in cards" :key="card.title"
+                            <v-slide-group-item class="campanha-section-title" v-for="card in $store.state.campaigns" :key="card.title"
                                 :cols="card.flex">
                                 <v-card :loading="loading" class="campanhas-cards ma-1" width="400px">
                                     <template v-slot:loader="{ isActive }">

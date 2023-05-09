@@ -107,13 +107,13 @@
       <v-container class="px-6" fluid>
         <v-window v-model="tab">
           <v-window-item value="op1">
-            <div v-if="usuario.roles === 'influencer'">
+            <div v-if="$store.state.roles === 'influencer'">
               <DashboardInfluencer />
             </div>
-            <div v-if="usuario.roles === 'marca'">
+            <div v-if="$store.state.roles === 'marca'">
               <DashboardMarca />
             </div>
-            <div v-if="usuario.roles === 'agencia'">
+            <div v-if="$store.state.roles === 'agencia'">
               <DashboardAgencia />
             </div>
           </v-window-item>
