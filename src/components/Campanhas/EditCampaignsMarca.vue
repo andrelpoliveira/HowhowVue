@@ -8,7 +8,7 @@
                 </v-col>
                 <v-col cols="12" md="6">
                     <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable" label="Nome da campanha"
-                        disabled="true"></v-text-field>
+                        disabled="true">{{ $store.state.campaignInfo.title }}</v-text-field>
                 </v-col>
                 <v-col cols="12" md="3">
                     <v-autocomplete :items="types" label="Tipo de custo" placeholder="Selecione.." density="comfortable"
@@ -66,7 +66,7 @@
                         label="Logo da Campanha" density="comfortable" disabled="true"></v-file-input>
                 </v-col>
                 <v-col cols="12" md="12">
-                    <v-textarea label="Propósito da Campanha" density="comfortable" disabled="true"></v-textarea>
+                    <v-textarea label="Propósito da Campanha" density="comfortable" disabled="true">{{ $store.state.campaignInfo.text }}</v-textarea>
                 </v-col>
                 <v-col cols="12" md="6" class="d-flex">
                     <v-btn append-icon="mdi-pencil" color="blue-darken-1" variant="elevated" :width="200"

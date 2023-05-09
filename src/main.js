@@ -15,7 +15,7 @@ import "primevue/resources/themes/lara-light-blue/theme.css";
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 import "./index.css";
-import "./flags.css";
+//import "./flags.css";
 
 
 
@@ -122,7 +122,7 @@ const globalOptions = {
 loadFonts()
 loadIcon()
 
-createApp(App)
+createApp(App).use(store)
   .use(router)
   .use(store)
   .use(vuetify)

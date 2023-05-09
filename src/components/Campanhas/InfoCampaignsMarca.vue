@@ -9,14 +9,14 @@
                                 <v-progress-linear :active="isActive" color="deep-purple" height="4" indeterminate>
                                 </v-progress-linear>
                             </template>
-                            <v-img src="https://cdn.vuetifyjs.com/images/cards/house.jpg" class="align-end"
+                            <v-img :src="$store.state.campaignInfo.src" class="align-end"
                                 gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="200px" cover>
                                 <v-avatar color="white" variant="elevated" size="64" class="avatar-mycampaign">
-                                    <v-avatar image="https://cdn.vuetifyjs.com/images/cards/house.jpg" size="60"></v-avatar>
+                                    <v-avatar size="60"><v-img :src="$store.state.campaignInfo.src" cover></v-img></v-avatar>
                                 </v-avatar>
                                 <v-row class="mx-0">
-                                    <v-card color="rgba(255,255,255,0)" class="text-white" title="Pre-fab homes"
-                                        subtitle="Lorem 1"></v-card>
+                                    <v-card color="rgba(255,255,255,0)" class="text-white" :title="$store.state.campaignInfo.title"
+                                        :subtitle="$store.state.campaignInfo.text"></v-card>
                                 </v-row>
 
                             </v-img>
@@ -34,7 +34,7 @@
             <!-- Dashboards Tab-->
             <v-window v-model="detailsCampaigns">
                 <v-window-item value="infoInfluencers">
-                    <DataTablesInfluencer/>
+                    <!-- <DataTablesInfluencer/> -->
                     
                 </v-window-item>
 
@@ -44,7 +44,7 @@
     </v-window-item>
 </template>
 <script setup>
-import DataTablesInfluencer from '../DataTables/DataTablesInfluencer.vue';
+//import DataTablesInfluencer from '../DataTables/DataTablesInfluencer.vue';
 </script>
 <script>
 export default {
@@ -55,7 +55,7 @@ export default {
     }),
     
     components:{
-        DataTablesInfluencer
+        //DataTablesInfluencer
     }
 
 }

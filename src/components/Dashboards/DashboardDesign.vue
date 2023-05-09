@@ -9,7 +9,7 @@
         <v-layout>
           <v-list>
             <v-list-item prepend-avatar="https://randomuser.me/api/portraits/women/85.jpg" title="Sandra Adams"
-              :subtitle="`${usuario.roles.toString()}`" class="sidebar-profile-info">
+              :subtitle="$store.state.roles" class="sidebar-profile-info">
             </v-list-item>
           </v-list>
         </v-layout>
@@ -30,7 +30,7 @@
       </v-list>
     </v-card>
     <!-- List Campanhas Influencer -->
-    <div v-if="usuario.roles === 'influencer'">
+    <div v-if="$store.state.roles === 'influencer'">
       <v-card flat class="mx-auto">
         <v-list v-model:opened="open" density="compact">
           <v-list-subheader class="text-h8">MONETIZATION</v-list-subheader>
@@ -49,7 +49,7 @@
       </v-card>
     </div>
     <!-- List Campanhas Marca -->
-    <div v-else-if="usuario.roles === 'marca'">
+    <div v-else-if="$store.state.roles === 'marca'">
       <v-card flat class="mx-auto">
         <v-list v-model:opened="open" density="compact">
           <v-list-subheader class="text-h8">MONETIZATION</v-list-subheader>
@@ -68,7 +68,7 @@
       </v-card>
     </div>
     <!-- List Campanhas Agência -->
-    <div v-else-if="usuario.roles === 'agencia'">
+    <div v-else-if="$store.state.roles === 'agencia'">
       <v-card flat class="mx-auto">
         <v-list v-model:opened="open" density="compact">
           <v-list-subheader class="text-h8">MONETIZATION</v-list-subheader>
@@ -117,19 +117,19 @@
           </v-window-item>
           <!-- Profile Influenciador -op02 -->
           <v-window-item value="op2">
-            <div v-if="usuario.roles === 'influencer'">
+            <div v-if="$store.state.roles === 'influencer'">
               <ProfileInfluencer />
             </div>
-            <div v-if="usuario.roles === 'marca'">
+            <div v-if="$store.state.roles === 'marca'">
               <ProfileMarca />
             </div>
-            <div v-if="usuario.roles === 'agencia'">
+            <div v-if="$store.state.roles === 'agencia'">
               <ProfileAgencia />
             </div>
           </v-window-item>
 
           <v-window-item value="op09">
-            <div v-if="usuario.roles === 'marca'">
+            <div v-if="$store.state.roles === 'marca'">
               <ProfileMarcatoInfluencer />
             </div>
           </v-window-item>
@@ -143,7 +143,7 @@
           <!-- Todas as Campanhas Marca -op08 -->
           <AllCampaignsMarca @open-edit="openEdit" />
           <!-- Editar campanhas Marca -edit-campanha -->
-          <MyCampaignsMarca teste="teste" />
+          <MyCampaignsMarca :infoId="infoId"/>
           <!-- Apresentar profile do influencer acessado via marca -->
 
         </v-window>
@@ -166,6 +166,7 @@ import WalletView from './../../views/WalletView.vue';
 import ProfileMarca from './ProfileMarca.vue';
 import ProfileAgencia from './ProfileAgencia.vue';
 import ProfileMarcatoInfluencer from './ProfileMarcatoInfluencer.vue';
+
 </script>
 
 <script>
@@ -175,6 +176,7 @@ export default {
     //variáveis de controle
     drawer: null,
     theme: null,
+    //$store.state.roles: userRoles,
     //Menu Vertical (List Campanhas Influencer)
     open: ['Eventos', 'Users'],
     campanhasInf: [
@@ -195,22 +197,15 @@ export default {
     ],
     //Refere-se a tabulação dentro do Dashboard (Abre as páginas de acordo com os valores)
     tab: null,
+    //infoCampanha: null,
     value: 0,
-    //Recebe o Id da campanha selecionada
-    idCampanha: null,
-    //Retorno da Rules da db
-    usuario: {
-      roles: "marca"
-    }
 
   }),
 
   methods: {
     //Método Abrir tab de edição Campanhas pela marca e trazer os dados
-    openEdit(data) {
+    openEdit() {
       this.tab = "my-campanha-marca";
-      this.idCampanha = data;
-      console.log(this.idCampanha)
     },
 
   },
@@ -225,6 +220,7 @@ export default {
         default: return 'theme'
       }
     },
+    
   },
   //Componentes
   components: {
@@ -234,7 +230,7 @@ export default {
     AllCampaignsInfluencer,
     CreateCampaigns,
     AllCampaignsMarca,
-    MyCampaignsMarca,
+    MyCampaignsMarca: AllCampaignsMarca,
     ProfileInfluencer,
     ProfileMarca,
     ProfileAgencia,

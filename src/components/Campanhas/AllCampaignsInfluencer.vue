@@ -3,7 +3,7 @@
         <v-card class="mx-auto" :border="100">
             <v-container fluid>
                 <v-row dense>
-                    <v-col v-for="card in cards" :key="card.title" :cols="card.flex">
+                    <v-col v-for="card in $store.state.campaigns" :key="card.campanhaId" :cols="card.flex">
                         <v-card :loading="loading" class="campanhas-cards mx-auto my-12">
                             <template v-slot:loader="{ isActive }">
                                 <v-progress-linear :active="isActive" color="deep-purple" height="4" indeterminate>
@@ -55,14 +55,6 @@ export default {
     name: 'AllCampaignsInfluencer',
     data: () => ({
         show: false,
-        cards: [
-            { title: 'Pre-fab homes', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 4, text: 'Lorem 1', datein: '24/04/2023', dateend: '30/04/2023' },
-            { title: 'Favorite road trips', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 4, text: 'Lorem 2', datein: '26/04/2023', dateend: '02/05/2023' },
-            { title: 'Best airlines', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 4, text: 'Lorem 3', datein: '30/04/2023', dateend: '08/05/2023' },
-            { title: 'Pre-fab homes', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 4, text: 'Lorem 4', datein: '24/04/2023', dateend: '30/04/2023' },
-            { title: 'Favorite road trips', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 4, text: 'Lorem 5', datein: '28/04/2023', dateend: '04/05/2023' },
-            { title: 'Best airlines', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 4, text: 'Lorem 6', datein: '24/04/2023', dateend: '30/04/2023' },
-        ],
     }),
 }
 </script>
