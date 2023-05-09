@@ -107,7 +107,15 @@
       <v-container class="px-6" fluid>
         <v-window v-model="tab">
           <v-window-item value="op1">
-            <dashboardInfluencer />
+            <div v-if="usuario.roles === 'influencer'">
+              <DashboardInfluencer />
+            </div>
+            <div v-if="usuario.roles === 'marca'">
+              <DashboardMarca />
+            </div>
+            <div v-if="usuario.roles === 'agencia'">
+              <DashboardAgencia />
+            </div>
           </v-window-item>
           <v-window-item value="op3">
             <WalletView/>
@@ -167,6 +175,8 @@ import ProfileMarca from './ProfileMarca.vue';
 import ProfileAgencia from './ProfileAgencia.vue';
 import ProfileMarcatoInfluencer from './ProfileMarcatoInfluencer.vue';
 import DashboardInfluencer from './DashboardInfluencer.vue';
+import DashboardMarca from './DashboardMarca.vue';
+import DashboardAgencia from './ProfileAgencia.vue';
 </script>
 
 <script>
@@ -241,7 +251,9 @@ export default {
     ProfileAgencia,
     ProfileMarcatoInfluencer,
     DashboardInfluencer,
+    DashboardMarca,
+    DashboardAgencia,
     WalletView,
-  },
+},
 }
 </script>

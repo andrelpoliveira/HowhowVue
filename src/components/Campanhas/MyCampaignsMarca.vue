@@ -2,6 +2,7 @@
     <v-window-item value="my-campanha-marca">
         <v-card>
             <v-tabs v-model="modelCampaigns" color="blue-lighten-4" align-tabs="center">
+                <v-tab value="gerenciarCampanha">Gerenciar Campanha</v-tab>
                 <v-tab value="infoCampanha">Informações Campanha</v-tab>
                 <v-tab value="editCampanha">Editar Campanha</v-tab>
             </v-tabs>
@@ -13,6 +14,7 @@
                     <!-- <v-window-item value="editCampanha">
                         <p>Edit Campanha</p>
                     </v-window-item> -->
+                    <GerenciarCampanha/>
                     <InfoCampaignsMarca/>
                     <EditCampaignsMarca />
                 </v-window>
@@ -25,6 +27,7 @@
 import { defineProps } from 'vue';
 import EditCampaignsMarca from './EditCampaignsMarca.vue';
 import InfoCampaignsMarca from './InfoCampaignsMarca.vue';
+import GerenciarCampanha from './GerenciarCampanha.vue';
 
 const props = defineProps({
     teste: {
@@ -46,9 +49,10 @@ export default {
     }),
 
     components: {
-        EditCampaignsMarca,
-        InfoCampaignsMarca
-    }
+    EditCampaignsMarca,
+    InfoCampaignsMarca,
+    GerenciarCampanha
+}
 
 }
 </script>
