@@ -10,6 +10,15 @@ import { loadIcon } from '@iconify/vue'
 import VueApexCharts from 'vue3-apexcharts'
 import PrimeVue from 'primevue/config';
 
+
+import './assets/css/main.css';
+import './assets/css/mainpage.css';
+import './assets/css/campanhas.css';
+import './assets/css/dashboard.css';
+import './assets/css/login-registro.css';
+import './assets/css/profile.css';
+import './assets/css/gerenciar.css';
+
 import "primeflex/primeflex.css";
 import "primevue/resources/themes/lara-light-blue/theme.css";
 import "primevue/resources/primevue.min.css";
@@ -123,6 +132,7 @@ loadFonts()
 loadIcon()
 
 createApp(App)
+
   .use(router)
   .use(store)
   .use(vuetify)

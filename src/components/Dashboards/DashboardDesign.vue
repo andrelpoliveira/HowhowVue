@@ -89,7 +89,7 @@
 
   </v-navigation-drawer>
 
-  <v-app-bar flat class="dashboard-topbar" color="rgba(255,255,255,0)">
+  <v-app-bar flat class="dashboard-topbar">
     <v-btn density="compact" @click="drawer = !drawer">
       <v-icon size="x-large">mdi-menu</v-icon>
       <span class="dashboard-topbar-icons">Menu</span>
@@ -104,10 +104,10 @@
   <!-- Dashboard tab main-->
   <v-main>
     <v-app>
-      <v-container class="py-8 px-6" fluid>
+      <v-container class="px-6" fluid>
         <v-window v-model="tab">
           <v-window-item value="op1">
-            <p>Dashboard</p>
+            <dashboardInfluencer />
           </v-window-item>
           <v-window-item value="op3">
             <WalletView/>
@@ -166,6 +166,7 @@ import WalletView from './../../views/WalletView.vue';
 import ProfileMarca from './ProfileMarca.vue';
 import ProfileAgencia from './ProfileAgencia.vue';
 import ProfileMarcatoInfluencer from './ProfileMarcatoInfluencer.vue';
+import DashboardInfluencer from './DashboardInfluencer.vue';
 </script>
 
 <script>
@@ -239,6 +240,7 @@ export default {
     ProfileMarca,
     ProfileAgencia,
     ProfileMarcatoInfluencer,
+    DashboardInfluencer,
     WalletView,
   },
 }
