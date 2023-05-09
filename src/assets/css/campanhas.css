@@ -2,6 +2,12 @@
 
 .campanhas-cards-avatar {
     display: flex !important;
+    top: -50px !important;
+    left: 10px !important;
+    margin-left: 10px !important;
+}
+.minhas-cards-avatar {
+    display: flex !important;
     top: -110px !important;
     left: 10px !important;
     margin-left: 10px !important;
@@ -29,12 +35,48 @@
     font-size: 1.2rem !important;
 }
 .campanhas-cards-periodo {
+    color: #fff !important;
     margin: 0px 10px !important;
-    background-color: rgba(145, 158, 171, 0.12) !important;
     border-radius: 12px !important;
 }
 .campanhas-cards-pendente-btns {
     display: flex !important;
     justify-content: space-evenly !important;
+}
+.seachbar-icon {
+    display: flex !important;
+    left: -20px !important;
+    
+}
+.searchbar-textarea label{
+    left: 10px !important;
+}
+.influencer-campanhas-searchbar{
+    display: flex !important;
+    align-items: center !important;
+    width: 300px !important;
+    height: 40px !important;
+    margin-bottom: 20px !important;
+}
+/*  */
+
+/* Cards em "Campanhas" da Marca */
+
+.text-italico {
+    font-size: 1.1rem !important;
+    color: rgba(145, 158, 171, 1);
+}
+.card-campanhas-marca-position{
+    margin: 20px 0px !important;
+}
+.campanha-section-title {
+    font-weight: 500 !important;
+    font-size: 1.5rem !important;
+}
+.campanhas-card-content {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
 }
 /*  */

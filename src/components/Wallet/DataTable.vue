@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <div class="datatable-card">
         <DataTable v-model:filters="filters" :value="customers" paginator showGridlines :rows="10" dataKey="id"
                 filterDisplay="menu" :loading="loading" :globalFilterFields="['name', 'country.name', 'representative.name', 'balance', 'status']">
             <template #header>

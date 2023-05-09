@@ -27,24 +27,12 @@
         </v-card>
         <v-divider></v-divider>
         <v-card>
-            <v-tabs v-model="detailsCampaigns" color="blue-lighten-4" align-tabs="center">
-                <v-tab value="infoInfluencers">Influencers</v-tab>
-                <v-tab value="detailCampaigns">Detalhes</v-tab>
-            </v-tabs>
-            <!-- Dashboards Tab-->
-            <v-window v-model="detailsCampaigns">
-                <v-window-item value="infoInfluencers">
-                    <!-- <DataTablesInfluencer/> -->
-                    
-                </v-window-item>
-
-            </v-window>
+            
 
         </v-card>
     </v-window-item>
 </template>
 <script setup>
-//import DataTablesInfluencer from '../DataTables/DataTablesInfluencer.vue';
 </script>
 <script>
 export default {
@@ -55,7 +43,6 @@ export default {
     }),
     
     components:{
-        //DataTablesInfluencer
     }
 
 }

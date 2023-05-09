@@ -89,7 +89,7 @@
 
   </v-navigation-drawer>
 
-  <v-app-bar flat class="dashboard-topbar" color="rgba(255,255,255,0)">
+  <v-app-bar flat class="dashboard-topbar">
     <v-btn density="compact" @click="drawer = !drawer">
       <v-icon size="x-large">mdi-menu</v-icon>
       <span class="dashboard-topbar-icons">Menu</span>
@@ -104,10 +104,18 @@
   <!-- Dashboard tab main-->
   <v-main>
     <v-app>
-      <v-container class="py-8 px-6" fluid>
+      <v-container class="px-6" fluid>
         <v-window v-model="tab">
           <v-window-item value="op1">
-            <p>Dashboard</p>
+            <div v-if="usuario.roles === 'influencer'">
+              <DashboardInfluencer />
+            </div>
+            <div v-if="usuario.roles === 'marca'">
+              <DashboardMarca />
+            </div>
+            <div v-if="usuario.roles === 'agencia'">
+              <DashboardAgencia />
+            </div>
           </v-window-item>
           <v-window-item value="op3">
             <WalletView/>
@@ -143,7 +151,7 @@
           <!-- Todas as Campanhas Marca -op08 -->
           <AllCampaignsMarca @open-edit="openEdit" />
           <!-- Editar campanhas Marca -edit-campanha -->
-          <MyCampaignsMarca :infoId="infoId"/>
+          <MyCampaignsMarca />
           <!-- Apresentar profile do influencer acessado via marca -->
 
         </v-window>
@@ -166,7 +174,9 @@ import WalletView from './../../views/WalletView.vue';
 import ProfileMarca from './ProfileMarca.vue';
 import ProfileAgencia from './ProfileAgencia.vue';
 import ProfileMarcatoInfluencer from './ProfileMarcatoInfluencer.vue';
-
+import DashboardInfluencer from './DashboardInfluencer.vue';
+import DashboardMarca from './DashboardMarca.vue';
+import DashboardAgencia from './ProfileAgencia.vue';
 </script>
 
 <script>
@@ -230,12 +240,15 @@ export default {
     AllCampaignsInfluencer,
     CreateCampaigns,
     AllCampaignsMarca,
-    MyCampaignsMarca: AllCampaignsMarca,
+    MyCampaignsMarca,
     ProfileInfluencer,
     ProfileMarca,
     ProfileAgencia,
     ProfileMarcatoInfluencer,
+    DashboardInfluencer,
+    DashboardMarca,
+    DashboardAgencia,
     WalletView,
-  },
+},
 }
 </script>
