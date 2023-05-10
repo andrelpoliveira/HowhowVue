@@ -2,10 +2,13 @@
   <br>
   <br>
   <br>
+  <!-- Card recebimentos-->
+  <!-- Card fundo principal-->
   <v-card color="#eff3f8" class="rounded-lg" flat>
     <v-row>
       <v-col cols="12" sm="4">
-      <br>
+        <br>
+        <!-- Card Saldo disponivel em conta-->
         <v-card color="#78b3d5" class="rounded-lg mx-2" flat>
           <v-card class="mx-auto" max-width="368">
             <v-card-item title="Saldo Total">
@@ -13,7 +16,6 @@
                   Saldo disponivel em conta
               </template>
             </v-card-item>
-
             <v-card-text class="py-0">
               <v-row align="center" no-gutters>
                 <v-col class="text-h5" cols="6">
@@ -41,12 +43,11 @@
                 </v-list>
               </div>
             </v-expand-transition>
-
-              <v-divider></v-divider>
+            <v-divider></v-divider>
             <v-card-actions>
               <v-btn 
-              append-icon="mdi-arrow-down"
-              @click="relatorioContas = !relatorioContas">
+                append-icon="mdi-arrow-down"
+                @click="relatorioContas = !relatorioContas">
                 {{ !relatorioContas ? 'Mostrar contas vinculadas' : 'Ocultar contas vinculadas' }}
               </v-btn>
             </v-card-actions>
@@ -55,8 +56,9 @@
         <br>
       </v-col>
 
+      <!-- Card  Valores recebidos por Campanha-->
       <v-col cols="12" sm="4">
-      <br>
+        <br>
         <v-card color="green" class="rounded-lg mx-2" flat>
           <v-card class="mx-auto" max-width="368">
             <v-card-item title="Entradas">
@@ -65,7 +67,6 @@
                   Valores recebidos por Campanha
               </template>
             </v-card-item>
-
             <v-card-text class="py-0">
               <v-row align="center" no-gutters>
                 <v-col class="text-h5" cols="6">
@@ -79,7 +80,6 @@
             <div>
               <v-progress-linear indeterminate color="#00d47f"></v-progress-linear>
             </div>
-
             <v-expand-transition>
               <div v-if="relatorioEntrada">
                 <v-list class="bg-transparent">
@@ -97,8 +97,8 @@
               <v-divider></v-divider>
             <v-card-actions>
               <v-btn 
-              append-icon="mdi-arrow-down"
-              @click="relatorioEntrada = !relatorioEntrada">
+                append-icon="mdi-arrow-down"
+                @click="relatorioEntrada = !relatorioEntrada">
                 {{ !relatorioEntrada ? 'Relatório de entradas' : 'Ocultar relatório' }}
               </v-btn>
             </v-card-actions>
@@ -107,9 +107,9 @@
         <br>
       </v-col>
      
+      <!-- Card Valores de saida-->
       <v-col cols="12" sm="4">
-      <br>
-
+        <br>
         <v-card color="red" class="rounded-lg mx-2" flat>
           <v-card class="mx-auto" max-width="368">
             <v-card-item title="Saidas">
@@ -118,7 +118,6 @@
                   Valores de saida
               </template>
             </v-card-item>
-
             <v-card-text class="py-0">
               <v-row align="center" no-gutters>
                 <v-col class="text-h5" cols="6">
@@ -132,7 +131,6 @@
             <div>
               <v-progress-linear indeterminate color="#f99a7f"></v-progress-linear>
             </div>
-
             <v-expand-transition>
               <div v-if="relatorioSaida">
                 <v-list class="bg-transparent">
@@ -159,7 +157,6 @@
         </v-card>
         <br>
       </v-col>
-
     </v-row>
   </v-card>
 </template>
@@ -167,6 +164,8 @@
 <script>
 export default {
     data: () => ({
+
+      /* script clique mostrar relatorio entrada*/
       relatorioEntrada: false,
       time: 0,
       entrada: [
@@ -174,12 +173,16 @@ export default {
         { day: 'Zé Delivery', icon: 'mdi-currency-usd', temp: 'R$ 3.500,00' },
         { day: 'Epic Games', icon: 'mdi-currency-usd', temp: 'R$ 4.500,00' },
       ],
+
+      /* script clique mostrar relatorio saida*/
       relatorioSaida: false,
       saida: [
         { day: 'Segunda-Feira', icon: 'mdi-currency-usd', temp: 'R$ 500,00' },
         { day: 'Terça-Feira', icon: 'mdi-currency-usd', temp: 'R$ 500,00' },
         { day: 'Quarta-Feira', icon: 'mdi-currency-usd', temp: 'R$ 400,00' },
       ],
+
+      /* script clique mostrar relatorio contas cadastradas */
       relatorioContas: false,
       contas: [
         { day: 'Bradesco', icon: 'mdi-bank', temp: 'Cc 000000.00 Ag: 0000.00'},

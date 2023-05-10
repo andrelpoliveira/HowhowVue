@@ -6,7 +6,6 @@ import RegistroView from '../views/RegistroView.vue'
 import TermosView  from '../views/TermosView.vue'
 import PoliticaView from '../views/PoliticaView.vue'
 import WalletView from '../views/WalletView.vue'
-import DataView from '../views/DataView.vue'
 import ProfileMarcatoInfluencer from '../components/Dashboards/ProfileMarcatoInfluencer.vue'
 
 const routes = [
@@ -45,12 +44,7 @@ const routes = [
     name: 'PoliticaDePrivacidade',
     component: PoliticaView
   },
-  {
-    path: '/dataview',
-    name: 'DataView',
-    component: DataView
-  },
-  {
+   {
     path: '/influencerProfile',
     name: 'MarcatoInfluencer',
     component: ProfileMarcatoInfluencer

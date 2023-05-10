@@ -16,9 +16,6 @@
               <v-col cols="12" sm="12">
                 <PaymentComponent />
               </v-col>
-              <v-col cols="12" sm="12">
-                <DataTable />
-              </v-col>
             </v-row>
           </v-col>
           <v-col cols="12" sm="4">
@@ -35,7 +32,7 @@
   import MoneyComponent  from '../components/Wallet/MoneyComponent.vue';
   import PaymentComponent from '../components/Wallet/PaymentComponent.vue';
   import CardComponent from '../components/Wallet/CardComponent.vue';
-  import DataTable from '../components/Wallet/DataTable.vue';
+
 
   export default {
     data: () => ({}),
@@ -44,7 +41,7 @@
       MoneyComponent,
       PaymentComponent,
       CardComponent,
-      DataTable,
+
     },
   };
   </script>
