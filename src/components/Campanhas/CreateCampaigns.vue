@@ -398,7 +398,6 @@
 </style>
 
 <script>
-import { mapActions, mapState } from 'vuex';
 
 export default {
     data: () => ({
@@ -416,18 +415,8 @@ export default {
         locationAlign: 'center',
         originSide: 'auto',
         originAlign: '',
-        values: 'Escolha seu estado',
         //Tipos de Custo Campanha
         types: ['CPM Marca', 'CPM Howhow', 'Tabelado', 'Comissão'],
-        //Cidades campanha
-        // states: ['Acre', 'Alagoas', 'Amapá', 'Amazonas', 'Bahia', 'Ceará', 'Espírito Santo', 'Goiás',
-        //     'Maranhão', 'Mato Grosso', 'Mato Grosso do Sul', 'Minas Gerais', 'Pará', 'Paraíba',
-        //     'Paraná', 'Pernambuco', 'Piauí', 'Rio de Janeiro', 'Rio Grande do Norte', 'Rio Grande do Sul',
-        //     'Rondônia', 'Roraima', 'Santa Catarina', 'São Paulo', 'Sergipe', 'Tocantins'],
-        //Categoria Influenciador
-        category: ['Anime & Cartoon', 'Apps & Serviços', 'Comédia & Humor', 'Curiosidades', 'Dança Profissional',
-            'Dublagem', 'Entretenimento', 'Fashion/Moda', 'Games', 'Gastronomia/Comida', 'Life Skills (Comportamento na vida)',
-            'Make Prank (Pegadinhas)', 'Makeup/Maquiagem', 'Motivação', 'Música', 'Outros'],
         //Input file
         rulesFile: [
             value => {
@@ -435,14 +424,9 @@ export default {
             },
         ],
     }),
-    methods: {
-        // loadStates(){
-        //     this.$store.dispatch('estados/getStates');
-        // }
-        ...mapActions(['getStates']),
+    methods:{
     },
     created() {
-        this.getStates()
     },
     //Localização do tooltip
     computed: {
@@ -452,7 +436,6 @@ export default {
         origin() {
             return this.originDisabled ? this.originSide : `${this.originSide} ${this.originAlign}`
         },
-        ...mapState(["estados"]),
     },
 
 }

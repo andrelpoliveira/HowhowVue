@@ -426,15 +426,6 @@ export default {
         originAlign: '',
         //Tipos de Custo Campanha
         types: ['CPM Marca', 'CPM Howhow', 'Tabelado', 'Comissão'],
-        //Cidades campanha
-        states: ['Acre', 'Alagoas', 'Amapá', 'Amazonas', 'Bahia', 'Ceará', 'Espírito Santo', 'Goiás',
-            'Maranhão', 'Mato Grosso', 'Mato Grosso do Sul', 'Minas Gerais', 'Pará', 'Paraíba',
-            'Paraná', 'Pernambuco', 'Piauí', 'Rio de Janeiro', 'Rio Grande do Norte', 'Rio Grande do Sul',
-            'Rondônia', 'Roraima', 'Santa Catarina', 'São Paulo', 'Sergipe', 'Tocantins'],
-        //Categoria Influenciador
-        category: ['Anime & Cartoon', 'Apps & Serviços', 'Comédia & Humor', 'Curiosidades', 'Dança Profissional',
-            'Dublagem', 'Entretenimento', 'Fashion/Moda', 'Games', 'Gastronomia/Comida', 'Life Skills (Comportamento na vida)',
-            'Make Prank (Pegadinhas)', 'Makeup/Maquiagem', 'Motivação', 'Música', 'Outros'],
         //Input file
         rulesFile: [
             value => {

@@ -7,6 +7,8 @@ import TermosView  from '../views/TermosView.vue'
 import PoliticaView from '../views/PoliticaView.vue'
 import WalletView from '../views/WalletView.vue'
 import ProfileMarcatoInfluencer from '../components/Dashboards/ProfileMarcatoInfluencer.vue'
+import LoginWalletView from '../views/CarteiraViews/LoginWalletView.vue'
+import InterfaceWalletView from '../views/CarteiraViews/InterfaceWalletView.vue'
 
 const routes = [
   {
@@ -16,38 +18,48 @@ const routes = [
   },
   {
     path: '/registro',
-    name: 'Registro',
+    name: 'registro',
     component: RegistroView
   },
   {
     path: '/dashboard',
-    name: 'Dashboard',
-    component: DashboardView
+    name: 'dashboard',
+    component: DashboardView,
   },
   {
     path: '/login',
-    name: 'Login',
+    name: 'login',
     component: LoginView
   },
   {
     path: '/termosdeuso',
-    name: 'TermosDeuso',
+    name: 'termosdeuso',
     component: TermosView 
   },
   {
     path: '/wallet',
-    name: 'Wallet',
+    name: 'wallet',
     component: WalletView
   },
   {
     path: '/politicadeprivacidade',
-    name: 'PoliticaDePrivacidade',
+    name: 'politicadeprivacidade',
     component: PoliticaView
   },
    {
-    path: '/influencerProfile',
-    name: 'MarcatoInfluencer',
+    path: '/influencerprofile',
+    name: 'marcatoinfluencer',
     component: ProfileMarcatoInfluencer
+  },
+  {
+    path: '/loginwallet',
+    name: 'LoginWallet',
+    component: LoginWalletView
+  },
+  {
+    path: '/interfacewallet',
+    name: 'InterfaceWallet',
+    component: InterfaceWalletView
   },
   
 ]

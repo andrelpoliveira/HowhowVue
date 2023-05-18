@@ -13,7 +13,7 @@ import DashboardDesign from '../components/Dashboards/DashboardDesign.vue';
 
 export default ({
 
-    name: 'App',
+    name: 'DashoardView',
 
     components: {
         DashboardDesign,
