@@ -114,15 +114,13 @@
               <DashboardMarca />
             </div>
             <div v-if="$store.state.roles === 'agencia'">
-              <DashboardAgencia />
+              <DashboardAgencia/>
             </div>
           </v-window-item>
           <v-window-item value="op3">
             <WalletView/>
           </v-window-item>
-          <v-window-item value="op4">
-            <p>Analytics</p>
-          </v-window-item>
+
           <!-- Profile Influenciador -op02 -->
           <v-window-item value="op2">
             <div v-if="$store.state.roles === 'influencer'">
@@ -176,7 +174,7 @@ import ProfileAgencia from './ProfileAgencia.vue';
 import ProfileMarcatoInfluencer from './ProfileMarcatoInfluencer.vue';
 import DashboardInfluencer from './DashboardInfluencer.vue';
 import DashboardMarca from './DashboardMarca.vue';
-import DashboardAgencia from './ProfileAgencia.vue';
+import DashboardAgencia from './DashboardAgencia.vue';
 </script>
 
 <script>
@@ -203,7 +201,6 @@ export default {
       ['Dashboard', 'mdi-widgets', 'op1'],
       ['Profile', 'mdi-account-circle', 'op2'],
       ['Wallet', 'mdi-wallet', 'op3'],
-      ['Analytics', 'mdi-google-analytics', 'op4'],
     ],
     //Refere-se a tabulação dentro do Dashboard (Abre as páginas de acordo com os valores)
     tab: null,

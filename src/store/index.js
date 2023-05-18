@@ -14,7 +14,7 @@ export default createStore({
       { title: 'Best airlines', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 4, text: 'Lorem 6', datein: '24/04/2023', dateend: '30/04/2023', campanhaId: '6' },
     ],
     //Retorno da Rules da db
-    roles: 'marca',
+    roles: 'influencer',
     campaignInfo: '',
     estados: [],
       
@@ -42,3 +42,4 @@ export default createStore({
   modules: {
   }
 })
+

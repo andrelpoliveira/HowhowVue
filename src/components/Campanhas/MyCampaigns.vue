@@ -1,7 +1,12 @@
 <template>
     <!-- Campanhas Ativas -->
     <v-window-item value="op6" flat floating>
-        <v-divider></v-divider>
+        <v-card class="influencer-campanhas-searchbar" flat>
+            <v-text-field class="searchbar-textarea"  v-model="search" label="Buscar campanhas..." single-line hide-details>
+                <v-icon class="seachbar-icon" size="default" icon="mdi-magnify"/>
+            </v-text-field>
+        </v-card>
+        <!-- <v-divider></v-divider>
         <v-card-title class="ma-2" align="left">APROVADAS
             <v-tooltip text="text here">
                         <template v-slot:activator="{ props }">
@@ -23,16 +28,7 @@
                                 <v-card-text class="campanhas-cards-marca-name" v-text="activeCampaign.text"></v-card-text>
                             </v-row>
                         </v-img>
-                        <!-- <v-card-title>{{ activeCampaign.title }}</v-card-title>
-                        <v-divider></v-divider>
-                        <v-col cols="12">
-                            <v-sheet class="d-flex align-center justify-center flex-wrap text-center"
-                                height="40" rounded color="blue-lighten-3" floating>
-                                <v-icon icon="mdi-calendar-month"></v-icon><span class="text-h6">{{
-                                    activeCampaign.status }}</span>
-                            </v-sheet>
-                        </v-col>
-                        <v-divider></v-divider> -->
+
 
                         <v-card-actions class="d-flex align-center justify-center ma-2">
                             <v-btn color="blue-darken-1" prepend-icon="mdi-plus" variant="flat"
@@ -42,10 +38,10 @@
                     </v-card>
                 </v-slide-group-item>
             </v-slide-group>
-        </v-sheet>
+        </v-sheet> -->
 
         <!-- Campanhas Pendentes -->
-        <v-divider></v-divider>
+        <!-- <v-divider></v-divider>
         <v-card-title class="ma-2" align="left">PENDENTES
             <v-tooltip text="text here">
                         <template v-slot:activator="{ props }">
@@ -67,16 +63,7 @@
                                 <v-card-text class="campanhas-cards-marca-name" v-text="pendentCampaign.text"></v-card-text>
                             </v-row>
                         </v-img>
-                        <!-- <v-card-title>{{ pendentCampaign.title }}</v-card-title>
-                        <v-divider></v-divider>
-                        <v-col cols="12">
-                            <v-sheet class="d-flex align-center justify-center flex-wrap text-center"
-                                height="40" rounded color="red-lighten-3" floating>
-                                <v-icon icon="mdi-calendar-alert"></v-icon><span class="text-h6">{{
-                                    pendentCampaign.status }}</span>
-                            </v-sheet>
-                        </v-col>
-                        <v-divider></v-divider> -->
+
 
                         <v-card-actions class="d-flex align-center justify-center ma-2">
                             <v-btn color="blue-darken-1" prepend-icon="mdi-plus" variant="flat"
@@ -86,11 +73,11 @@
                     </v-card>
                 </v-slide-group-item>
             </v-slide-group>
-        </v-sheet>
+        </v-sheet> -->
 
         <!-- Campanhas Encerradas -->
         <v-divider></v-divider>
-        <v-card-title class="ma-2" align="left">ENCERRADAS
+        <v-card-title class="ma-2" align="left">PARTICIPADAS
             <v-tooltip text="text here">
                         <template v-slot:activator="{ props }">
                             <v-icon size="x-large" icon="mdi-alert-circle" color="rgb(0, 184, 217)" v-bind="props" />
@@ -111,22 +98,7 @@
                                 <v-row class="mx-0">
                                 <v-card-text class="campanhas-cards-marca-name" v-text="completedCampaign.text"></v-card-text>
                             </v-row>
-                        </v-img>                        <!-- <v-card-title>{{ completedCampaign.title }}</v-card-title>
-                        <v-divider></v-divider>
-                        <v-col cols="12">
-                            <v-sheet class="d-flex align-center justify-center flex-wrap text-center"
-                                height="40" rounded color="green-lighten-3" floating>
-                                <v-icon icon="mdi-calendar-check"></v-icon><span class="text-h6">{{
-                                    completedCampaign.status }}</span>
-                            </v-sheet>
-                        </v-col>
-                        <v-divider></v-divider> -->
-
-                        <!-- <v-card-text>
-                            <v-row justify="center" class="mx-0">
-                                <v-rating :model-value="completedCampaign.rate" color="amber" density="compact" half-increments readonly size="small"></v-rating>
-                            </v-row>
-                        </v-card-text> -->
+                        </v-img> 
 
                         <v-card-actions class="d-flex align-center justify-center ma-2">
                             <v-btn color="blue-darken-1" prepend-icon="mdi-plus" variant="flat"

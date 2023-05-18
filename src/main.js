@@ -9,6 +9,8 @@ import { loadFonts } from './plugins/webfontloader'
 import { loadIcon } from '@iconify/vue'
 import VueApexCharts from 'vue3-apexcharts'
 
+
+
 import './assets/css/main.css';
 import './assets/css/mainpage.css';
 import './assets/css/campanhas.css';

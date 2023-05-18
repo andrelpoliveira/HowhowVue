@@ -1,5 +1,9 @@
 /* Padrões estéricos dos cards de campanhas */
 
+.edit-icons {
+    display: flex;
+    flex-direction: row;
+}
 .campanhas-cards-avatar {
     display: flex !important;
     top: -50px !important;
@@ -58,6 +62,13 @@
     height: 40px !important;
     margin-bottom: 20px !important;
 }
+.info-dados-direcao {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between;
+    padding: 2px 20px;
+    
+}
 /*  */
 
 /* Cards em "Campanhas" da Marca */
@@ -78,5 +89,95 @@
     flex-direction: column !important;
     justify-content: center !important;
     align-items: center !important;
+}
+.avatar-mycampaign {
+    margin-top: -180px;
+    left: 20px;
+}
+
+.info-campanha-title {
+    color: #fff !important;
+    font-weight: 500;
+    font-size: 1.8rem;
+    margin: 20px !important;
+}
+
+.campanha-info-section {
+    display: flex;
+    justify-content: space-evenly !important;
+}
+
+.info-section {
+    margin: 0px 40px !important;
+    display: flex !important;
+    flex-direction: row !important;
+}
+
+.info-section-avatar {
+    display: flex !important;
+    flex-direction: column !important;
+}
+.proposta-content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    margin: 10px !important;
+}
+.marca-avatar {
+    border-radius: 12px !important;
+    box-shadow: rgba(145, 158, 171, 0.2) 0px 0px 2px 0px, rgba(145, 158, 171, 0.12) 0px 12px 24px -4px, 0 7px 0px -5px #7777771c !important;
+    background-color: #fff !important;
+    background-clip: border-box !important;
+    border: 0 solid rgba(34, 41, 47, 0.125) !important;
+}
+.campanha-info-card {
+    border-radius: 12px !important;
+    box-shadow: rgba(145, 158, 171, 0.2) 0px 0px 2px 0px, rgba(145, 158, 171, 0.12) 0px 12px 24px -4px, 0 7px 0px -5px #7777771c !important;
+    background-color: #fff !important;
+    background-clip: border-box !important;
+    border: 0 solid rgba(34, 41, 47, 0.125) !important;
+    
+}
+.info-modalidades-cards {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center;
+    align-items: center;
+}
+.solicitacao-profile-card {
+    background-color: var(--secundary-color-main) !important;
+    box-shadow: none !important;
+    border-radius: 12px !important;
+    display: flex !important;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+  }
+  
+  .solicitacao-profile-info .v-list-item__content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  
+  .solicitacao-profile-info .v-list-item-title{
+    font-weight: 600;
+    color: #6e6b7b !important;
+  }
+  .solicitacao-profile-info .v-list-item-subtitle{
+    font-weight: 400;
+    color: #637381 !important;
+  }
+.solicitacao-card-orientation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.proposta-text {
+    display: flex;
+    text-align: center;
+    font-size: 1.4rem !important
 }
 /*  */

@@ -4,34 +4,37 @@
     box-shadow: none !important;
     border: transparent !important;
     background-color: transparent !important;
+
 }
-.profile-banner {
-    border-radius: 12px !important;
+.top-card-orientation {
     box-shadow: rgba(145, 158, 171, 0.2) 0px 0px 2px 0px, rgba(145, 158, 171, 0.12) 0px 12px 24px -4px, 0 7px 0px -5px #7777771c !important;
     background-clip: border-box !important;
     border: 0 solid rgba(34, 41, 47, 0.125) !important;
-    
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
 }
-.profile-avatar-cover {
+.profile-banner {
     border-radius: 12px !important;
-    margin-left: 20px !important;
-    border: solid 1px rgba(145, 158, 171, 0.32) !important;
+    width: 1000px;
 }
+
+
 .profile-avatar {
-    border-radius: 12px !important;
+    border-radius: 100% !important;
     border: solid 1px rgba(145, 158, 171, 0.32) !important;
 }
 .profile-user-name-banner {
     display: flex !important;
-    margin-bottom: 20px !important;
-    margin-left: 10px !important;
     color: #fff;
     font-weight: 500 !important;
 }
 .profile-banner-detalhes {
     display: flex !important;
     flex-direction: column !important;
-    margin-top: 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    margin-bottom: 20px !important;
 }
 .profile-banner-username {
     font-size: 2rem !important;
@@ -49,69 +52,63 @@
 .profile-columns {
     display: flex !important;
     flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center;
+    align-items: center;
+}
+.pessoal-section-card {
+    display: flex !important;
+    flex-direction: column !important;
+    display: flex !important;
+    align-items: center !important;
 }
 /*  */
 
 
 /* Padrões estéticos para ProfileInfluencer.vue */
-
-.profile-detalhes-section {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    align-content: center !important;
-    text-align: center !important;
-    padding-bottom: 20px !important;
-}
-.profile-main-section {
-    display: flex !important;
-    flex-direction: column !important;
-    margin: 10px !important;
+.profile-avatar-cover {
+    border-radius: 100% !important;
+    border: solid 1px rgba(145, 158, 171, 0.32) !important;
+    top: -50px;
 }
 .dados-direcao {
     display: flex !important;
-    flex-direction: row !important;
-    justify-content: space-between !important;
-    margin: 10px 0px !important;
-    padding: 0px 20px;
+    flex-direction: column !important;
+    text-align: center;
+    padding: 2px 0px !important;
+    
 }
 .pessoal-section {
-    margin: 0px 5px 5px 0px !important;
+    width: 1000px !important;
+    border-radius: 16px !important;
+    display: flex !important;
+    justify-content: center !important;
+
 }
+
+.profile-main-section {
+    display: flex !important;
+    flex-direction: column !important;
+
+}
+
 .profissional-section {
-    margin: 5px 5px 0px 0px !important;
+    margin-right: 40px !important;
 }
-.profile-redes-section {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    align-content: center !important;
-    text-align: center !important;
-    margin: 20px !important;
-}
-.redes-section {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    align-content: center !important;
-    text-align: center !important;
-    flex-wrap: wrap !important;
-    flex-direction: row !important;
-}
+
 .profile-sobre-section {
     display: flex !important;
+    flex-direction: column;
     justify-content: center !important;
     align-items: center !important;
     align-content: center !important;
     text-align: center !important;
     margin: 20px !important;
-    border-radius: 12px !important;
 }
 .profile-residencial-section {
     display: flex !important;
     align-items: center !important;
-    margin-left: 5px !important;
+    margin-left: 40px !important;
     border-radius: 12px !important;
 }
 .text-disposition {
@@ -137,13 +134,42 @@
 /*  */
 
 /* Padrões estéticos para ProfileMarca.vue */
+.profile-avatar-marca-cover {
+    border-radius: 12px !important;
+    border: solid 1px rgba(145, 158, 171, 0.32) !important;
+}
+.profile-avatar-marca {
+    border-radius: 12px !important;
+    border: solid 1px rgba(145, 158, 171, 0.32) !important;
+}
 
+.profile-detalhes-section {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    align-content: center !important;
+    text-align: center !important;
+    padding-bottom: 20px !important;
+}
+.profile-sobre-title {
+    color: #0000001c !important;
+    text-align: center;
+}
+.galeria-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.galeria {
+    margin-top: 0px !important;
+}
 /*  */
 
 /* Padrões estéticos para ProfileAgencia.vue */
 /*  */
 
-/* Padrões estéticos para ProfileMarcatoAgencia.vue */
+/* Padrões estéticos para ProfileMarcatoInfluencer.vue */
 .show-influencer-content {
     margin: 20px !important;
     padding: 0px 20px 0px 20px;
@@ -152,7 +178,12 @@
     display: flex !important;
     flex-direction: row !important;
     justify-content: space-between !important;
-    margin: 10px 0px !important;
     padding: 5px 50px 5px 50px;
+}
+.portifolio-input {
+
+}
+.inputs-section {
+    max-width: 900px;
 }
 /*  */
