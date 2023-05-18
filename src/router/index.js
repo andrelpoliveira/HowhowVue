@@ -7,6 +7,8 @@ import TermosView  from '../views/TermosView.vue'
 import PoliticaView from '../views/PoliticaView.vue'
 import WalletView from '../views/WalletView.vue'
 import ProfileMarcatoInfluencer from '../components/Dashboards/ProfileMarcatoInfluencer.vue'
+import LoginWalletView from '../views/CarteiraViews/LoginWalletView.vue'
+import InterfaceWalletView from '../views/CarteiraViews/InterfaceWalletView.vue'
 
 const routes = [
   {
@@ -48,6 +50,16 @@ const routes = [
     path: '/influencerprofile',
     name: 'marcatoinfluencer',
     component: ProfileMarcatoInfluencer
+  },
+  {
+    path: '/loginwallet',
+    name: 'LoginWallet',
+    component: LoginWalletView
+  },
+  {
+    path: '/interfacewallet',
+    name: 'InterfaceWallet',
+    component: InterfaceWalletView
   },
   
 ]
