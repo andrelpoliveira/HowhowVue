@@ -1,6 +1,11 @@
 <template>
     <v-window-item value="op8">
-        <v-card class="mx-auto" :border="100">
+        <v-card class="influencer-campanhas-searchbar" flat>
+            <v-text-field class="searchbar-textarea"  v-model="search" label="Buscar campanhas..." single-line hide-details>
+                <v-icon class="seachbar-icon" size="default" icon="mdi-magnify"/>
+            </v-text-field>
+        </v-card>
+        <v-card class="mx-auto" flat>
             <v-container fluid>
                 <v-divider></v-divider>
                 <v-card-title class="campanha-section-title ma-2" align="left">CRIADAS
@@ -22,9 +27,7 @@
                                     </template>
                                     <v-img :src="card.src" class="align-end"
                                         gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="250px" cover>
-                                        <v-avatar color="white" variant="elevated" size="64" class="campanhas-cards-avatar">
-                                            <v-avatar size="60"><v-img :src="card.src" cover></v-img></v-avatar>
-                                        </v-avatar>
+
                                         <v-row justify="center" class="campanhas-cards-periodo">
                                             <v-col class="campanhas-card-content">
                                                 <v-card-title class="campanhas-cards-title"
@@ -32,10 +35,6 @@
                                                 <v-chip-group>
                                                     <v-chip class="ma-2" color="blue-lighten-4"
                                                         prepend-icon="mdi-calendar-range" :text="card.datein">
-                                                    </v-chip>
-                                                    <v-spacer></v-spacer>
-                                                    <v-chip class="ma-2" color="blue-lighten-4"
-                                                        prepend-icon="mdi-calendar-range" :text="card.dateend">
                                                     </v-chip>
                                                 </v-chip-group>
                                             </v-col>
@@ -77,9 +76,7 @@
                                     </template>
                                     <v-img :src="card.src" class="align-end"
                                         gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="250px" cover>
-                                        <v-avatar color="white" variant="elevated" size="64" class="campanhas-cards-avatar">
-                                            <v-avatar size="60"><v-img :src="card.src" cover></v-img></v-avatar>
-                                        </v-avatar>
+
                                         <v-row justify="center" class="campanhas-cards-periodo">
                                             <v-col class="campanhas-card-content">
                                                 <v-card-title class="campanhas-cards-title"
@@ -88,10 +85,7 @@
                                                     <v-chip class="ma-2" color="blue-lighten-4"
                                                         prepend-icon="mdi-calendar-range" :text="card.datein">
                                                     </v-chip>
-                                                    <v-spacer></v-spacer>
-                                                    <v-chip class="ma-2" color="blue-lighten-4"
-                                                        prepend-icon="mdi-calendar-range" :text="card.dateend">
-                                                    </v-chip>
+
                                                 </v-chip-group>
                                             </v-col>
                                         </v-row>                                    
@@ -133,9 +127,7 @@
                                     </template>
                                     <v-img :src="card.src" class="align-end"
                                         gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="250px" cover>
-                                        <v-avatar color="white" variant="elevated" size="64" class="campanhas-cards-avatar">
-                                            <v-avatar size="60"><v-img :src="card.src" cover></v-img></v-avatar>
-                                        </v-avatar>
+
                                         <v-row justify="center" class="campanhas-cards-periodo">
                                             <v-col class="campanhas-card-content">
                                                 <v-card-title class="campanhas-cards-title"
@@ -144,10 +136,7 @@
                                                     <v-chip class="ma-2" color="blue-lighten-4"
                                                         prepend-icon="mdi-calendar-range" :text="card.datein">
                                                     </v-chip>
-                                                    <v-spacer></v-spacer>
-                                                    <v-chip class="ma-2" color="blue-lighten-4"
-                                                        prepend-icon="mdi-calendar-range" :text="card.dateend">
-                                                    </v-chip>
+
                                                 </v-chip-group>
                                             </v-col>
                                         </v-row>                                    
@@ -188,9 +177,7 @@
                                     </template>
                                     <v-img :src="card.src" class="align-end"
                                         gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="250px" cover>
-                                        <v-avatar color="white" variant="elevated" size="64" class="campanhas-cards-avatar">
-                                            <v-avatar size="60"><v-img :src="card.src" cover></v-img></v-avatar>
-                                        </v-avatar>
+
                                         <v-row justify="center" class="campanhas-cards-periodo">
                                             <v-col class="campanhas-card-content">
                                                 <v-card-title class="campanhas-cards-title"
@@ -199,10 +186,7 @@
                                                     <v-chip class="ma-2" color="blue-lighten-4"
                                                         prepend-icon="mdi-calendar-range" :text="card.datein">
                                                     </v-chip>
-                                                    <v-spacer></v-spacer>
-                                                    <v-chip class="ma-2" color="blue-lighten-4"
-                                                        prepend-icon="mdi-calendar-range" :text="card.dateend">
-                                                    </v-chip>
+
                                                 </v-chip-group>
                                             </v-col>
                                         </v-row>                                    

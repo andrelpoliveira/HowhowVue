@@ -187,7 +187,8 @@ import ProfileAgencia from './ProfileAgencia.vue';
 import ProfileMarcatoInfluencer from './ProfileMarcatoInfluencer.vue';
 import DashboardInfluencer from './DashboardInfluencer.vue';
 import DashboardMarca from './DashboardMarca.vue';
-import DashboardAgencia from './ProfileAgencia.vue';
+import DashboardAgencia from './DashboardAgencia.vue';
+
 import { onMounted } from 'vue';
 import { useAuthStore } from '../../store/auth';
 
@@ -224,7 +225,6 @@ export default {
       ['Dashboard', 'mdi-widgets', 'op1'],
       ['Profile', 'mdi-account-circle', 'op2'],
       ['Wallet', 'mdi-wallet', 'op3'],
-      ['Analytics', 'mdi-google-analytics', 'op4'],
     ],
     //Refere-se a tabulação dentro do Dashboard (Abre as páginas de acordo com os valores)
     tab: null,

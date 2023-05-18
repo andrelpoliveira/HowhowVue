@@ -11,6 +11,8 @@ import { loadIcon } from '@iconify/vue'
 import VueApexCharts from 'vue3-apexcharts';
 import { vMaska } from 'maska'
 
+
+
 import './assets/css/main.css';
 import './assets/css/mainpage.css';
 import './assets/css/campanhas.css';

@@ -4,9 +4,9 @@
             <v-container>
                 <!-- nav-bar de gerenciamento de influenciadores da campanha -->
 
-                <v-navigation-drawer class="right-sidebar" permanent location="right" elevation="8">
+                <v-navigation-drawer class="right-sidebar" permanent location="right" elevation="8" >
                     <template v-slot:prepend>
-                        <v-card class="gerenciar-section overflow-y-auto" flat>
+                        <v-card class="gerenciar-section overflow-y-auto" flat >
                             <v-card-title>Gerenciador de campanha</v-card-title>
                             <v-divider></v-divider>
                             <v-card-title>Requer atenção</v-card-title>
@@ -45,8 +45,8 @@
                             <v-item>
                                 <v-card class="campanhas-cards" height="auto" width="200">
 
-                                    <v-img class="influencer-card-img overflow-visible" :src="activeinfluencer.picture" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" cover>
-                                        <v-card-title class="card-influencer-title">{{ activeinfluencer.nameinfluencer
+                                    <v-img class="influencer-card-img overflow-visible" :src="activeinfluencer.src" linear-gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" cover>
+                                        <v-card-title class="card-influencer-title">{{ activeinfluencer.title
                                         }}</v-card-title>
                                     </v-img>
                                     <v-divider></v-divider>
@@ -105,7 +105,7 @@
                                 </v-card>
                             </v-item>
 
-                            <template v-if="index = activeinfluencer.id">
+                            <template v-if="index = !activeinfluencer.id">
                                 <v-expand-transition class="card-sidebar">
                                     <v-card>
                                         <div class="redes-info">

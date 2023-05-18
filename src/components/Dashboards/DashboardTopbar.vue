@@ -1,8 +1,5 @@
 <template>
-    <v-btn density="compact" >
-        <v-icon size="x-large">mdi-magnify</v-icon>
-        <span class="dashboard-topbar-icons">Busca</span>
-    </v-btn>
+
 
     <v-btn density="compact" >
         <v-icon size="x-large">mdi-theme-light-dark</v-icon>

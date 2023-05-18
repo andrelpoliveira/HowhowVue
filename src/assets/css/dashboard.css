@@ -56,3 +56,96 @@
 padding-left: 5px !important;
 }
 /*  */
+
+.top-dashboard-section {
+  display: flex;
+  flex-direction: row;
+}
+.profile-redes-section {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  align-content: center !important;
+  text-align: center !important;
+  margin: 20px !important;
+}
+.redes-section {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  align-content: center !important;
+  text-align: center !important;
+  flex-wrap: wrap !important;
+  flex-direction: column !important;
+}
+.youtube-section {
+  display: flex;
+  flex-direction: row;
+}
+.instagram-section {
+  display: flex;
+  flex-direction: row;
+}
+.twitter-section {
+  display: flex;
+  flex-direction: row;
+}
+.facebook-section {
+  display: flex;
+  flex-direction: row;
+}
+.tiktok-section {
+  display: flex;
+  flex-direction: row;
+}
+.kwai-section {
+  display: flex;
+  flex-direction: row;
+}
+.outros-section {
+  display: flex;
+  flex-direction: row;
+}
+.dashboard-profile {
+  border-radius: 12px !important;
+  box-shadow: rgba(145, 158, 171, 0.2) 0px 0px 2px 0px, rgba(145, 158, 171, 0.12) 0px 12px 24px -4px, 0 7px 0px -5px #7777771c !important;
+  background-color: #fff !important;
+  background-clip: border-box !important;
+  border: 0 solid rgba(34, 41, 47, 0.125) !important;
+  border-radius: 12px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+.dashboard-avatar-cover {
+  border-radius: 100% !important;
+  border: solid 1px rgba(145, 158, 171, 0.32) !important;
+}
+
+.dashboard-username {
+  font-size: 1.5rem !important;
+}
+.dashboard-btns {
+  display: flex;
+  flex-direction: column;
+}
+.dashboard-profile-btn {
+  padding: 10px 20px !important;
+  border-radius: 12px !important;
+  color: #fff;
+  background-color: var(--primary-color-lighter);
+}
+.portifolio-btn {
+  padding: 10px 20px !important;
+  border-radius: 12px !important;
+  color: #fff;
+  background-color: var(--primary-color-lighter);
+}
+.dashboard-card-title {
+  font-size: 1.6rem !important;
+  font-weight: bold !important;
+}
+.dashboard-card-text {
+  font-size: 1rem !important;
+}
