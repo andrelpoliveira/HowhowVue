@@ -7,10 +7,22 @@
       <v-card flat class="sidebar-profile-card d-flex align-center justify-center flex-wrap text-center ma-2" height="70"
         v-bind="props" :elevation="isHovering ? 2 : 1">
         <v-layout>
-          <v-list>
-            <v-list-item prepend-avatar="https://randomuser.me/api/portraits/women/85.jpg" title="Sandra Adams"
-              :subtitle="$store.state.roles" class="sidebar-profile-info">
-            </v-list-item>
+          <v-list v-if="authStore.user">
+            <div v-if="authStore.user.role === 'influencer'">
+              <v-list-item :prepend-avatar="authStore.user.profile_photo_url" :title="authStore.user.name"
+                :subtitle="authStore.user.role" class="sidebar-profile-info">
+              </v-list-item>
+            </div>
+            <div v-else-if="authStore.user.role === 'brand'">
+              <v-list-item :prepend-avatar="authStore.user.profile_photo_url" :title="authStore.user.business_name"
+                :subtitle="authStore.user.role" class="sidebar-profile-info">
+              </v-list-item>
+            </div>
+            <div v-else-if="authStore.user.role === 'agency'">
+              <v-list-item :prepend-avatar="authStore.user.profile_photo_url" :title="authStore.user.business_name"
+                :subtitle="authStore.user.role" class="sidebar-profile-info">
+              </v-list-item>
+            </div>
           </v-list>
         </v-layout>
       </v-card>
@@ -30,63 +42,64 @@
       </v-list>
     </v-card>
     <!-- List Campanhas Influencer -->
-    <div v-if="$store.state.roles === 'influencer'">
-      <v-card flat class="mx-auto">
-        <v-list v-model:opened="open" density="compact">
-          <v-list-subheader class="text-h8">MONETIZATION</v-list-subheader>
-          <v-list-group value="Eventos">
-            <template v-slot:activator="{ props }">
-              <v-list-item v-bind="props" prepend-icon="mdi-bullhorn-outline" title="Campanhas"
-                active-color="rgba(1,137,255,1)" class="align-campanha"></v-list-item>
-            </template>
-            <v-tabs v-model="tab" flat direction="vertical" color="rgba(1,137,255,1)">
-              <v-tab v-for="([title, icon, options], i) in campanhasInf" :key="i" :value="options">
-                <v-list-item :title="title" :prepend-icon="icon" class="align-submenu"></v-list-item>
-              </v-tab>
-            </v-tabs>
-          </v-list-group>
-        </v-list>
-      </v-card>
+    <div v-if="authStore.user">
+      <div v-if="authStore.user.role === 'influencer'">
+        <v-card flat class="mx-auto">
+          <v-list v-model:opened="open" density="compact">
+            <v-list-subheader class="text-h8">MONETIZATION</v-list-subheader>
+            <v-list-group value="Eventos">
+              <template v-slot:activator="{ props }">
+                <v-list-item v-bind="props" prepend-icon="mdi-bullhorn-outline" title="Campanhas"
+                  active-color="rgba(1,137,255,1)" class="align-campanha"></v-list-item>
+              </template>
+              <v-tabs v-model="tab" flat direction="vertical" color="rgba(1,137,255,1)">
+                <v-tab v-for="([title, icon, options], i) in campanhasInf" :key="i" :value="options">
+                  <v-list-item :title="title" :prepend-icon="icon" class="align-submenu"></v-list-item>
+                </v-tab>
+              </v-tabs>
+            </v-list-group>
+          </v-list>
+        </v-card>
+      </div>
+      <!-- List Campanhas Marca -->
+      <div v-else-if="authStore.user.role === 'brand'">
+        <v-card flat class="mx-auto">
+          <v-list v-model:opened="open" density="compact">
+            <v-list-subheader class="text-h8">MONETIZATION</v-list-subheader>
+            <v-list-group value="Eventos">
+              <template v-slot:activator="{ props }">
+                <v-list-item v-bind="props" prepend-icon="mdi-bullhorn-outline" title="Campanhas"
+                  active-color="rgba(1,137,255,1)" class="align-campanha"></v-list-item>
+              </template>
+              <v-tabs v-model="tab" flat direction="vertical" color="rgba(1,137,255,1)">
+                <v-tab v-for="([title, icon, options], i) in campanhasMar" :key="i" :value="options">
+                  <v-list-item :title="title" :prepend-icon="icon" class="align-submenu"></v-list-item>
+                </v-tab>
+              </v-tabs>
+            </v-list-group>
+          </v-list>
+        </v-card>
+      </div>
+      <!-- List Campanhas Agência -->
+      <div v-else-if="authStore.user.role === 'agency'">
+        <v-card flat class="mx-auto">
+          <v-list v-model:opened="open" density="compact">
+            <v-list-subheader class="text-h8">MONETIZATION</v-list-subheader>
+            <v-list-group value="Eventos">
+              <template v-slot:activator="{ props }">
+                <v-list-item v-bind="props" prepend-icon="mdi-bullhorn-outline" title="Campanhas"
+                  active-color="rgba(1,137,255,1)" class="align-campanha"></v-list-item>
+              </template>
+              <v-tabs v-model="tab" flat direction="vertical" color="rgba(1,137,255,1)">
+                <v-tab v-for="([title, icon, options], i) in campanhasInf" :key="i" :value="options">
+                  <v-list-item :title="title" :prepend-icon="icon" class="align-submenu"></v-list-item>
+                </v-tab>
+              </v-tabs>
+            </v-list-group>
+          </v-list>
+        </v-card>
+      </div>
     </div>
-    <!-- List Campanhas Marca -->
-    <div v-else-if="$store.state.roles === 'marca'">
-      <v-card flat class="mx-auto">
-        <v-list v-model:opened="open" density="compact">
-          <v-list-subheader class="text-h8">MONETIZATION</v-list-subheader>
-          <v-list-group value="Eventos">
-            <template v-slot:activator="{ props }">
-              <v-list-item v-bind="props" prepend-icon="mdi-bullhorn-outline" title="Campanhas"
-                active-color="rgba(1,137,255,1)" class="align-campanha"></v-list-item>
-            </template>
-            <v-tabs v-model="tab" flat direction="vertical" color="rgba(1,137,255,1)">
-              <v-tab v-for="([title, icon, options], i) in campanhasMar" :key="i" :value="options">
-                <v-list-item :title="title" :prepend-icon="icon" class="align-submenu"></v-list-item>
-              </v-tab>
-            </v-tabs>
-          </v-list-group>
-        </v-list>
-      </v-card>
-    </div>
-    <!-- List Campanhas Agência -->
-    <div v-else-if="$store.state.roles === 'agencia'">
-      <v-card flat class="mx-auto">
-        <v-list v-model:opened="open" density="compact">
-          <v-list-subheader class="text-h8">MONETIZATION</v-list-subheader>
-          <v-list-group value="Eventos">
-            <template v-slot:activator="{ props }">
-              <v-list-item v-bind="props" prepend-icon="mdi-bullhorn-outline" title="Campanhas"
-                active-color="rgba(1,137,255,1)" class="align-campanha"></v-list-item>
-            </template>
-            <v-tabs v-model="tab" flat direction="vertical" color="rgba(1,137,255,1)">
-              <v-tab v-for="([title, icon, options], i) in campanhasInf" :key="i" :value="options">
-                <v-list-item :title="title" :prepend-icon="icon" class="align-submenu"></v-list-item>
-              </v-tab>
-            </v-tabs>
-          </v-list-group>
-        </v-list>
-      </v-card>
-    </div>
-
   </v-navigation-drawer>
 
   <v-app-bar flat class="dashboard-topbar">
@@ -102,46 +115,44 @@
   </v-app-bar>
 
   <!-- Dashboard tab main-->
-  <v-main>
+  <v-main v-if="authStore.user">
     <v-app>
       <v-container class="px-6" fluid>
         <v-window v-model="tab">
           <v-window-item value="op1">
-            <div v-if="$store.state.roles === 'influencer'">
+            <div v-if="authStore.user.role === 'influencer'">
               <DashboardInfluencer />
             </div>
-            <div v-if="$store.state.roles === 'marca'">
+            <div v-if="authStore.user.role === 'brand'">
               <DashboardMarca />
             </div>
-            <div v-if="$store.state.roles === 'agencia'">
+            <div v-if="authStore.user.role === 'agency'">
               <DashboardAgencia />
             </div>
           </v-window-item>
           <v-window-item value="op3">
-            <WalletView/>
+            <WalletView />
           </v-window-item>
           <v-window-item value="op4">
             <p>Analytics</p>
           </v-window-item>
-          <!-- Profile Influenciador -op02 -->
+          <!-- Profiles -op02 -->
           <v-window-item value="op2">
-            <div v-if="$store.state.roles === 'influencer'">
+            <div v-if="authStore.user.role === 'influencer'">
               <ProfileInfluencer />
             </div>
-            <div v-if="$store.state.roles === 'marca'">
+            <div v-if="authStore.user.role === 'brand'">
               <ProfileMarca />
             </div>
-            <div v-if="$store.state.roles === 'agencia'">
+            <div v-if="authStore.user.role === 'agency'">
               <ProfileAgencia />
             </div>
           </v-window-item>
-
           <v-window-item value="op09">
-            <div v-if="$store.state.roles === 'marca'">
+            <div v-if="authStore.user.role === 'brand'">
               <ProfileMarcatoInfluencer />
             </div>
           </v-window-item>
-
           <!-- Todas as Campanhas Influenciador -op05 -->
           <AllCampaignsInfluencer />
           <!-- Campanhas do Influenciador -op06 -->
@@ -177,11 +188,21 @@ import ProfileMarcatoInfluencer from './ProfileMarcatoInfluencer.vue';
 import DashboardInfluencer from './DashboardInfluencer.vue';
 import DashboardMarca from './DashboardMarca.vue';
 import DashboardAgencia from './ProfileAgencia.vue';
+import { onMounted } from 'vue';
+import { useAuthStore } from '../../store/auth';
+
+const authStore = useAuthStore();
+
+onMounted(async () => {
+  await authStore.getUser();
+})
+
 </script>
 
 <script>
 
 export default {
+  name: 'DashboardDesign',
   data: () => ({
     //variáveis de controle
     drawer: null,
@@ -207,9 +228,8 @@ export default {
     ],
     //Refere-se a tabulação dentro do Dashboard (Abre as páginas de acordo com os valores)
     tab: null,
-    //infoCampanha: null,
     value: 0,
-
+   
   }),
 
   methods: {
@@ -230,7 +250,7 @@ export default {
         default: return 'theme'
       }
     },
-    
+
   },
   //Componentes
   components: {
@@ -249,6 +269,6 @@ export default {
     DashboardMarca,
     DashboardAgencia,
     WalletView,
-},
+  },
 }
 </script>

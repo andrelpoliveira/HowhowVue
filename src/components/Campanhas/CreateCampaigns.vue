@@ -25,13 +25,13 @@
                        ></v-text-field>
                 </v-col>
                 <v-col cols="12" md="6">
-                    <v-autocomplete v-model="values" :items="estados" prepend-inner-icon="mdi-map-marker" label="Localização da audiência" placeholder="Selecione.."
+                    <v-select :items="getAllStates" item-title="estado" item-value="estado" prepend-inner-icon="mdi-map-marker" label="Localização da audiência" placeholder="Selecione.."
                         density="comfortable">
 
-                    </v-autocomplete>
+                    </v-select>
                 </v-col>
                 <v-col cols="12" md="6">
-                    <v-select :items="category" prepend-inner-icon="mdi-shape" label="Categorias do Influenciador"
+                    <v-select :items="$store.state.category" prepend-inner-icon="mdi-shape" label="Categorias do Influenciador"
                         placeholder="Selecione máximo 3 opções" density="comfortable" chips multiple>
 
                     </v-select>
@@ -77,10 +77,27 @@
                 </v-col>
             </v-row>
         </v-form>
+        <!-- <div v-for="estado in getAllStates" :key="estado.id">
+            {{ estado.estado }}
+        </div> -->
     </v-window-item>
 </template>
+<script setup>
+// import { onMounted, computed } from 'vue';
+// import { useStore } from 'vuex';
+
+// const store = useStore();
+// const getAllStates = computed(()=>{
+//     return store.getters.getAllStates;
+// });
+// const estados = computed(()=>{
+//     return store.state.estados;
+// });
+// onMounted(() =>{
+//     store.dispatch('getStates');
+// });
+</script>
 <script>
-import { mapActions, mapState} from 'vuex';
 
 export default {
     data: () => ({
@@ -91,18 +108,8 @@ export default {
         locationAlign: 'center',
         originSide: 'auto',
         originAlign: '',
-        values: 'Escolha seu estado',
         //Tipos de Custo Campanha
         types: ['CPM Marca', 'CPM Howhow', 'Tabelado', 'Comissão'],
-        //Cidades campanha
-        // states: ['Acre', 'Alagoas', 'Amapá', 'Amazonas', 'Bahia', 'Ceará', 'Espírito Santo', 'Goiás',
-        //     'Maranhão', 'Mato Grosso', 'Mato Grosso do Sul', 'Minas Gerais', 'Pará', 'Paraíba',
-        //     'Paraná', 'Pernambuco', 'Piauí', 'Rio de Janeiro', 'Rio Grande do Norte', 'Rio Grande do Sul',
-        //     'Rondônia', 'Roraima', 'Santa Catarina', 'São Paulo', 'Sergipe', 'Tocantins'],
-        //Categoria Influenciador
-        category: ['Anime & Cartoon', 'Apps & Serviços', 'Comédia & Humor', 'Curiosidades', 'Dança Profissional',
-            'Dublagem', 'Entretenimento', 'Fashion/Moda', 'Games', 'Gastronomia/Comida', 'Life Skills (Comportamento na vida)',
-            'Make Prank (Pegadinhas)', 'Makeup/Maquiagem', 'Motivação', 'Música', 'Outros'],
         //Input file
         rulesFile:[
             value => {
@@ -111,13 +118,8 @@ export default {
         ],
     }),
     methods:{
-        // loadStates(){
-        //     this.$store.dispatch('estados/getStates');
-        // }
-        ...mapActions(['getStates']),
     },
     created() {
-      this.getStates()  
     },
     //Localização do tooltip
     computed: {
@@ -127,7 +129,6 @@ export default {
         origin() {
             return this.originDisabled ? this.originSide : `${this.originSide} ${this.originAlign}`
         },
-        ...mapState(["estados"]),
     },
     
 }

@@ -45,8 +45,8 @@
                             <v-item>
                                 <v-card class="campanhas-cards" height="auto" width="200">
 
-                                    <v-img class="influencer-card-img overflow-visible" :src="activeinfluencer.src" cover>
-                                        <v-card-title class="card-influencer-title">{{ activeinfluencer.title
+                                    <v-img class="influencer-card-img overflow-visible" :src="activeinfluencer.picture" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" cover>
+                                        <v-card-title class="card-influencer-title">{{ activeinfluencer.nameinfluencer
                                         }}</v-card-title>
                                     </v-img>
                                     <v-divider></v-divider>
@@ -57,9 +57,9 @@
                                         <v-img class="card-youtube-icon "
                                             src="./../../assets/images/redes/redes-icons/youtube.svg">
 
-                                            <v-btn flat color="rgba(255,255,255,0)" v-for="item in activeinfluencer"
+                                            <!-- <v-btn flat color="rgba(255,255,255,0)" v-for="item in activeinfluencer"
                                                 :key="item.id" :value="activeinfluencer.id" @click="activeRow(index)">
-                                            </v-btn>
+                                            </v-btn> -->
                                         </v-img>
                                         <v-img class="card-instagram-icon"
                                             src="./../../assets/images/redes/redes-icons/instagram.svg">
@@ -91,7 +91,7 @@
                                     <div class="influencer-info-short">
                                         <div class="influencer-info">
                                             <v-text>{{ activeinfluencer.categoria }}</v-text>
-                                            <v-text>{{ activeinfluencer.seIdentifica }}</v-text>
+                                            <v-text>{{ activeinfluencer.genero }}</v-text>
                                             <v-text>{{ activeinfluencer.idade }}</v-text>
                                             <v-text>{{ activeinfluencer.idioma }}</v-text>
                                         </div>
@@ -161,8 +161,12 @@ export default {
             this.index = index
             console.log(index)
         }
-    }
+    },
 }
 </script>
+<script setup>
+
+</script>
+
 
 

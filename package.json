@@ -16,6 +16,9 @@
     "chart.js": "^4.2.1",
     "core-js": "^3.8.3",
     "dashblocks": "^0.5.22",
+    "js-cookie": "^3.0.5",
+    "maska": "^2.1.9",
+    "pinia": "^2.0.36",
     "register-service-worker": "^1.7.2",
     "roboto-fontface": "*",
     "vee-validate": "^4.8.6",
@@ -31,7 +34,6 @@
     "vue3-datepicker-lite": "^1.9.6",
     "vuelidate": "^0.7.7",
     "vuetify": "^3.0.0-beta.0",
-    "vuex": "^4.0.2",
     "webfontloader": "^1.0.0"
   },
   "devDependencies": {

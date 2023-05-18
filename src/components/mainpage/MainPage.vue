@@ -19,7 +19,7 @@
 
             <div>
               <v-btn class="main-nav-btn-login">
-                <router-link to="/login" custom v-slot="{ navigate }">
+                <router-link :to="{name:'login'}" custom v-slot="{ navigate }">
                   <button @click="navigate" role="link">Log in</button>
                 </router-link>
               </v-btn>
@@ -27,7 +27,7 @@
             <v-divider :thickness="2" color="rgba(255,255,255)" vertical></v-divider>
             <div class="nav-btns-sign">
               <v-btn class="main-nav-btn-register">
-                <router-link to="/registro" custom v-slot="{ navigate }">
+                <router-link :to="{name: 'registro'}" custom v-slot="{ navigate }">
                   <button @click="navigate" role="link">Registrar-se</button>
                 </router-link>
               </v-btn>

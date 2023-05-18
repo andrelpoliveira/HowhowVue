@@ -25,13 +25,13 @@
                         disabled="true"></v-text-field>
                 </v-col>
                 <v-col cols="12" md="6">
-                    <v-autocomplete :items="states" prepend-inner-icon="mdi-map-marker" label="Localização da audiência"
+                    <v-autocomplete :items="$store.state.estados" prepend-inner-icon="mdi-map-marker" label="Localização da audiência"
                         placeholder="Selecione.." density="comfortable" disabled="true">
 
                     </v-autocomplete>
                 </v-col>
                 <v-col cols="12" md="6">
-                    <v-select :items="category" prepend-inner-icon="mdi-shape" label="Categorias do Influenciador"
+                    <v-select :items="$store.state.category" prepend-inner-icon="mdi-shape" label="Categorias do Influenciador"
                         placeholder="Selecione máximo 3 opções" density="comfortable" chips multiple disabled="true">
 
                     </v-select>
@@ -108,15 +108,6 @@ export default {
         originAlign: '',
         //Tipos de Custo Campanha
         types: ['CPM Marca', 'CPM Howhow', 'Tabelado', 'Comissão'],
-        //Cidades campanha
-        states: ['Acre', 'Alagoas', 'Amapá', 'Amazonas', 'Bahia', 'Ceará', 'Espírito Santo', 'Goiás',
-            'Maranhão', 'Mato Grosso', 'Mato Grosso do Sul', 'Minas Gerais', 'Pará', 'Paraíba',
-            'Paraná', 'Pernambuco', 'Piauí', 'Rio de Janeiro', 'Rio Grande do Norte', 'Rio Grande do Sul',
-            'Rondônia', 'Roraima', 'Santa Catarina', 'São Paulo', 'Sergipe', 'Tocantins'],
-        //Categoria Influenciador
-        category: ['Anime & Cartoon', 'Apps & Serviços', 'Comédia & Humor', 'Curiosidades', 'Dança Profissional',
-            'Dublagem', 'Entretenimento', 'Fashion/Moda', 'Games', 'Gastronomia/Comida', 'Life Skills (Comportamento na vida)',
-            'Make Prank (Pegadinhas)', 'Makeup/Maquiagem', 'Motivação', 'Música', 'Outros'],
         //Input file
         rulesFile: [
             value => {

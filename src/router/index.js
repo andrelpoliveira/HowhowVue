@@ -16,37 +16,37 @@ const routes = [
   },
   {
     path: '/registro',
-    name: 'Registro',
+    name: 'registro',
     component: RegistroView
   },
   {
     path: '/dashboard',
-    name: 'Dashboard',
-    component: DashboardView
+    name: 'dashboard',
+    component: DashboardView,
   },
   {
     path: '/login',
-    name: 'Login',
+    name: 'login',
     component: LoginView
   },
   {
     path: '/termosdeuso',
-    name: 'TermosDeuso',
+    name: 'termosdeuso',
     component: TermosView 
   },
   {
     path: '/wallet',
-    name: 'Wallet',
+    name: 'wallet',
     component: WalletView
   },
   {
     path: '/politicadeprivacidade',
-    name: 'PoliticaDePrivacidade',
+    name: 'politicadeprivacidade',
     component: PoliticaView
   },
    {
-    path: '/influencerProfile',
-    name: 'MarcatoInfluencer',
+    path: '/influencerprofile',
+    name: 'marcatoinfluencer',
     component: ProfileMarcatoInfluencer
   },
   
