@@ -40,9 +40,7 @@
                         <v-btn @click="kwai" color="rgba(255,255,255,0)"></v-btn>
                     </v-img>
                 </div>
-
             </div>
-
         </div>
     </div>
 </template>
