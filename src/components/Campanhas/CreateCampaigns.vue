@@ -3,20 +3,20 @@
 
         <div class="mx-16" v-if="authStore.user">
             <v-card-title class="text-h8 text-md-h6 text-lg-h4 font-weight-bold pb-2">Dados da campanha</v-card-title>
-            <v-form @submit.prevent="authStore.handleCreateCampaign(form)">
+            <v-form @submit.prevent="createCampaign">
                 <v-row class="ma-2">
                     <v-col cols="12" md="6">
                         <v-text-field density="comfortable" label="Nome da marca" disabled="true">{{
                             authStore.user.business_name }}</v-text-field>
                     </v-col>
                     <v-col cols="12" md="6">
-                        <v-text-field v-model="form.name" prepend-inner-icon="mdi-rename-box" density="comfortable"
+                        <v-text-field v-model="name" prepend-inner-icon="mdi-rename-box" density="comfortable"
                             label="Nome da campanha"></v-text-field>
                     </v-col>
                     <v-col cols="12" md="6">
-                        <v-autocomplete v-model="form.states" :items="statesDB.statesDB" item-title="states"
-                            item-value="states" prepend-inner-icon="mdi-map-marker" label="Localização da audiência"
-                            placeholder="Selecione.." density="comfortable">
+                        <v-autocomplete v-model="states" :items="statesDB.statesDB" item-title="states" item-value="states"
+                            prepend-inner-icon="mdi-map-marker" label="Localização da audiência" placeholder="Selecione.."
+                            density="comfortable">
 
                         </v-autocomplete>
                     </v-col>
@@ -26,8 +26,8 @@
                     <v-col cols="12" md="3">
                         <v-tooltip location="top center" origin="auto" open-on-focus="true">
                             <template v-slot:activator="{ props }">
-                                <v-switch v-bind="props" color="primary" hide-details 
-                                    v-model="form.private" label="Privada/Pública">
+                                <v-switch v-bind="props" color="primary" hide-details v-model="isPrivate"
+                                    label="Privada/Pública">
                                 </v-switch>
                             </template>
 
@@ -52,11 +52,16 @@
                     </v-col>
 
                     <v-col cols="12" md="12">
-                        <v-file-input :rules="rulesFile" accept="image/png, image/jpeg, image/bmp" @change="uploadImage($event)" prepend-icon="mdi-camera"
-                            label="Logo da Campanha" density="comfortable" ></v-file-input>
+                        <!-- <label class="block uppercase tracking-wide text-gray-900 text-xs font-bold">Logo da Campanha</label>
+                        <input class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white
+                                        bg-clip-padding border border-solid border-gray-400 rounded transition ease-in-out
+                                        m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" type="file"
+                                        id="image" ref="campaign_photo" @change="uploadImage"/> -->
+                        <v-file-input :rules="rulesFile" type="file" accept="image/png, image/jpeg, image/bmp" @change="uploadImage"
+                            prepend-icon="mdi-camera" label="Logo da Campanha" density="comfortable" show-size></v-file-input>
                     </v-col>
                     <v-col cols="12" md="12">
-                        <v-textarea v-model="form.campaign_purpose" class="ml-8" label="Propósito da Campanha"
+                        <v-textarea v-model="campaign_purpose" class="ml-8" label="Propósito da Campanha"
                             density="comfortable"></v-textarea>
                     </v-col>
 
@@ -70,7 +75,7 @@
                     <v-col cols="12" md="12">
                         <div class="edit-icons">
                             <div class="influencer-card-btns">
-                                <v-switch v-model="form.social.youtube" color="primary"></v-switch>
+                                <v-switch v-model="social.youtube" color="primary"></v-switch>
                                 <v-img class="card-youtube-icon " src="./../../assets/images/redes/redes-icons/youtube.svg">
                                 </v-img>
                             </div>
@@ -80,28 +85,28 @@
                     <!-- Texts Youtube -->
                     <v-col cols="12" md="2">
                         <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable" label="Inserção em vídeo"
-                            v-model="form.content.yt_vd_insertion"></v-text-field>
+                            v-model="content.yt_vd_insertion"></v-text-field>
                     </v-col>
                     <v-col cols="12" md="2">
                         <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable" label="Vídeo dedicado"
-                            v-model="form.content.yt_vd_dedicated"></v-text-field>
+                            v-model="content.yt_vd_dedicated"></v-text-field>
                     </v-col>
                     <v-col cols="12" md="2">
                         <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable" label="Repost"
-                            v-model="form.content.yt_repost"></v-text-field>
+                            v-model="content.yt_repost"></v-text-field>
                     </v-col>
 
                     <v-col cols="12" md="2">
                         <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable" label="Post na Comunidade"
-                            v-model="form.content.yt_post_community"></v-text-field>
+                            v-model="content.yt_post_community"></v-text-field>
                     </v-col>
                     <v-col cols="12" md="2">
                         <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable" label="Short dedicado"
-                            v-model="form.content.yt_short"></v-text-field>
+                            v-model="content.yt_short"></v-text-field>
                     </v-col>
                     <v-col cols="12" md="2">
                         <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable" label="Inserção em short"
-                            v-model="form.content.yt_sh_insertion"></v-text-field>
+                            v-model="content.yt_sh_insertion"></v-text-field>
                     </v-col>
                     <v-col cols="12" md="2">
                         <v-card-text>Live Patrocinada?</v-card-text>
@@ -109,9 +114,8 @@
                     <v-col cols="12" md="2">
                         <v-tooltip location="top center" origin="auto" open-on-focus="true">
                             <template v-slot:activator="{ props }">
-                                <v-switch v-bind="props" color="primary" hide-details v-model="data.isLiveYoutube"
-                                    :label="`${data.isLiveYoutube.toString()}`" 
-                                    false-value="Não" true-value="Sim">
+                                <v-switch v-bind="props" color="primary" hide-details v-model="content.yt_live"
+                                    :label="`${content.yt_live.toString()}`" false-value="Não" true-value="Sim">
                                 </v-switch>
                             </template>
 
@@ -124,9 +128,8 @@
                     <v-col cols="12" md="2">
                         <v-tooltip location="top center" origin="auto" open-on-focus="true">
                             <template v-slot:activator="{ props }">
-                                <v-switch v-bind="props" color="primary" hide-details v-model="data.isEvento"
-                                    :label="`${data.isEvento.toString()}`"
-                                    false-value="Não" true-value="Sim">
+                                <v-switch v-bind="props" color="primary" hide-details v-model="content.yt_presential"
+                                    :label="`${content.yt_presential.toString()}`" false-value="Não" true-value="Sim">
 
                                 </v-switch>
                             </template>
@@ -140,7 +143,7 @@
                     <v-col cols="12" md="12">
                         <div class="edit-icons">
                             <div class="influencer-card-btns">
-                                <v-switch v-model="form.social.instagram" color="primary"></v-switch>
+                                <v-switch v-model="social.instagram" color="primary"></v-switch>
                                 <v-img class="card-instagram-icon "
                                     src="./../../assets/images/redes/redes-icons/instagram.svg">
                                 </v-img>
@@ -151,23 +154,23 @@
                     <!-- Texts Instagram -->
                     <v-col cols="12" md="2">
                         <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable" label="Combo"
-                            v-model="form.content.ist_combo"></v-text-field>
+                            v-model="content.ist_combo"></v-text-field>
                     </v-col>
                     <v-col cols="12" md="2">
                         <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable" label="Inserção"
-                            v-model="form.content.ist_insertion"></v-text-field>
+                            v-model="content.ist_insertion"></v-text-field>
                     </v-col>
                     <v-col cols="12" md="2">
                         <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable" label="Video dedicado"
-                            v-model="form.content.ist_vd_dedicated"></v-text-field>
+                            v-model="content.ist_vd_dedicated"></v-text-field>
                     </v-col>
                     <v-col cols="12" md="2">
                         <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable" label="Post no Feed"
-                            v-model="form.content.ist_post"></v-text-field>
+                            v-model="content.ist_post"></v-text-field>
                     </v-col>
                     <v-col cols="12" md="2">
                         <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable" label="Repost"
-                            v-model="form.content.ist_repost"></v-text-field>
+                            v-model="content.ist_repost"></v-text-field>
                     </v-col>
                     <v-col cols="12" md="12">
                         <v-row>
@@ -177,9 +180,8 @@
                             <v-col cols="12" md="3">
                                 <v-tooltip location="top center" origin="auto" open-on-focus="true">
                                     <template v-slot:activator="{ props }">
-                                        <v-switch v-bind="props" color="primary" hide-details v-model="data.isLiveInstagram"
-                                            :label="`${data.isLiveInstagram.toString()}`"
-                                            false-value="Não" true-value="Sim">
+                                        <v-switch v-bind="props" color="primary" hide-details v-model="content.ist_live"
+                                            :label="`${content.ist_live.toString()}`" false-value="Não" true-value="Sim">
 
                                         </v-switch>
                                     </template>
@@ -195,7 +197,7 @@
                     <v-col cols="12" md="12">
                         <div class="edit-icons">
                             <div class="influencer-card-btns">
-                                <v-switch v-model="form.social.facebook" color="primary"></v-switch>
+                                <v-switch v-model="social.facebook" color="primary"></v-switch>
                                 <v-img class="card-facebook-icon "
                                     src="./../../assets/images/redes/redes-icons/facebook.svg">
                                 </v-img>
@@ -206,23 +208,23 @@
                     <!-- Texts Favebook -->
                     <v-col cols="12" md="2">
                         <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable" label="Combo"
-                            v-model="form.content.fb_combo"></v-text-field>
+                            v-model="content.fb_combo"></v-text-field>
                     </v-col>
                     <v-col cols="12" md="2">
                         <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable" label="Post no feed"
-                            v-model="form.content.fb_post_feed"></v-text-field>
+                            v-model="content.fb_post_feed"></v-text-field>
                     </v-col>
                     <v-col cols="12" md="2">
                         <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable" label="Video dedicado"
-                            v-model="form.content.fb_vd_dedicated"></v-text-field>
+                            v-model="content.fb_vd_dedicated"></v-text-field>
                     </v-col>
                     <v-col cols="12" md="2">
                         <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable" label="Repost"
-                            v-model="form.content.fb_repost"></v-text-field>
+                            v-model="content.fb_repost"></v-text-field>
                     </v-col>
                     <v-col cols="12" md="2">
                         <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable" label="Story"
-                            v-model="form.content.fb_story"></v-text-field>
+                            v-model="content.fb_story"></v-text-field>
                     </v-col>
                     <v-col cols="12" md="12">
                         <v-row>
@@ -232,9 +234,8 @@
                             <v-col cols="12" md="2">
                                 <v-tooltip location="top center" origin="auto" open-on-focus="true">
                                     <template v-slot:activator="{ props }">
-                                        <v-switch v-bind="props" color="primary" hide-details v-model="data.isLiveFacebook"
-                                            :label="`${data.isLiveFacebook.toString()}`"
-                                            false-value="Não" true-value="Sim">
+                                        <v-switch v-bind="props" color="primary" hide-details v-model="content.fb_live"
+                                            :label="`${content.fb_live.toString()}`" false-value="Não" true-value="Sim">
 
                                         </v-switch>
                                     </template>
@@ -250,7 +251,7 @@
                     <v-col cols="12" md="12">
                         <div class="edit-icons">
                             <div class="influencer-card-btns">
-                                <v-switch v-model="form.social.twitter" color="primary"></v-switch>
+                                <v-switch v-model="social.twitter" color="primary"></v-switch>
                                 <v-img class="card-twitter-icon " src="./../../assets/images/redes/redes-icons/twitter.svg">
                                 </v-img>
                             </div>
@@ -260,11 +261,11 @@
                     <!-- Texts Twitter -->
                     <v-col cols="12" md="2">
                         <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable" label="Retweet da Marca"
-                            v-model="form.content.tw_retweet"></v-text-field>
+                            v-model="content.tw_retweet"></v-text-field>
                     </v-col>
                     <v-col cols="12" md="2">
                         <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable" label="Post"
-                            v-model="form.content.tw_post"></v-text-field>
+                            v-model="content.tw_post"></v-text-field>
                     </v-col>
                     <!-- Twitter End-->
                     <v-divider></v-divider>
@@ -272,7 +273,7 @@
                     <v-col cols="12" md="12">
                         <div class="edit-icons">
                             <div class="influencer-card-btns">
-                                <v-switch v-model="form.social.kwai" color="primary"></v-switch>
+                                <v-switch v-model="social.kwai" color="primary"></v-switch>
                                 <v-img class="card-kwai-icon" src="./../../assets/images/redes/redes-icons/kwai.svg">
                                 </v-img>
                             </div>
@@ -282,15 +283,15 @@
                     <!-- Texts Kwai -->
                     <v-col cols="12" md="2">
                         <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable" label="Inserção"
-                            v-model="form.content.kw_insertion"></v-text-field>
+                            v-model="content.kw_insertion"></v-text-field>
                     </v-col>
                     <v-col cols="12" md="2">
                         <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable" label="Video dedicado"
-                            v-model="form.content.kw_vd_insertion"></v-text-field>
+                            v-model="content.kw_vd_insertion"></v-text-field>
                     </v-col>
                     <v-col cols="12" md="2">
                         <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable" label="Repost"
-                            v-model="form.content.kw_repost"></v-text-field>
+                            v-model="content.kw_repost"></v-text-field>
                     </v-col>
                     <v-col cols="12" md="12">
                         <v-row>
@@ -300,9 +301,8 @@
                             <v-col cols="12" md="2">
                                 <v-tooltip location="top center" origin="auto" open-on-focus="true">
                                     <template v-slot:activator="{ props }">
-                                        <v-switch v-bind="props" color="primary" hide-details v-model="data.isLiveKwai"
-                                            :label="`${data.isLiveKwai.toString()}`"
-                                            false-value="Não" true-value="Sim">
+                                        <v-switch v-bind="props" color="primary" hide-details v-model="content.kw_live"
+                                            :label="`${content.kw_live.toString()}`" false-value="Não" true-value="Sim">
 
                                         </v-switch>
                                     </template>
@@ -318,7 +318,7 @@
                     <v-col cols="12" md="12">
                         <div class="edit-icons">
                             <div class="influencer-card-btns">
-                                <v-switch v-model="form.social.tiktok" color="primary"></v-switch>
+                                <v-switch v-model="social.tiktok" color="primary"></v-switch>
                                 <v-img class="card-tiktok-icon " src="./../../assets/images/redes/redes-icons/tik_tok.svg">
                                 </v-img>
                             </div>
@@ -328,15 +328,15 @@
                     <!-- Texts Tiktok -->
                     <v-col cols="12" md="2">
                         <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable" label="Inserção"
-                            v-model="form.content.tk_insertion"></v-text-field>
+                            v-model="content.tk_insertion"></v-text-field>
                     </v-col>
                     <v-col cols="12" md="2">
                         <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable" label="Video dedicado"
-                            v-model="form.content.tk_vd_dedicated"></v-text-field>
+                            v-model="content.tk_vd_dedicated"></v-text-field>
                     </v-col>
                     <v-col cols="12" md="2">
                         <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable" label="Repost"
-                            v-model="form.content.tk_repost"></v-text-field>
+                            v-model="content.tk_repost"></v-text-field>
                     </v-col>
 
                     <v-col cols="12" md="12">
@@ -347,9 +347,8 @@
                             <v-col cols="12" md="2">
                                 <v-tooltip location="top center" origin="auto" open-on-focus="true">
                                     <template v-slot:activator="{ props }">
-                                        <v-switch v-bind="props" color="primary" hide-details v-model="data.isLiveTiktok"
-                                            :label="`${data.isLiveTiktok.toString()}`"
-                                            false-value="Não" true-value="Sim">
+                                        <v-switch v-bind="props" color="primary" hide-details v-model="content.tk_live"
+                                            :label="`${content.tk_live.toString()}`" false-value="Não" true-value="Sim">
 
                                         </v-switch>
                                     </template>
@@ -357,7 +356,7 @@
                                     <div>Um evento presencial, será necessário entrar em contato com nossa assessoria.</div>
                                 </v-tooltip>
                             </v-col>
-                            <v-radio-group inline v-model="data.selectedRadio" v-mode:value="form.content">
+                            <v-radio-group inline v-model="content.tk_selectedRadio">
                                 <v-col cols="12" md="3">
                                     <v-radio prepend-inner-icon="mdi-rename-box" density="comfortable"
                                         label="Com impulsionamento (Marca)" :value="1"></v-radio>
@@ -379,7 +378,7 @@
                     <v-col cols="12" md="12">
                         <div class="edit-icons">
                             <div class="influencer-card-btns">
-                                <v-switch v-model="form.social.howhow" color="primary"></v-switch>
+                                <v-switch v-model="social.howhow" color="primary"></v-switch>
                                 <v-img class="card-howhow-icon " src="./../../assets/images/icon-logo/favicon-32x32.png">
                                 </v-img>
                             </div>
@@ -389,19 +388,19 @@
                     <!-- Texts Howhow -->
                     <v-col cols="12" md="2">
                         <v-text-field density="comfortable" label="Remarketing"
-                            v-model="form.content.hw_remarketing"></v-text-field>
+                            v-model="content.hw_remarketing"></v-text-field>
                     </v-col>
                     <v-col cols="12" md="2">
                         <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable" label="Link na Bio"
-                            v-model="form.content.hw_link_bio"></v-text-field>
+                            v-model="content.hw_link_bio"></v-text-field>
                     </v-col>
                     <v-col cols="12" md="3">
                         <v-text-field density="comfortable" label="Link no Descrição"
-                            v-model="form.content.hw_link_description"></v-text-field>
+                            v-model="content.hw_link_description"></v-text-field>
                     </v-col>
                     <v-col cols="12" md="2">
                         <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable" label="Link no Comentário"
-                            v-model="form.content.hw_link_comment"></v-text-field>
+                            v-model="content.hw_link_comment"></v-text-field>
                     </v-col>
                     <!-- Howhow End-->
 
@@ -419,7 +418,8 @@
 <style></style>
 
 <script>
-
+import axios from 'axios';
+import Cookie from 'js-cookie';
 export default {
     data: () => ({
         //Tooltip info campanha
@@ -436,9 +436,92 @@ export default {
             },
         ],
 
+        //Form Componentes
+        // name: "",
+        // campaign_purpose: "",
+        // states: "",
+        // social: {
+        //     youtube: '',
+        //     instagram: '',
+        //     facebook: '',
+        //     twitter: '',
+        //     kwai: '',
+        //     tiktok: '',
+        //     howhow: '',
+        // },
+        // content: {
+        //     yt_vd_insertion: '',
+        //     yt_vd_dedicated: '',
+        //     yt_repost: '',
+        //     yt_post_community: '',
+        //     yt_short: '',
+        //     yt_sh_insertion: '',
+        //     yt_live: '0',
+        //     yt_presential: 'Não',
+        //     ist_combo: '',
+        //     ist_insertion: '',
+        //     ist_vd_dedicated: '',
+        //     ist_post: '',
+        //     ist_repost: '',
+        //     ist_live: 'Não',
+        //     fb_combo: '',
+        //     fb_post_feed: '',
+        //     fb_vd_dedicated: '',
+        //     fb_repost: '',
+        //     fb_story: '',
+        //     fb_live: 'Não',
+        //     tw_retweet: '',
+        //     tw_post: '',
+        //     kw_insertion: '',
+        //     kw_vd_insertion: '',
+        //     kw_repost: '',
+        //     kw_live: 'Não',
+        //     tk_insertion: '',
+        //     tk_vd_dedicated: '',
+        //     tk_repost: '',
+        //     tk_live: 'Não',
+        //     tk_impulse: '',
+        //     tk_selectedRadio: 0,
+        //     hw_remarketing: '',
+        //     hw_link_bio: '',
+        //     hw_link_description: '',
+        //     hw_link_comment: ''
+        // },
+        //type: null,
+        //isPrivate: "0",
+        //campaign_photo: "",
+        //urlBase: '/api/campaign/create',
+
     }),
     methods: {
-        
+        // createCampaign() {
+
+        //     let formData = new FormData();
+        //     formData.append('campaign_photo', this.campaign_photo[0])
+        //     formData.append('name', this.name)
+        //     formData.append('campaign_purpose', this.campaign_purpose)
+        //     formData.append('states', this.states)
+        //     formData.append('social_media', this.social)
+        //     formData.append('content_type', this.content)
+        //     //formData.append('type', this.type);
+        //     formData.append('private', this.private)
+
+        //     let config = {
+        //         headers: {
+        //             'Content-type': 'multipart/form-data',
+        //             'Authorization': Cookie.get('token')
+        //         }
+        //     }
+
+        //     axios.post(this.urlBase, formData, config)
+        //     .then((response)=>{
+        //         console.log(response)
+        //     })
+        // },
+        // fileUpload(e) {
+        //     this.campaign_photo = e.target.files;
+        //     console.log(this.campaign_photo);
+        // }
     },
     created() {
     },
@@ -463,84 +546,101 @@ import { useStatesDB } from '@/store/statesbd';
 const authStore = useAuthStore();
 const statesDB = useStatesDB();
 
-const data = ({
-        selectedRadio: 0,
-        //Switch campanha
-        isLiveInstagram: 'Não',
-        isLiveYoutube: 'Não',
-        isLiveFacebook: 'Não',
-        isLiveKwai: 'Não',
-        isLiveTiktok: 'Não',
-        isEvento: 'Não',
-        isPublic: 'false',
-        image: '',
+let urlBase = '/api/campaign/create'
+let errors = ref([])
+let name = ref(null)
+let campaign_purpose = ref(null)
+let states = ref(null)
+let isPrivate = ref(null)
+let campaign_photo = ref(null)
+let uploadedImage = ref(null)
+let social = {
+    youtube: '',
+    instagram: '',
+    facebook: '',
+    twitter: '',
+    kwai: '',
+    tiktok: '',
+    howhow: '',
+}
+let content = {
+    yt_vd_insertion: '',
+    yt_vd_dedicated: '',
+    yt_repost: '',
+    yt_post_community: '',
+    yt_short: '',
+    yt_sh_insertion: '',
+    yt_live: '',
+    yt_presential: '',
+    ist_combo: '',
+    ist_insertion: '',
+    ist_vd_dedicated: '',
+    ist_post: '',
+    ist_repost: '',
+    ist_live: '',
+    fb_combo: '',
+    fb_post_feed: '',
+    fb_vd_dedicated: '',
+    fb_repost: '',
+    fb_story: '',
+    fb_live: '',
+    tw_retweet: '',
+    tw_post: '',
+    kw_insertion: '',
+    kw_vd_insertion: '',
+    kw_repost: '',
+    kw_live: '',
+    tk_insertion: '',
+    tk_vd_dedicated: '',
+    tk_repost: '',
+    tk_live: '',
+    tk_impulse: '',
+    tk_selectedRadio: 0,
+    hw_remarketing: '',
+    hw_link_bio: '',
+    hw_link_description: '',
+    hw_link_comment: ''
+}
 
-});
-
-const form = ref({
-    name: "",
-    campaign_purpose: "",
-    states: "",
-    social: {
-        youtube: '',
-        instagram: '',
-        facebook:'',
-        twitter: '',
-        kwai: '',
-        tiktok: '',
-        howhow: '',
-    },
-    content: {
-        yt_vd_insertion: '',
-        yt_vd_dedicated: '',
-        yt_repost: '',
-        yt_post_community: '',
-        yt_short: '',
-        yt_sh_insertion: '',
-        yt_live: data.isLiveYoutube,
-        yt_presential: data.isEvento,
-        ist_combo: '',
-        ist_insertion: '',
-        ist_vd_dedicated: '',
-        ist_post: '',
-        ist_repost: '',
-        ist_live: data.isLiveInstagram,
-        fb_combo: '',
-        fb_post_feed: '',
-        fb_vd_dedicated: '',
-        fb_repost: '',
-        fb_story: '',
-        fb_live: data.isLiveFacebook,
-        tw_retweet: '',
-        tw_post: '',
-        kw_insertion: '',
-        kw_vd_insertion: '',
-        kw_repost: '',
-        kw_live: data.isLiveKwai,
-        tk_insertion: '',
-        tk_vd_dedicated: '',
-        tk_repost: '',
-        tk_live: data.isLiveTiktok,
-        tk_impulse: '',
-        hw_remarketing: '',
-        hw_link_bio: '',
-        hw_link_description: '',
-        hw_link_comment: ''
-    },
-    type: "",
-    private: "",
-    campaign_photo: "",
-});
-
-const uploadImage = (e)=>{
-    form.value.campaign_photo = e.target.files;
-    console.log(form.value.campaign_photo);
+const uploadImage = (e) => {
+    const file = e.target.files[0];
+    uploadedImage.value = URL.createObjectURL(file)
+    campaign_photo.value = file
+    console.log(campaign_photo, uploadedImage.value);
 }
 
 onMounted(async () => {
     await authStore.getUser();
     statesDB.getStatesDb();
 })
+
+const createCampaign = async () => {
+    errors.value = []
+
+    let formData = new FormData();
+    formData.append('campaign_photo', campaign_photo.value)
+    formData.append('name', name.value || '')
+    formData.append('campaign_purpose', campaign_purpose.value || '')
+    formData.append('states', states.value || '')
+    formData.append('social_media', social)
+    formData.append('content_type', content)
+    //formData.append('private', isPrivate.value || '')
+
+    let config = {
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'enctype': 'multipart/form-data',
+            'Authorization': Cookie.get('token')
+        }
+    }
+
+    try {
+        await axios.post(urlBase, formData, config)
+
+    } catch (err) {
+        errors.value = err.response.data.errors
+    }
+}
 
 </script>
 <style>

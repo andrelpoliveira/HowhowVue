@@ -116,24 +116,24 @@ export const useAuthStore = defineStore("auth", {
             this.router.push('/')
         },
         //Registro Campanhas
-        async handleCreateCampaign(data) {
-            await axios.post("/api/campaign/create", {
-                headers: {
-                    'Authorization': Cookie.get('token')
-                },
-                name: data.name,
-                campaign_purpose: data.campaign_purpose,
-                states: data.states,
-                social_media: data.social,
-                content_type: data.content,
-                type: data.type,
-                private: data.private,
-                campaign_photo: data.append('campaign_photo', data.campaign_photo),    
-            }).then(resp=>{
-                console.log(resp.data);
-            })
+        // async handleCreateCampaign(data) {
+        //     await axios.post("/api/campaign/create", {
+        //         headers: {
+        //             'Authorization': Cookie.get('token')
+        //         },
+        //         name: data.name,
+        //         campaign_purpose: data.campaign_purpose,
+        //         states: data.states,
+        //         social_media: data.social,
+        //         content_type: data.content,
+        //         type: data.type,
+        //         private: data.private,
+        //         campaign_photo: data.campaign_photo,    
+        //     }).then(resp=>{
+        //         console.log(resp.data);
+        //     })
             
-        },
+        // },
         
     }
 });
