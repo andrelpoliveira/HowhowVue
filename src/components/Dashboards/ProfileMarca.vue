@@ -1,5 +1,5 @@
 <template>
-    <v-card>
+    <v-card v-if="authStore.user">
         <v-tabs class="ma-1" v-model="modelProfile" color="blue-lighten-4" align-tabs="center">
             <v-tab class="profile-tabs" value="detalhesProfile">Detalhes de Perfil</v-tab>
             <v-tab class="profile-tabs" value="editProfile">Editar Perfil</v-tab>
@@ -11,13 +11,13 @@
                     <div class="profile-sobre-section">
                         <v-avatar color="white" size="130" class="profile-avatar-marca-cover my-10" rounded="1" flat>
                             <v-avatar size="120" rounded="0">
-                                <v-img class="profile-avatar-marca" src='https://cdn.vuetifyjs.com/images/cards/house.jpg'
+                                <v-img class="profile-avatar-marca" :src="authStore.user.profile_photo_path"
                                     cover />
                             </v-avatar>
                         </v-avatar>
                         <div class="profile-banner-detalhes">
-                            <v-card-title class="profile-banner-username">MarcaName</v-card-title>
-                            <v-card-text class="profile-banner-categorias">Ramos</v-card-text>
+                            <v-card-title class="profile-banner-username">{{authStore.user.name_artistic}}</v-card-title>
+                            <v-card-text class="profile-banner-categorias">{{authStore.user.line_of_business}}</v-card-text>
                         </div>
                     </div>
                     <v-card width="1000" height="130px" class="mb-10" rounded="xl">
@@ -39,11 +39,11 @@
                                 <div class="py-1">
                                     <div class="show-dados-direcao">
                                     <v-title>MARCA</v-title>
-                                    <v-text>dado1</v-text>
+                                    <v-text>{{authStore.user.business_name}}</v-text>
                                 </div>
                                 <div class="show-dados-direcao">
                                     <v-title>RAMO</v-title>
-                                    <v-text>dado1</v-text>
+                                    <v-text>{{authStore.user.line_of_business}}</v-text>
                                 </div>
                                 <div class="show-dados-direcao">
                                     <v-title>CNPJ</v-title>
@@ -236,6 +236,14 @@
 
 <script setup>
 //Import Components
+import { onMounted } from 'vue';
+import { useAuthStore } from '../../store/auth';
+
+const authStore = useAuthStore();
+
+onMounted(async () => {
+  await authStore.getUser();
+})
 
 </script>
 
