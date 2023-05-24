@@ -1,7 +1,7 @@
 <template>
 
     <div id="youtubeChart">
-        <apexchart type="line" class="ma-2" width="400" :options="chartOptions" :series="series">
+        <apexchart type="line" class="ma-2" width="380" height="260" :options="chartOptions" :series="series">
         </apexchart>
     </div>
 </template>
@@ -22,7 +22,7 @@ export default {
           ],
           chartOptions: {
             chart: {
-              height: 250,
+              height: 280,
               type: 'line',
               dropShadow: {
                 enabled: true,

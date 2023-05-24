@@ -60,6 +60,8 @@ padding-left: 5px !important;
 .top-dashboard-section {
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
+  width: 1200px !important;
 }
 .profile-redes-section {
   display: flex !important;
@@ -81,30 +83,44 @@ padding-left: 5px !important;
 .youtube-section {
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
+  width: 1150px !important;
 }
 .instagram-section {
   display: flex;
   flex-direction: row;
+    justify-content: space-evenly;
+  width: 1150px !important;
 }
 .twitter-section {
   display: flex;
   flex-direction: row;
+    justify-content: space-evenly;
+  width: 1150px !important;
 }
 .facebook-section {
   display: flex;
   flex-direction: row;
+    justify-content: space-evenly;
+  width: 1150px !important;
 }
 .tiktok-section {
   display: flex;
   flex-direction: row;
+    justify-content: space-evenly;
+  width: 1150px !important;
 }
 .kwai-section {
   display: flex;
   flex-direction: row;
+    justify-content: space-evenly;
+  width: 1150px !important;
 }
 .outros-section {
   display: flex;
   flex-direction: row;
+    justify-content: space-evenly;
+  width: 1150px !important;
 }
 .dashboard-profile {
   border-radius: 12px !important;

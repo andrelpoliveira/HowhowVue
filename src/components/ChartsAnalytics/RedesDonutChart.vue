@@ -1,13 +1,15 @@
 <template>
     <div>
         <div class="RedesDonutChart">
-            <div id="chart">
-                <apexchart type="donut" width="280" :options="chartOptions" :series="series"></apexchart>
+            <div>
+                <apexchart  id="chart"  type="donut" width="280" :options="chartOptions"
+                    :series="series">
+                </apexchart>
             </div>
         </div>
 
         <div class="actions">
-            <div class="edit-icons ml-3 mb-2">
+            <div class="edit-icons mb-2">
                 <div class="influencer-card-btns">
                     <v-img class="card-youtube-icon " src="./../../assets/images/redes/redes-icons/youtube.svg">
                         <v-btn @click="youtube" color="rgba(255,255,255,0)"></v-btn>
@@ -42,6 +44,8 @@
                 </div>
             </div>
         </div>
+        <v-card-title class="dashboard-card-title my-2">alguma coisa</v-card-title>
+        <v-card-text class="dashboard-card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur numquam assumenda rerum beatae, eligendi dicta aut nemo! Quibusdam excepturi esse quis id sunt illum, natus voluptatem vel alias mollitia veniam?</v-card-text>
     </div>
 </template>
 
@@ -57,9 +61,16 @@
 }
 </style>
 
+<script setup>
+// import VueApexCharts from 'vue3-apexcharts';
+
+
+</script>
+
 <script>
 export default {
-
+    
+    // chart: new VueApexCharts("renderChart", {
     data: () => ({
 
         series: [44, 25, 13, 80],
@@ -74,13 +85,16 @@ export default {
         },
 
         chartOptions: {
-            labels: ["Views", "Curtidas", "Seguidores", "Compartilhados"],
+
+            labels: ["Views", "Likes", "Follows", "Compartilhados"],
             chart: {
+                redrawOnWindowResize: true,
+                id: 'chart',
                 width: 380,
                 height: 200,
                 type: 'donut',
-                offsetY: 10
-                
+                offsetY: 10,
+
             },
             dataLabels: {
                 enabled: false
@@ -109,8 +123,11 @@ export default {
             }
         },
 
-
     }),
+    // }),
+
+
+
     methods: {
 
         youtube: function () {

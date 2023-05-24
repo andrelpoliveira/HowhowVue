@@ -172,7 +172,7 @@
   }
 .solicitacao-card-orientation {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
 }
 .proposta-text {

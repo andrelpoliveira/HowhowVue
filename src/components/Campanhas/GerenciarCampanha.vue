@@ -4,35 +4,44 @@
             <v-container>
                 <!-- nav-bar de gerenciamento de influenciadores da campanha -->
 
-                <v-navigation-drawer class="right-sidebar" permanent location="right" elevation="8" >
+                <v-navigation-drawer class="right-sidebar" permanent location="right" elevation="8">
                     <template v-slot:prepend>
-                        <v-card class="gerenciar-section overflow-y-auto" flat >
+
+                        <v-card class="gerenciar-section overflow-y-auto" flat>
                             <v-card-title>Gerenciador de campanha</v-card-title>
                             <v-divider></v-divider>
-                            <v-card-title>Requer atenção</v-card-title>
+                            <v-list v-model:opened="requer" max-height="300" class="overflow-y-auto">
+                                <v-list-group value="atencao" fluid>
+                                    <template v-slot:activator="{ props }">
+                                        <v-list-item v-bind="props" title="Requer atenção">
+                                        </v-list-item>
+                                    </template>
+                                    <v-list-item lines="one" v-for="item in activeinfluencers" :key="item.title"
+                                        :title="item.title" :subtitle="item.categoria"
+                                        prepend-avatar="https://randomuser.me/api/portraits/women/81.jpg">
+                                        <template v-slot:append>
+                                            <v-btn color="grey-lighten-1" icon="mdi-information" variant="text"></v-btn>
+                                        </template>
+                                    </v-list-item>
+                                </v-list-group>
+                            </v-list>
 
-                            <div v-for="n in 5" :key="n" class="">
-                                <v-list-item lines="two" prepend-avatar="https://randomuser.me/api/portraits/women/81.jpg"
-                                    title="Jane Smith" subtitle="Logged in"></v-list-item>
-                            </div>
-                        </v-card>
-
-                        <v-divider></v-divider>
-                        <v-card class="gerenciar-section" flat>
-                            <v-card-title>Em processo</v-card-title>
-                            <div v-for="n in 5" :key="n" class="">
-                                <v-list-item lines="two" prepend-avatar="https://randomuser.me/api/portraits/women/81.jpg"
-                                    title="Jane Smith" subtitle="Logged in"></v-list-item>
-                            </div>
-                        </v-card>
-
-                        <v-divider></v-divider>
-                        <v-card class="gerenciar-section" flat>
-                            <v-card-title>Em processo</v-card-title>
-                            <div v-for="n in 5" :key="n" class="">
-                                <v-list-item lines="two" prepend-avatar="https://randomuser.me/api/portraits/women/81.jpg"
-                                    title="Jane Smith" subtitle="Logged in"></v-list-item>
-                            </div>
+                            <v-divider></v-divider>
+                            <v-list v-model:opened="em" max-height="300" class="overflow-y-auto">
+                                <v-list-group value="processo" fluid>
+                                    <template v-slot:activator="{ props }">
+                                        <v-list-item v-bind="props" title="Em processo">
+                                        </v-list-item>
+                                    </template>
+                                    <v-list-item lines="one" v-for="item in activeinfluencers" :key="item.title"
+                                        :title="item.title" :subtitle="item.categoria"
+                                        prepend-avatar="https://randomuser.me/api/portraits/women/81.jpg">
+                                        <template v-slot:append>
+                                            <v-btn color="grey-lighten-1" icon="mdi-information" variant="text"></v-btn>
+                                        </template>
+                                    </v-list-item>
+                                </v-list-group>
+                            </v-list>
                         </v-card>
                     </template>
                 </v-navigation-drawer>
@@ -45,22 +54,36 @@
                             <v-item>
                                 <v-card class="campanhas-cards" height="auto" width="200">
 
-                                    <v-img class="influencer-card-img overflow-visible" :src="activeinfluencer.src" linear-gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" cover>
+                                    <v-img class="influencer-card-img overflow-visible" :src="activeinfluencer.src"
+                                        linear-gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" cover>
                                         <v-card-title class="card-influencer-title">{{ activeinfluencer.title
                                         }}</v-card-title>
                                     </v-img>
                                     <v-divider></v-divider>
                                     <div class="influencer-card-btns">
 
-                                        <!-- Submenu de cada rede social -->
+                                        <v-menu transition="fade-transition">
+                                            <template v-slot:activator="{ props }">
+                                                <v-img class="card-youtube-icon "
+                                                    src="./../../assets/images/redes/redes-icons/youtube.svg">
 
-                                        <v-img class="card-youtube-icon "
-                                            src="./../../assets/images/redes/redes-icons/youtube.svg">
+                                                    <v-btn flat color="rgba(255,255,255,0)" v-bind="props"
+                                                        @click="expand = !expand; cardValue = activeinfluencer">
+                                                    </v-btn>
 
-                                            <!-- <v-btn flat color="rgba(255,255,255,0)" v-for="item in activeinfluencer"
-                                                :key="item.id" :value="activeinfluencer.id" @click="activeRow(index)">
-                                            </v-btn> -->
-                                        </v-img>
+                                                </v-img>
+                                            </template>
+                                            <transition class="location">
+                                                <v-card>
+                                                    <v-list>
+                                                        <v-list-item>
+                                                            {{ cardValue.title }}
+                                                        </v-list-item>
+                                                    </v-list>
+                                                </v-card>
+                                            </transition>
+                                        </v-menu>
+
                                         <v-img class="card-instagram-icon"
                                             src="./../../assets/images/redes/redes-icons/instagram.svg">
                                             <v-btn flat color="rgba(255,255,255,0)">
@@ -81,6 +104,30 @@
                                             <v-btn flat color="rgba(255,255,255,0)">
                                             </v-btn>
                                         </v-img>
+
+
+                                        <!-- Submenu de cada rede social -->
+                                        <!-- <v-dialog v-model="dialog" width="50rem">
+                                            <template v-slot:activator="{ props }">
+                                                <v-img class="card-youtube-icon "
+                                                    src="./../../assets/images/redes/redes-icons/youtube.svg">
+
+                                                    <v-btn flat color="rgba(255,255,255,0)" v-bind="props" @click="dialog = true;cardValue = activeinfluencer">
+                                                    </v-btn>
+                                                </v-img>
+                                            </template>
+                                            <v-card>
+                                                <v-card-text>
+                                                    {{ cardValue.title }}
+                                                </v-card-text>
+                                                <v-card-actions>
+                                                    <v-btn color="primary" block @click="dialog = false">Close
+                                                        Dialog</v-btn>
+                                                </v-card-actions>
+                                            </v-card>
+                                        </v-dialog> -->
+
+
                                         <!--  -->
 
 
@@ -131,12 +178,20 @@
     </v-window-item>
 </template>
 
+<style>
+
+</style>
 
 <script>
 export default {
 
     data: () => ({
-        // expanded: Boolean,
+        expand: false,
+        cardValue: '',
+        dialog: false,
+        requer: ['atencao'],
+        em: ['processo'],
+        open: ['proposta'],
         index: null,
         model: null,
         activeinfluencers: [
@@ -160,7 +215,7 @@ export default {
         activeRow(index) {
             this.index = index
             console.log(index)
-        }
+        },
     },
 }
 </script>

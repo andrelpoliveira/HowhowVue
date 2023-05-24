@@ -5,12 +5,12 @@
                 <v-row dense>
                     <v-col cols="12">
                         <v-card class="marca-avatar mx-10">
-                            <v-img :src="$store.state.campaignInfo.src" class="align-end"
+                            <v-img :src="activeinfluencers.src" class="align-end"
                                 gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="250px" cover>
                                 <v-row class="mx-0">
                                     <v-card color="rgba(255,255,255,0)">
                                         <v-card-title class="info-campanha-title">
-                                            {{ $store.state.campaignInfo.title }}
+                                            {{ activeinfluencers.title }}
                                         </v-card-title>
                                     </v-card>
                                 </v-row>
@@ -288,6 +288,20 @@ export default {
     data: () => ({
         detailsCampaigns: null,
 
+        activeinfluencers: [
+            { id: '1', title: 'Username 1', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', idade: '21 anos', seIdentifica: 'elo/delo', idioma: 'Português BR', categoria: 'Life Style', },
+            { id: '2', title: 'Username 2', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', idade: '26 anos', seIdentifica: 'ele/dele', idioma: 'Português BR', categoria: 'Games', },
+            { id: '3', title: 'Username 3', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', idade: '35 anos', seIdentifica: 'ela/dela', idioma: 'Português BR', categoria: 'Make up', },
+            { id: '4', title: 'Username 4', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', idade: '20 anos', seIdentifica: 'elo/delo', idioma: 'Português BR', categoria: 'Curiosidade', },
+            { id: '5', title: 'Username 5', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', idade: '27 anos', seIdentifica: 'ele/dele', idioma: 'Português BR', categoria: 'Games', },
+            { id: '6', title: 'Username 6', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', idade: '29 anos', seIdentifica: 'ela/dela', idioma: 'Português BR', categoria: 'Make up', },
+            { id: '7', title: 'Username 7', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', idade: '22 anos', seIdentifica: 'elo/delo', idioma: 'Português BR', categoria: 'Life Hacks', },
+            { id: '8', title: 'Username 8', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', idade: '26 anos', seIdentifica: 'ele/dele', idioma: 'Português BR', categoria: 'Games', },
+            { id: '9', title: 'Username 9', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', idade: '30 anos', seIdentifica: 'ela/dela', idioma: 'Português BR', categoria: 'Make up', },
+            { id: '10', title: 'Username 10', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', idade: '22 anos', seIdentifica: 'elo/delo', idioma: 'Português BR', categoria: 'Life Style', },
+            { id: '11', title: 'Username 11', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', idade: '26 anos', seIdentifica: 'ele/dele', idioma: 'Português BR', categoria: 'Games', },
+            { id: '12', title: 'Username 12', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', idade: '35 anos', seIdentifica: 'ela/dela', idioma: 'Português BR', categoria: 'Make up', },
+        ],
     }),
 
     components: {
