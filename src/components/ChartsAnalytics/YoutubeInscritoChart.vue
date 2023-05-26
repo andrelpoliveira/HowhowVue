@@ -1,7 +1,7 @@
 <template>
 
     <div id="youtubeChart">
-        <apexchart type="line" class="ma-2" width="400" :options="chartOptions" :series="series">
+        <apexchart type="line" class="ma-2" width="700" height="300" :options="chartOptions" :series="series">
         </apexchart>
     </div>
 </template>
@@ -13,16 +13,20 @@ export default {
           series: [
             {
               name: "Visualização",
-              data: [28, 29, 33, 60, 32, 32, 80]
+              data: [28, 29, 33, 60, 32, 32, 80, 40, 97, 76, 39, 20]
             },
             {
-              name: "Seguidores",
-              data: [12, 11, 14, 18, 17, 13, 13]
-            }
+              name: "Contratados",
+              data: [12, 11, 14, 18, 17, 13, 13, 33, 60, 32, 32, 80]
+            },
+            {
+              name: "Campanhas",
+              data: [5, 16, 7, 8, 11, 12, 6,12, 11, 14, 18, 17]
+            },
           ],
           chartOptions: {
             chart: {
-              height: 250,
+              height: 280,
               type: 'line',
               dropShadow: {
                 enabled: true,
@@ -36,7 +40,7 @@ export default {
                 show: false
               }
             },
-            colors: ['#FF0000', '#282828'],
+            colors: ['#FF0000', '#282828', '#808080'],
             dataLabels: {
               enabled: true,
             },
@@ -58,17 +62,17 @@ export default {
               size: 1
             },
             xaxis: {
-              categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+              categories: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
               title: {
                 text: 'Month'
               }
             },
             yaxis: {
               title: {
-                text: 'Inscritos'
+                text: ''
               },
-              min: 5,
-              max: 100
+              min: 0,
+              max: 200
             },
             legend: {
               position: 'top',

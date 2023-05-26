@@ -280,6 +280,11 @@
                     </v-card>
                 </v-container>
 
+                <v-col cols="12" md="12" class="d-flex">
+                        <v-btn append-icon="mdi-arrow-right-bold" color="blue-darken-3" variant="elevated" :width="200"
+                            location="bottom">Gerar Portifólio</v-btn>
+                    </v-col>
+
             </v-window-item>
             <!-- Editar Perfil Influencer-->
             <v-window-item value="editProfile">
@@ -437,15 +442,6 @@
 </template>
 
 <style>
-.youtube-chart-icon {
-    height: 32px;
-    width: 32px;
-    margin: 0px !important;
-    padding: 0px !important;
-    display: flex !important;
-    top: 30px !important;
-}
-
 .label {
     white-space: pre-wrap !important;
 }

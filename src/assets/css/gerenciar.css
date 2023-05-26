@@ -39,7 +39,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    margin: 5px !important;
+    margin: 3px !important;
 }
 
 .card-instagram-icon {
@@ -51,7 +51,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    margin: 5px !important;
+    margin: 3px !important;
 
 }
 .card-twitter-icon {
@@ -63,7 +63,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    margin: 5px !important;
+    margin: 3px !important;
 }
 .card-facebook-icon {
     color: #ffffff;
@@ -74,19 +74,19 @@
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    margin: 5px !important;
+    margin: 3px !important;
 }
 
 .card-tiktok-icon {
     color: #ffffff;
-    background: #ff0050;
+    background: black;
     width: 30px;
     height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    margin: 5px !important;
+    margin: 3px !important;
 }
 .card-kwai-icon {
     color: #ffffff;
@@ -97,7 +97,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    margin: 5px !important;
+    margin: 3px !important;
 }
 
 .card-howhow-icon {
@@ -109,7 +109,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    margin: 5px !important;
+    margin: 3px !important;
 }
 .influencer-info-short {
     display: flex !important;
@@ -141,6 +141,7 @@
     border-radius: 16px !important;
     border: solid 1px rgba(145, 158, 171, 0.5) !important;
     height: 650px !important;
+    width: 280px !important;
 }
 
 /*  */

@@ -90,7 +90,7 @@
     justify-content: center !important;
     align-items: center !important;
 }
-.avatar-mycampaign {
+.avatar-MyCampaigns {
     margin-top: -180px;
     left: 20px;
 }
@@ -172,7 +172,7 @@
   }
 .solicitacao-card-orientation {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
 }
 .proposta-text {

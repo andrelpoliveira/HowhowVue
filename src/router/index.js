@@ -9,8 +9,15 @@ import WalletView from '../views/WalletView.vue'
 import ProfileMarcatoInfluencer from '../components/Dashboards/ProfileMarcatoInfluencer.vue'
 import LoginWalletView from '../views/CarteiraViews/LoginWalletView.vue'
 import InterfaceWalletView from '../views/CarteiraViews/InterfaceWalletView.vue'
+import MyCampaignsMain from '../views/MyCampaignsMain.vue'
 
 const routes = [
+  {
+    path: '/MyCampaignsMain',
+    name: 'MyCampaignsMain',
+    component: MyCampaignsMain
+  },
+
   {
     path: '/',
     name: 'home',

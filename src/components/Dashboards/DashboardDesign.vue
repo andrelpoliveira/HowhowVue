@@ -41,6 +41,8 @@
         </v-tabs>
       </v-list>
     </v-card>
+
+
     <!-- List Campanhas Influencer -->
     <div v-if="authStore.user">
       <div v-if="authStore.user.role === 'influencer'">
@@ -130,6 +132,13 @@
               <DashboardAgencia />
             </div>
           </v-window-item>
+
+          <div v-if="authStore.user.role === 'brand'">
+            <v-window-item value="op10">
+              <MarcaMacros />
+            </v-window-item>
+          </div>
+
           <v-window-item value="op3">
             <WalletView />
           </v-window-item>
@@ -156,13 +165,13 @@
           <!-- Todas as Campanhas Influenciador -op05 -->
           <AllCampaignsInfluencer />
           <!-- Campanhas do Influenciador -op06 -->
-          <MyCampaigns />
+          <MyCampaignsInfluencer />
           <!-- Criação de Campanhas da Marca -op07 -->
           <CreateCampaigns />
           <!-- Todas as Campanhas Marca -op08 -->
           <AllCampaignsMarca @open-edit="openEdit" @v-bind="getCampaigns"/>
           <!-- Editar campanhas Marca -edit-campanha -->
-          <MyCampaignsMarca />
+          <MyCampaignsMain />
           <!-- Apresentar profile do influencer acessado via marca -->
 
         </v-window>
@@ -175,11 +184,11 @@
 //Import Components
 import LogoHowhow from '../LogoHowhow.vue';
 import DashboardTopbar from './DashboardTopbar.vue';
-import MyCampaigns from './../Campanhas/MyCampaigns.vue';
+import MyCampaignsInfluencer from './../Campanhas/MyCampaignsInfluencer.vue';
 import AllCampaignsInfluencer from '../Campanhas/AllCampaignsInfluencer.vue';
 import CreateCampaigns from '../Campanhas/CreateCampaigns.vue';
 import AllCampaignsMarca from '../Campanhas/AllCampaignsMarca.vue';
-import MyCampaignsMarca from '../Campanhas/MyCampaignsMarca.vue';
+import MyCampaignsMain from '../Campanhas/MyCampaignsMain.vue';
 import ProfileInfluencer from './ProfileInfluencer.vue';
 import WalletView from './../../views/WalletView.vue';
 import ProfileMarca from './ProfileMarca.vue';
@@ -191,6 +200,7 @@ import DashboardAgencia from './DashboardAgencia.vue';
 
 import { onMounted } from 'vue';
 import { useAuthStore } from '../../store/auth';
+import MarcaMacros from '../Campanhas/MarcaMacros.vue';
 
 const authStore = useAuthStore();
 
@@ -225,18 +235,27 @@ export default {
     menu: [
       ['Dashboard', 'mdi-widgets', 'op1'],
       ['Profile', 'mdi-account-circle', 'op2'],
+      ['Macros', 'mdi-checkbox-blank-circle', 'op10'],
+      ['Wallet', 'mdi-wallet', 'op3'],
+    ],
+
+        //Menu Vertical (List Gerenciamento Marca)
+        marcaMenu: [
+      ['Dashboard', 'mdi-widgets', 'op1'],
+      ['Profile', 'mdi-account-circle', 'op2'],
+      ['Macros', 'mdi-checkbox-blank-circle', 'op10'],
       ['Wallet', 'mdi-wallet', 'op3'],
     ],
     //Refere-se a tabulação dentro do Dashboard (Abre as páginas de acordo com os valores)
     tab: null,
     value: 0,
-   
+
   }),
 
   methods: {
     //Método Abrir tab de edição Campanhas pela marca e trazer os dados
     openEdit() {
-      this.tab = "my-campanha-marca";
+      this.tab = "my-campanha-main";
     },
 
   },
@@ -257,11 +276,11 @@ export default {
   components: {
     LogoHowhow,
     DashboardTopbar,
-    MyCampaigns,
+    MyCampaignsInfluencer,
     AllCampaignsInfluencer,
     CreateCampaigns,
     AllCampaignsMarca,
-    MyCampaignsMarca,
+    MyCampaignsMain,
     ProfileInfluencer,
     ProfileMarca,
     ProfileAgencia,
@@ -270,6 +289,7 @@ export default {
     DashboardMarca,
     DashboardAgencia,
     WalletView,
+    MarcaMacros
   },
 }
 </script>

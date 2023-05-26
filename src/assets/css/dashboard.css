@@ -60,6 +60,8 @@ padding-left: 5px !important;
 .top-dashboard-section {
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
+  width: 1200px !important;
 }
 .profile-redes-section {
   display: flex !important;
@@ -81,30 +83,44 @@ padding-left: 5px !important;
 .youtube-section {
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
+  width: 1150px !important;
 }
 .instagram-section {
   display: flex;
   flex-direction: row;
+    justify-content: space-evenly;
+  width: 1150px !important;
 }
 .twitter-section {
   display: flex;
   flex-direction: row;
+    justify-content: space-evenly;
+  width: 1150px !important;
 }
 .facebook-section {
   display: flex;
   flex-direction: row;
+    justify-content: space-evenly;
+  width: 1150px !important;
 }
 .tiktok-section {
   display: flex;
   flex-direction: row;
+    justify-content: space-evenly;
+  width: 1150px !important;
 }
 .kwai-section {
   display: flex;
   flex-direction: row;
+    justify-content: space-evenly;
+  width: 1150px !important;
 }
 .outros-section {
   display: flex;
   flex-direction: row;
+    justify-content: space-evenly;
+  width: 1150px !important;
 }
 .dashboard-profile {
   border-radius: 12px !important;
@@ -125,10 +141,16 @@ padding-left: 5px !important;
 
 .dashboard-username {
   font-size: 1.5rem !important;
+
 }
 .dashboard-btns {
   display: flex;
   flex-direction: column;
+}
+.dashboard-marca-btns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .dashboard-profile-btn {
   padding: 10px 20px !important;
@@ -148,4 +170,12 @@ padding-left: 5px !important;
 }
 .dashboard-card-text {
   font-size: 1rem !important;
+}
+
+/*  */
+
+.contador-campanhas-card {
+  display: flex;
+  flex-direction: column;
+  
 }
