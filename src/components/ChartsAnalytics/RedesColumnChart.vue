@@ -1,7 +1,7 @@
 <template>
   <div class="redesColumnChart">
     <div id="chart">
-      <apexchart type="bar" height="280" :options="chartOptions" :series="value"></apexchart>
+      <apexchart type="bar" height="280" :options="chartOptions" :series="series"></apexchart>
     </div>
   </div>
   <div class="actions">

@@ -61,26 +61,55 @@
                                                     </v-layout>
                                                     <v-btn class="perfil-btn" color="blue-darken-1">Perfil</v-btn>
                                                 </v-card-actions>
-                                                <!-- <v-btn class="perfil-btn" color="blue-darken-1" flat>Perfil</v-btn> -->
                                             </div>
 
-                                            <v-card class="mx-2 my-4">
-                                                <v-row>
-                                                    <v-col v-for="n in 6" :key="n" class="d-flex child-flex" cols="4">
-                                                        <v-img :src="`https://picsum.photos/500/300?image=${n * 5 + 10}`"
-                                                            :lazy-src="`https://picsum.photos/10/6?image=${n * 5 + 10}`"
-                                                            aspect-ratio="1" cover class="bg-grey-lighten-2">
-                                                            <template v-slot:placeholder>
-                                                                <v-row class="fill-height ma-0" align="center"
-                                                                    justify="center">
-                                                                    <v-progress-circular indeterminate
-                                                                        color="grey-lighten-5"></v-progress-circular>
-                                                                </v-row>
-                                                            </template>
-                                                        </v-img>
-                                                    </v-col>
-                                                </v-row>
-                                            </v-card>
+                                            <v-container class="galeria-section" width="50rem">
+                                                <v-card class="mx-2 mb-4 pa-2" width="45rem">
+                                                    <v-card-title class="profile-sobre-title mb-5">GALERIA DE
+                                                        FOTOS</v-card-title>
+
+                                                    <v-row>
+                                                        <v-col v-for="n in 6" :key="n" class="d-flex child-flex" cols="4">
+                                                            <v-img
+                                                                :src="`https://picsum.photos/500/300?image=${n * 5 + 10}`"
+                                                                :lazy-src="`https://picsum.photos/10/6?image=${n * 5 + 10}`"
+                                                                aspect-ratio="1" cover class="bg-grey-lighten-2">
+                                                                <template v-slot:placeholder>
+                                                                    <v-row class="fill-height ma-0" align="center"
+                                                                        justify="center">
+                                                                        <v-progress-circular indeterminate
+                                                                            color="grey-lighten-5"></v-progress-circular>
+                                                                    </v-row>
+                                                                </template>
+                                                            </v-img>
+                                                        </v-col>
+                                                    </v-row>
+                                                </v-card>
+                                            </v-container>
+
+                                            <v-container class="galeria-section" width="50rem">
+                                                <v-card class="mx-2 my-4 pa-2" width="45rem">
+                                                    <v-card-title class="profile-sobre-title mb-5">GALERIA DE
+                                                        VÍDEOS</v-card-title>
+
+                                                    <v-row>
+                                                        <v-col v-for="n in 3" :key="n" class="d-flex child-flex" cols="4">
+                                                            <v-img
+                                                                :src="`https://picsum.photos/500/300?image=${n * 5 + 10}`"
+                                                                :lazy-src="`https://picsum.photos/10/6?image=${n * 5 + 10}`"
+                                                                aspect-ratio="1" cover class="bg-grey-lighten-2">
+                                                                <template v-slot:placeholder>
+                                                                    <v-row class="fill-height ma-0" align="center"
+                                                                        justify="center">
+                                                                        <v-progress-circular indeterminate
+                                                                            color="grey-lighten-5"></v-progress-circular>
+                                                                    </v-row>
+                                                                </template>
+                                                            </v-img>
+                                                        </v-col>
+                                                    </v-row>
+                                                </v-card>
+                                            </v-container>
 
 
 

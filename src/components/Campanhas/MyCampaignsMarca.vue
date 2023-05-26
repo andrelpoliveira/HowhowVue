@@ -1,5 +1,5 @@
 <template>
-    <!-- <v-window-item value="my-campanha-marca"> -->
+    <v-window-item value="my-campanha-marca">
         <v-card>
             <v-tabs v-model="modelCampaigns" color="blue-lighten-4" align-tabs="center">
                 <v-tab value="gerenciarCampanha">Gerenciar Campanha</v-tab>
@@ -16,7 +16,7 @@
                 </v-window>
 
         </v-card>
-    <!-- </v-window-item> -->
+    </v-window-item>
 </template>
 <script setup>
 //import { defineProps } from 'vue';

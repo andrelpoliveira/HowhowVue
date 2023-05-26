@@ -1,7 +1,7 @@
 <template>
   <div class="RedesBarsChart">
     <div id="chart">
-      <apexchart type="bar" width="400" height="300" :options="chartOptions" :series="series"></apexchart>
+      <apexchart type="bar" width="600" height="300" :options="chartOptions" :series="series"></apexchart>
     </div>
   </div>
   <div class="actions">
