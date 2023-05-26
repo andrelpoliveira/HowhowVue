@@ -6,26 +6,24 @@
             <v-tab class="profile-tabs" value="editProfile">Editar Perfil</v-tab>
         </v-tabs>
 
-        <v-window v-model="modelProfile">
+        <v-window v-model="modelProfile" v-if="authStore.owner">
             <v-window-item value="detalhesProfile">
                 <!-- Profile Detalhes-->
                 <v-card class="profile-banner-section mx-auto">
                     <div class="top-card-orientation overflow-visible">
-                        <v-img src='https://cdn.vuetifyjs.com/images/cards/house.jpg' class="profile-banner" height="250px"
-                            cover>
+                        <v-img :src="background_photo_url" class="profile-banner" height="250px" cover>
                         </v-img>
 
                         <div class="profile-user-name-banner">
                             <v-avatar color="white" size="150" class="profile-avatar-cover" rounded="1" flat>
                                 <v-avatar size="140" rounded="0">
-                                    <v-img class="profile-avatar" src='https://cdn.vuetifyjs.com/images/cards/house.jpg'
-                                        cover />
+                                    <v-img class="profile-avatar" :src='profile_photo_url' cover />
                                 </v-avatar>
                             </v-avatar>
                         </div>
                         <div class="profile-banner-detalhes">
-                            <v-card-title class="profile-banner-username">Username</v-card-title>
-                            <v-card-text class="profile-banner-categorias">Categorias</v-card-text>
+                            <v-card-title class="profile-banner-username">{{ name_artistic }}</v-card-title>
+                            <v-card-text class="profile-banner-categorias">{{ category }}</v-card-text>
                         </div>
                     </div>
 
@@ -34,19 +32,19 @@
                     <v-card class="pessoal-section">
                         <div class="dados-direcao my-1 mr-16">
                             <v-title>NOME</v-title>
-                            <v-text>dado1</v-text>
+                            <v-text>{{ name }}</v-text>
                         </div>
                         <div class="dados-direcao my-1 mr-16">
                             <v-title>SE IDENTIFICA</v-title>
-                            <v-text>dado1</v-text>
+                            <v-text>{{ gender }}</v-text>
                         </div>
                         <div class="dados-direcao my-1 mr-16">
                             <v-title>IDADE</v-title>
-                            <v-text>dado1</v-text>
+                            <v-text>{{ ageActual }}</v-text>
                         </div>
                         <div class="dados-direcao my-1">
                             <v-title>IDIOMA NATIVO</v-title>
-                            <v-text>dado1</v-text>
+                            <v-text>{{ language }}</v-text>
                         </div>
                     </v-card>
                 </div>
@@ -56,10 +54,7 @@
                         <v-card class="my-10" width="1000" rounded="xl">
                             <v-card-title class="profile-sobre-title">SOBRE MIM</v-card-title>
                             <div class="profile-content">
-                                <v-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non veniam eos
-                                    eligendi blanditiis ullam. Obcaecati repudiandae repellendus vitae, velit voluptates
-                                    animi, asperiores fugit aut assumenda consequatur sapiente dolor dolorem
-                                    eius.</v-text>
+                                <v-text>{{ about_me }}</v-text>
                             </div>
                         </v-card>
                     </div>
@@ -71,23 +66,27 @@
                                 <div class="py-5">
                                     <div class="show-dados-direcao">
                                         <v-title>CATEGORIA(S)</v-title>
-                                        <v-text>dado1</v-text>
+                                        <v-text>{{ category }}</v-text>
                                     </div>
                                     <div class="show-dados-direcao">
-                                        <v-title>CPF / CNPJ</v-title>
-                                        <v-text>dado1</v-text>
+                                        <v-title>CPF</v-title>
+                                        <v-text>{{ cpf }}</v-text>
                                     </div>
                                     <div class="show-dados-direcao">
                                         <v-title>E-MAIL 1</v-title>
-                                        <v-text>dado1</v-text>
+                                        <v-text>{{ email }}</v-text>
                                     </div>
                                     <div class="show-dados-direcao">
                                         <v-title>E-MAIL 2</v-title>
-                                        <v-text>dado1</v-text>
+                                        <v-text>{{ email2 }}</v-text>
                                     </div>
                                     <div class="show-dados-direcao">
                                         <v-title>TELEFONE</v-title>
-                                        <v-text>dado1</v-text>
+                                        <v-text>{{ phone }}</v-text>
+                                    </div>
+                                    <div class="show-dados-direcao">
+                                        <v-title>TELEFONE 2</v-title>
+                                        <v-text>{{ phone2 }}</v-text>
                                     </div>
                                 </div>
 
@@ -99,31 +98,31 @@
                                 <div class="text-disposition py-1">
                                     <div class="show-dados-direcao">
                                         <v-title>RUA</v-title>
-                                        <v-text>dado1</v-text>
+                                        <v-text>{{ address.adress }}</v-text>
                                     </div>
                                     <div class="show-dados-direcao">
                                         <v-title>NÚMERO</v-title>
-                                        <v-text>dado1</v-text>
+                                        <v-text>{{ address.numberadress }}</v-text>
                                     </div>
                                     <div class="show-dados-direcao">
                                         <v-title>COMPLEMENTO</v-title>
-                                        <v-text>dado1</v-text>
+                                        <v-text>{{ address.complement }}</v-text>
                                     </div>
                                     <div class="show-dados-direcao">
                                         <v-title>BAIRRO</v-title>
-                                        <v-text>dado1</v-text>
+                                        <v-text>{{ address.neighborhood }}</v-text>
                                     </div>
                                     <div class="show-dados-direcao">
                                         <v-title>ESTADO</v-title>
-                                        <v-text>dado1</v-text>
+                                        <v-text>{{ state }}</v-text>
                                     </div>
                                     <div class="show-dados-direcao">
                                         <v-title>PAÍS</v-title>
-                                        <v-text>dado1</v-text>
+                                        <v-text>{{ country }}</v-text>
                                     </div>
                                     <div class="show-dados-direcao">
                                         <v-title>CEP</v-title>
-                                        <v-text>dado1</v-text>
+                                        <v-text>{{ address.zipcode }}</v-text>
                                     </div>
                                 </div>
 
@@ -172,6 +171,7 @@
                 </v-container>
 
             </v-window-item>
+            <!-- Editar Portifólio Influencer-->
             <v-window-item value="editPortifolio">
                 <!-- Profile Detalhes-->
                 <v-card class="profile-banner-section mx-auto">
@@ -232,10 +232,11 @@
 
                 <v-container class="inputs-section">
                     <div class="portifolio-input">
-                        <v-file-input :rules="rulesFile" accept="image/png, image/jpeg, image/bmp" prepend-icon="mdi-camera" 
+                        <v-file-input :rules="rulesFile" accept="image/png, image/jpeg, image/bmp" prepend-icon="mdi-camera"
                             density="comfortable" label="Adicionar fotos"></v-file-input>
-                            <v-file-input :rules="rulesFile" accept="image/png, image/jpeg, image/bmp" prepend-icon="mdi-camera-rear-variant" 
-                            density="comfortable" label="Adicionar vídeos"></v-file-input>
+                        <v-file-input :rules="rulesFile" accept="image/png, image/jpeg, image/bmp"
+                            prepend-icon="mdi-camera-rear-variant" density="comfortable"
+                            label="Adicionar vídeos"></v-file-input>
                     </div>
                 </v-container>
 
@@ -280,96 +281,107 @@
                 </v-container>
 
             </v-window-item>
+            <!-- Editar Perfil Influencer-->
             <v-window-item value="editProfile">
                 <v-card-title class="profile-edit-title">Dados Pessoais</v-card-title>
                 <v-divider></v-divider>
 
-                <v-form v-model="valid">
+                <v-form >
                     <v-row class="ma-2">
-
                         <v-col cols="12" md="6">
                             <v-text-field density="comfortable" prepend-inner-icon="mdi-account-circle"
-                                label="Nome"></v-text-field>
+                                label="Nome Completo" v-model="name"></v-text-field>
+                        </v-col>
+                        <v-col cols="12" md="6">
+                            <v-text-field density="comfortable" prepend-inner-icon="mdi-account-circle"
+                                label="Nome Artístico" v-model="name_artistic"></v-text-field>
                         </v-col>
                         <v-col cols="12" md="6">
                             <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable"
-                                label="Como se identifica">
+                                label="Como se identifica" v-model="gender">
                             </v-text-field>
                         </v-col>
                         <v-col cols="12" md="6">
-                            <v-text-field :items="types" prepend-inner-icon="mdi-cake-variant-outline"
-                                label="Data de nascimento" density="comfortable">
+                            <v-text-field type="date" prepend-inner-icon="mdi-cake-variant-outline"
+                                label="Data de nascimento" density="comfortable" v-model="birthday">
                             </v-text-field>
                         </v-col>
 
                         <v-col cols="12" md="6">
                             <v-text-field prepend-inner-icon="mdi-translate-variant" density="comfortable"
-                                label="Idioma nativo"></v-text-field>
+                                label="Idioma nativo" v-model="language"></v-text-field>
                         </v-col>
-
-                        <v-card-title class="profile-edit-title">Dados
-                            Profissionais</v-card-title>
-                        <v-divider></v-divider>
-
                         <v-col cols="12" md="12">
-                            <v-textarea label="Categorias" prepend-inner-icon="mdi-clipboard-edit-outline"
-                                density="comfortable"></v-textarea>
+                            <v-card-title class="profile-edit-title">Dados
+                                Profissionais</v-card-title>
+                        </v-col>
+                        <v-divider></v-divider>
+                        <v-col cols="12" md="6">
+                            <!-- <v-text-field label="Categorias" prepend-inner-icon="mdi-clipboard-edit-outline"
+                                density="comfortable"></v-text-field> -->
+                            <v-select v-model="category" :items="categoriesStore.categories" item-title="categorie" item-value="categorie" chips label="Categorias"
+                                        multiple></v-select>                                       
                         </v-col>
                         <v-col cols="12" md="6">
-                            <v-select :items="category" prepend-inner-icon="mdi-office-building-outline" label="CPF/CNPJ"
-                                density="comfortable" chips multiple>
-                            </v-select>
-                        </v-col>
-                        <v-col cols="12" md="6">
-                            <v-text-field :items="states" prepend-inner-icon="mdi-email" label="E-mail 1"
-                                density="comfortable">
+                            <v-text-field prepend-inner-icon="mdi-office-building-outline" label="CPF"
+                                density="comfortable" v-model="cpf">
                             </v-text-field>
                         </v-col>
+                        
                         <v-col cols="12" md="6">
-                            <v-text-field prepend-inner-icon="mdi-cellphone-message" density="comfortable"
-                                label="Telefone"></v-text-field>
+                            <v-text-field prepend-inner-icon="mdi-cellphone-message" density="comfortable" label="Telefone"
+                                v-model="phone"></v-text-field>
                         </v-col>
                         <v-col cols="12" md="6">
-                            <v-text-field prepend-inner-icon="mdi-email" density="comfortable"
-                                label="E-mail 2"></v-text-field>
+                            <v-text-field prepend-inner-icon="mdi-cellphone-message" density="comfortable" label="Telefone 2"
+                                v-model="phone2"></v-text-field>
                         </v-col>
-
-
-                        <v-card-title class="profile-edit-title">Dados
-                            Residenciais</v-card-title>
+                        <v-col cols="12" md="6">
+                            <v-text-field prepend-inner-icon="mdi-email" density="comfortable" label="E-mail"
+                                v-model="email"></v-text-field>
+                        </v-col>
+                        <v-col cols="12" md="6">
+                            <v-text-field prepend-inner-icon="mdi-email" density="comfortable" label="E-mail 2"
+                                v-model="email2"></v-text-field>
+                        </v-col>
+                        <v-col cols="12" md="12">
+                            <v-card-title class="profile-edit-title">Dados
+                                Residenciais</v-card-title>
+                        </v-col>
                         <v-divider></v-divider>
-
-                        <v-col cols="12" md="6">
-                            <v-text-field prepend-inner-icon="mdi-home-circle" density="comfortable"
-                                label="Número"></v-text-field>
-                        </v-col>
                         <v-col cols="12" md="6">
                             <v-text-field prepend-inner-icon="mdi-home-edit" density="comfortable"
-                                label="Nome da rua"></v-text-field>
+                                label="Nome da rua" v-model="address.adress"></v-text-field>
+                        </v-col>
+                        <v-col cols="12" md="6">
+                            <v-text-field prepend-inner-icon="mdi-home-circle" density="comfortable"
+                                label="Número" v-model="address.numberadress"></v-text-field>
                         </v-col>
                         <v-col cols="12" md="6">
                             <v-text-field prepend-inner-icon="mdi-home-floor-a" density="comfortable"
-                                label="complemnto"></v-text-field>
+                                label="complemento" v-model="address.complement"></v-text-field>
                         </v-col>
                         <v-col cols="12" md="6">
                             <v-text-field prepend-inner-icon="mdi-home-group" density="comfortable"
-                                label="Bairro"></v-text-field>
+                                label="Bairro" v-model="address.neighborhood"></v-text-field>
                         </v-col>
                         <v-col cols="12" md="6">
                             <v-text-field prepend-inner-icon="mdi-map-marker" density="comfortable"
-                                label="Cidade"></v-text-field>
+                                label="Cidade" v-model="address.city"></v-text-field>
                         </v-col>
                         <v-col cols="12" md="6">
-                            <v-text-field prepend-inner-icon="mdi-map-marker-circle" density="comfortable"
-                                label="Estado"></v-text-field>
+                            <v-autocomplete v-model="state" :items="statesDB.statesDB" item-title="state" item-value="state"
+                                prepend-inner-icon="mdi-map-marker" label="Localização" placeholder="Estado"
+                                density="comfortable">
+                            </v-autocomplete>
                         </v-col>
                         <v-col cols="12" md="6">
                             <v-text-field prepend-inner-icon="mdi-map-marker-distance" density="comfortable"
-                                label="País"></v-text-field>
+                                label="País" v-model="country"></v-text-field>
                         </v-col>
                         <v-col cols="12" md="6">
                             <v-text-field prepend-inner-icon="mdi-book-marker" density="comfortable"
-                                label="CEP"></v-text-field>
+                                label="CEP" v-model="address.zipcode"></v-text-field>
                         </v-col>
 
                         <v-card-title class="profile-edit-title">Sobre
@@ -378,15 +390,16 @@
                         <v-col cols="12" md="12">
                             <v-textarea
                                 label="Fale mais sobre você! Curiosidades, hábitos interesses e feitos profissionais."
-                                density="comfortable"></v-textarea>
+                                density="comfortable" v-model="about_me"></v-textarea>
                         </v-col>
                         <v-col cols="12" md="12">
-                            <v-file-input :rules="rulesFile" accept="image/png, image/jpeg, image/bmp"
+                            <v-file-input :rules="rulesFile" accept="image/png, image/jpeg, image/bmp" @change="uploadImage"
                                 prepend-icon="mdi-camera" label="Foto de perfil" density="comfortable"></v-file-input>
                         </v-col>
                         <v-col cols="12" md="12">
                             <v-file-input :rules="rulesFile" accept="image/png, image/jpeg, image/bmp"
-                                prepend-icon="mdi-camera" label="Wallpaper" density="comfortable"></v-file-input>
+                                @change="uploadbackground" prepend-icon="mdi-camera" label="Wallpaper"
+                                density="comfortable"></v-file-input>
                         </v-col>
 
                         <v-card-title class="profile-edit-title">Redes
@@ -416,7 +429,6 @@
                             <v-btn append-icon="mdi-arrow-right-bold" color="blue-darken-3" variant="elevated" :width="200"
                                 location="bottom">Atualizar perfil</v-btn>
                         </v-col>
-
                     </v-row>
                 </v-form>
             </v-window-item>
@@ -441,13 +453,109 @@
 
 <script setup>
 //Import Components
-// import YoutubeInscritoChart from './../ChartsAnalytics/YoutubeInscritoChart.vue';
-// import InstagramInscritoChart from './../ChartsAnalytics/InstagramInscritoChart.vue';
-// import TwitterInscritoChart from './../ChartsAnalytics/TwitterInscritoChart.vue';
-// import FacebookInscritoChart from './../ChartsAnalytics/FacebookInscritoChart.vue';
-// import TiktokInscritoChart from './../ChartsAnalytics/TiktokInscritoChart.vue';
-// import KwaiInscritoChart from './../ChartsAnalytics/KwaiInscritoChart.vue';
+import { ref } from 'vue';
+import { onMounted } from 'vue';
+import { useAuthStore } from '../../store/auth';
+import { useStatesDB } from '@/store/statesbd';
+import { useCategories } from '@/store/categories';
 
+const authStore = useAuthStore();
+const categoriesStore = useCategories();
+const statesDB = useStatesDB();
+let ageActual = ref(null)
+//Variáveis do form
+let name = ref(null)
+let name_artistic = ref(null)
+let country = ref(null)
+let state = ref(null)
+let email = ref(null)
+let email2 = ref(null)
+let category = ref(null)
+let gender = ref(null)
+let cpf = ref(null)
+let cnpj = ref(null)
+let birthday = ref(null)
+let landline = ref(null)
+let phone = ref(null)
+let phone2 = ref(null)
+let about_me = ref(null)
+let theme = ref(null)
+let language = ref(null)
+let profile_photo_url = ref(null)
+let uploadedImage = ref(null)
+let background_photo_url = ref(null)
+let uploadedBackground = ref(null)
+let address = ref({
+    adress: null,
+    numberadress: null,
+    neighborhood: null,
+    city: null,
+    zipcode: null,
+    complement: null,
+})
+
+onMounted(async () => {
+    await authStore.getOwnProfile();
+    statesDB.getStatesDb();
+    categoriesStore.getCategories();
+    calculateAge;
+    //Dados Form
+    name.value = authStore.owner.name || 'Não cadastrado'
+    name_artistic.value = authStore.owner.name_artistic || 'Não cadastrado'
+    state.value = authStore.owner.state || 'Não cadastrado'
+    country.value = authStore.owner.country || 'Não cadastrado'
+    email.value = authStore.owner.email || 'Não cadastrado'
+    email2.value = authStore.owner.email2 || 'Não cadastrado'
+    category.value = authStore.owner.category
+    gender.value = authStore.owner.gender || 'Não cadastrado'
+    cpf.value = authStore.owner.cpf || 'Não cadastrado'
+    cnpj.value = authStore.owner.cnpj || 'Não cadastrado'
+    birthday.value = authStore.owner.birthday || 'Não cadastrado'
+    landline.value = authStore.owner.landline || 'Não cadastrado'
+    phone.value = authStore.owner.phone || 'Não cadastrado'
+    phone2.value = authStore.owner.phone2 || 'Não cadastrado'
+    about_me.value = authStore.owner.about_me || 'Não cadastrado'
+    theme.value = authStore.owner.theme || 'Não cadastrado'
+    language.value = authStore.owner.language || 'Não cadastrado'
+    profile_photo_url.value = authStore.owner.profile_photo_url
+    background_photo_url.value = authStore.owner.background_photo_path
+    if (address.value.adress === null) {
+        address.value.adress = 'Não cadastrado'
+        address.value.numberadress = 'Não cadastrado'
+        address.value.neighborhood = 'Não cadastrado'
+        address.value.city = 'Não cadastrado'
+        address.value.zipcode = 'Não cadastrado'
+        address.value.complement = 'Não cadastrado'
+    } else {
+        address.value.adress = authStore.owner.adress.adress
+        address.value.numberadress = authStore.owner.adress.numberadress
+        address.value.neighborhood = authStore.owner.adress.neighborhood
+        address.value.city = authStore.owner.adress.city
+        address.value.zipcode = authStore.owner.adress.zipcode
+        address.value.complement = authStore.owner.adress.complement
+    }
+})
+
+const uploadImage = (e) => {
+    const file = e.target.files[0];
+    uploadedImage.value = URL.createObjectURL(file)
+    profile_photo_url.value = file
+    console.log(profile_photo_url, uploadedImage.value);
+}
+const uploadbackground = (e) => {
+    const file = e.target.files[0];
+    uploadedBackground.value = URL.createObjectURL(file)
+    background_photo_url.value = file
+    console.log(background_photo_url, uploadbackground.value);
+}
+
+const calculateAge = () => {
+    var birthdayA = this.authStore.owner.birthday.split("-");
+    var birth = new Date(parseInt(birthdayA[2], 10), parseInt(birthdayA[1], 10) - 1, parseInt(birthdayA[0], 10));
+    var dif = Date.now() - birth.getTime();
+    ageActual = new Date(dif);
+    console.log(ageActual);
+}
 
 </script>
 
@@ -455,16 +563,12 @@
 export default {
 
     components: {
-        // YoutubeInscritoChart,
-        // InstagramInscritoChart,
-        // TwitterInscritoChart,
-        // FacebookInscritoChart,
-        // TiktokInscritoChart,
-        // KwaiInscritoChart
+        
     },
 
     data: () => ({
         modelProfile: null,
     }),
+
 }
 </script>

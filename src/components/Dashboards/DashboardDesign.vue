@@ -139,10 +139,10 @@
           <!-- Profiles -op02 -->
           <v-window-item value="op2">
             <div v-if="authStore.user.role === 'influencer'">
-              <ProfileInfluencer />
+              <ProfileInfluencer @v-bind="getOwnProfile"/>
             </div>
             <div v-if="authStore.user.role === 'brand'">
-              <ProfileMarca />
+              <ProfileMarca @v-bind="getOwnProfile"/>
             </div>
             <div v-if="authStore.user.role === 'agency'">
               <ProfileAgencia />
@@ -160,7 +160,7 @@
           <!-- Criação de Campanhas da Marca -op07 -->
           <CreateCampaigns />
           <!-- Todas as Campanhas Marca -op08 -->
-          <AllCampaignsMarca @open-edit="openEdit" />
+          <AllCampaignsMarca @open-edit="openEdit" @v-bind="getCampaigns"/>
           <!-- Editar campanhas Marca -edit-campanha -->
           <MyCampaignsMarca />
           <!-- Apresentar profile do influencer acessado via marca -->
@@ -196,6 +196,7 @@ const authStore = useAuthStore();
 
 onMounted(async () => {
   await authStore.getUser();
+  await authStore.getOwnProfile();
 })
 
 </script>

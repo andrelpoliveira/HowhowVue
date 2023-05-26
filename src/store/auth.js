@@ -4,17 +4,25 @@ import Cookie from 'js-cookie';
 
 export const useAuthStore = defineStore("auth", {
     state: () => ({
+        //Info Users
         authUser: null,
+        authOwner: null,
+        authPhoto: null,
         authErrors: [],
         authStatus: null,
         role: null,
+        //Token
         authtoken: Cookie.get('token') || '',
+        //Campaigns
         campaigns: [],
+        
     }),
     getters: {
         user: (state) => state.authUser,
         errors: (state) => state.authErrors,
         status: (state) => state.authStatus,
+        owner: (state) => state.authOwner,
+        profilephoto: (state) => state.authPhoto,
     },
     actions: {
         //Retorna dados da db
@@ -26,16 +34,28 @@ export const useAuthStore = defineStore("auth", {
                 }
             });
             this.authUser = data.data.data;
-            
+            this.role = data.data.data.role;
         },
         //Trazer Campanhas
         async getCampaigns(){
-            const data = await axios.get("/api/campaign/index", {
+            await axios.get("/api/campaign/index", {
                 headers: {
                     'Authorization': Cookie.get('token')
                 },
-            });
-            this.campaigns = data.data.data;
+            }).then(resp => {
+                this.campaigns = resp.data.data;
+            })
+            
+        },
+        //Trazer as informações completas do perfil
+        async getOwnProfile(){
+            await axios.get("/api/profile/seeOwnProfile", {
+                headers: {
+                    'Authorization': Cookie.get('token')
+                },
+            }).then(resp => {
+                this.authOwner = resp.data.data
+            })
         },
         //Login com token
         async handleLogin(data) {
@@ -51,7 +71,6 @@ export const useAuthStore = defineStore("auth", {
                 Cookie.set('token', token)
                 this.router.push('/dashboard')
                 this.authtoken = token
-                this.role = resp.data.data.role
                 this.authStatus = resp.data.message
             })
         },
@@ -112,8 +131,12 @@ export const useAuthStore = defineStore("auth", {
                 }
             });
             this.authUser = null
+            this.role = null
+            this.authOwner = null
             Cookie.remove('token')
             this.router.push('/')
+            this.authtoken = null
+            this.authStatus = 'logged in'
         },
         //Registro Campanhas
         // async handleCreateCampaign(data) {
@@ -134,6 +157,8 @@ export const useAuthStore = defineStore("auth", {
         //     })
             
         // },
+        
+
         
     }
 });

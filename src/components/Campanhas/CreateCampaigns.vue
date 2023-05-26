@@ -14,7 +14,7 @@
                             label="Nome da campanha"></v-text-field>
                     </v-col>
                     <v-col cols="12" md="6">
-                        <v-autocomplete v-model="states" :items="statesDB.statesDB" item-title="states" item-value="states"
+                        <v-autocomplete v-model="states" :items="statesDB.statesDB" item-title="state" item-value="state"
                             prepend-inner-icon="mdi-map-marker" label="Localização da audiência" placeholder="Selecione.."
                             density="comfortable">
 
@@ -27,7 +27,7 @@
                         <v-tooltip location="top center" origin="auto" open-on-focus="true">
                             <template v-slot:activator="{ props }">
                                 <v-switch v-bind="props" color="primary" hide-details v-model="isPrivate"
-                                    label="Privada/Pública">
+                                    label="Privada/Pública" false-value="0" true-value="1">
                                 </v-switch>
                             </template>
 
@@ -57,8 +57,9 @@
                                         bg-clip-padding border border-solid border-gray-400 rounded transition ease-in-out
                                         m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" type="file"
                                         id="image" ref="campaign_photo" @change="uploadImage"/> -->
-                        <v-file-input :rules="rulesFile" type="file" accept="image/png, image/jpeg, image/bmp" @change="uploadImage"
-                            prepend-icon="mdi-camera" label="Logo da Campanha" density="comfortable" show-size></v-file-input>
+                        <v-file-input :rules="rulesFile" type="file" accept="image/png, image/jpeg, image/bmp"
+                            @change="uploadImage" prepend-icon="mdi-camera" label="Logo da Campanha" density="comfortable"
+                            show-size></v-file-input>
                     </v-col>
                     <v-col cols="12" md="12">
                         <v-textarea v-model="campaign_purpose" class="ml-8" label="Propósito da Campanha"
@@ -436,92 +437,11 @@ export default {
             },
         ],
 
-        //Form Componentes
-        // name: "",
-        // campaign_purpose: "",
-        // states: "",
-        // social: {
-        //     youtube: '',
-        //     instagram: '',
-        //     facebook: '',
-        //     twitter: '',
-        //     kwai: '',
-        //     tiktok: '',
-        //     howhow: '',
-        // },
-        // content: {
-        //     yt_vd_insertion: '',
-        //     yt_vd_dedicated: '',
-        //     yt_repost: '',
-        //     yt_post_community: '',
-        //     yt_short: '',
-        //     yt_sh_insertion: '',
-        //     yt_live: '0',
-        //     yt_presential: 'Não',
-        //     ist_combo: '',
-        //     ist_insertion: '',
-        //     ist_vd_dedicated: '',
-        //     ist_post: '',
-        //     ist_repost: '',
-        //     ist_live: 'Não',
-        //     fb_combo: '',
-        //     fb_post_feed: '',
-        //     fb_vd_dedicated: '',
-        //     fb_repost: '',
-        //     fb_story: '',
-        //     fb_live: 'Não',
-        //     tw_retweet: '',
-        //     tw_post: '',
-        //     kw_insertion: '',
-        //     kw_vd_insertion: '',
-        //     kw_repost: '',
-        //     kw_live: 'Não',
-        //     tk_insertion: '',
-        //     tk_vd_dedicated: '',
-        //     tk_repost: '',
-        //     tk_live: 'Não',
-        //     tk_impulse: '',
-        //     tk_selectedRadio: 0,
-        //     hw_remarketing: '',
-        //     hw_link_bio: '',
-        //     hw_link_description: '',
-        //     hw_link_comment: ''
-        // },
-        //type: null,
-        //isPrivate: "0",
-        //campaign_photo: "",
-        //urlBase: '/api/campaign/create',
+        
 
     }),
     methods: {
-        // createCampaign() {
-
-        //     let formData = new FormData();
-        //     formData.append('campaign_photo', this.campaign_photo[0])
-        //     formData.append('name', this.name)
-        //     formData.append('campaign_purpose', this.campaign_purpose)
-        //     formData.append('states', this.states)
-        //     formData.append('social_media', this.social)
-        //     formData.append('content_type', this.content)
-        //     //formData.append('type', this.type);
-        //     formData.append('private', this.private)
-
-        //     let config = {
-        //         headers: {
-        //             'Content-type': 'multipart/form-data',
-        //             'Authorization': Cookie.get('token')
-        //         }
-        //     }
-
-        //     axios.post(this.urlBase, formData, config)
-        //     .then((response)=>{
-        //         console.log(response)
-        //     })
-        // },
-        // fileUpload(e) {
-        //     this.campaign_photo = e.target.files;
-        //     console.log(this.campaign_photo);
-        // }
+        
     },
     created() {
     },
@@ -554,36 +474,36 @@ let states = ref(null)
 let isPrivate = ref(null)
 let campaign_photo = ref(null)
 let uploadedImage = ref(null)
-let social = {
-    youtube: '',
-    instagram: '',
-    facebook: '',
-    twitter: '',
-    kwai: '',
-    tiktok: '',
-    howhow: '',
-}
-let content = {
+let social = ref({
+    youtube: false,
+    instagram: false,
+    facebook: false,
+    twitter: false,
+    kwai: false,
+    tiktok: false,
+    howhow: false,
+})
+let content = ref({
     yt_vd_insertion: '',
     yt_vd_dedicated: '',
     yt_repost: '',
     yt_post_community: '',
     yt_short: '',
     yt_sh_insertion: '',
-    yt_live: '',
-    yt_presential: '',
+    yt_live: false,
+    yt_presential: false,
     ist_combo: '',
     ist_insertion: '',
     ist_vd_dedicated: '',
     ist_post: '',
     ist_repost: '',
-    ist_live: '',
+    ist_live: false,
     fb_combo: '',
     fb_post_feed: '',
     fb_vd_dedicated: '',
     fb_repost: '',
     fb_story: '',
-    fb_live: '',
+    fb_live: false,
     tw_retweet: '',
     tw_post: '',
     kw_insertion: '',
@@ -600,7 +520,7 @@ let content = {
     hw_link_bio: '',
     hw_link_description: '',
     hw_link_comment: ''
-}
+})
 
 const uploadImage = (e) => {
     const file = e.target.files[0];
@@ -621,10 +541,10 @@ const createCampaign = async () => {
     formData.append('campaign_photo', campaign_photo.value)
     formData.append('name', name.value || '')
     formData.append('campaign_purpose', campaign_purpose.value || '')
-    formData.append('states', states.value || '')
-    formData.append('social_media', social)
-    formData.append('content_type', content)
-    //formData.append('private', isPrivate.value || '')
+    formData.append('state', states.value || '')
+    formData.append('social_media', JSON.stringify(social.value))
+    formData.append('content_type', JSON.stringify(content.value))
+    formData.append('private', isPrivate.value || '')
 
     let config = {
         headers: {

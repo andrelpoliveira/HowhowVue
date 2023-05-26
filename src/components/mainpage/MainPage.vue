@@ -17,21 +17,23 @@
             <v-btn class="main-nav-btn">Contatos</v-btn>
           </div>
 
-            <div>
-              <v-btn class="main-nav-btn-login">
-                <router-link :to="{name:'login'}" custom v-slot="{ navigate }">
-                  <button @click="navigate" role="link">Log in</button>
-                </router-link>
-              </v-btn>
-            </div>
-            <v-divider :thickness="2" color="rgba(255,255,255)" vertical></v-divider>
-            <div class="nav-btns-sign">
-              <v-btn class="main-nav-btn-register">
-                <router-link :to="{name: 'registro'}" custom v-slot="{ navigate }">
-                  <button @click="navigate" role="link">Registrar-se</button>
-                </router-link>
-              </v-btn>
-            </div>
+          <div>
+            <router-link :to="{ name: 'login' }">
+              <v-btn class="main-nav-btn-login" role="link">Log in</v-btn>
+            </router-link>
+            <!-- <v-btn class="main-nav-btn-login">
+                
+              </v-btn> -->
+          </div>
+          <v-divider :thickness="2" color="rgba(255,255,255)" vertical></v-divider>
+          <div class="nav-btns-sign">
+            <router-link :to="{ name: 'registro' }">
+              <v-btn class="main-nav-btn-register" role="link">Registrar-se</v-btn>
+            </router-link>
+            <!-- <v-btn class="main-nav-btn-register">
+                
+              </v-btn> -->
+          </div>
         </v-app-bar>
         <!--/ home Nav-bar -->
 
@@ -45,12 +47,12 @@
           </v-text>
         </v-container>
         <div class="inicio-section-btns">
-          <v-btn class="btn-influencer">Sou influenciador</v-btn>
+          <router-link :to="{ name: 'registro' }"><v-btn class="btn-influencer">Sou influenciador</v-btn></router-link>
           <v-btn class="btn-empresa">Sou empresa</v-btn>
         </div>
 
         <v-card flat style="background-color: transparent !important;">
-          <v-layout full-height="true" class="influenciadores">
+          <v-layout full-height=true; class="influenciadores">
             <div class="1">
               <v-img class="img-1" src="./../../assets/images/influencers/1.jpeg" cover />
             </div>
@@ -220,7 +222,10 @@
             suas métricas e adaptando sua estratégia em tempo real.
           </v-text>
         </div>
-        <v-btn class="sections-btns">Cadastrar-se</v-btn>
+        <router-link :to="{ name: 'registro' }">
+          <v-btn class="sections-btns">Cadastrar-se</v-btn>
+        </router-link>
+
       </v-container>
     </v-container>
   </v-layout>
@@ -305,7 +310,7 @@
           </div>
         </v-container>
       </v-img>
-      
+
     </v-container>
   </v-layout>
   <!--/ home redes-section -->
@@ -494,19 +499,19 @@
       <v-text class="copyright-area">Copyright Howhow. Inc © 2023 All Rights reserved</v-text>
       <div>
         <v-text class="terms-links">
-            <router-link to="/termosdeuso" custom v-slot="{ navigate }">
-              <button @click="navigate" role="link">Termos de Uso</button>
-            </router-link>
+          <router-link to="/termosdeuso" custom v-slot="{ navigate }">
+            <button @click="navigate" role="link">Termos de Uso</button>
+          </router-link>
         </v-text>
         <v-text class="terms-links">
-            <router-link to="/" custom v-slot="{ navigate }">
-              <button @click="navigate" role="link">Cookies</button>
-            </router-link>
+          <router-link to="/" custom v-slot="{ navigate }">
+            <button @click="navigate" role="link">Cookies</button>
+          </router-link>
         </v-text>
         <v-text class="terms-links">
-            <router-link to="/politicadeprivacidade" custom v-slot="{ navigate }">
-              <button @click="navigate" role="link">Política de Privacidade</button>
-            </router-link>
+          <router-link to="/politicadeprivacidade" custom v-slot="{ navigate }">
+            <button @click="navigate" role="link">Política de Privacidade</button>
+          </router-link>
         </v-text>
       </div>
     </v-container>
