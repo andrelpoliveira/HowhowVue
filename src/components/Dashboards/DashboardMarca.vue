@@ -17,6 +17,10 @@
                                 }}</v-card-title>
                                 <v-card-title class="dashboard-username mb-3">{{ authStore.user.line_of_business
                                 }}</v-card-title>
+
+                                <div class="dashboard-marca-btns mt-8  px-5">
+                                    <v-btn class="portifolio-btn my-1" width="50%">Macros</v-btn>
+                                </div>
                             </v-card>
                             <v-card class="contador-campanhas-card mx-1" width="350" height="350px">
                                 <v-card-title class="dashboard-card-title">
@@ -81,9 +85,7 @@
                                     <v-text class="text-lg-h6 font-weight-bold">5.4M</v-text>
                                 </div>
 
-                                <div class="dashboard-marca-btns mt-16  px-5">
-                                    <v-btn class="portifolio-btn my-1" width="50%">Macro</v-btn>
-                                </div>
+
                             </div>
 
                         </v-card>
@@ -122,9 +124,7 @@
                                         class="text-lg-h6 font-weight-boldtext-lg-h6 font-weight-bold">Visualização</v-title>
                                     <v-text class="text-lg-h6 font-weight-boldtext-lg-h6 font-weight-bold">dado1</v-text>
                                 </div>
-                                <div class="dashboard-marca-btns mt-16  px-5">
-                                    <v-btn class="portifolio-btn my-1" width="50%">Macro</v-btn>
-                                </div>
+
                             </div>
                         </v-card>
                         <v-card class="ma-2" width="800" height="auto">
@@ -161,9 +161,7 @@
                                         class="text-lg-h6 font-weight-boldtext-lg-h6 font-weight-bold">Visualização</v-title>
                                     <v-text class="text-lg-h6 font-weight-boldtext-lg-h6 font-weight-bold">dado1</v-text>
                                 </div>
-                                <div class="dashboard-marca-btns mt-16  px-5">
-                                    <v-btn class="portifolio-btn my-1" width="50%">Macro</v-btn>
-                                </div>
+
                             </div>
 
                         </v-card>
@@ -202,9 +200,7 @@
                                         class="text-lg-h6 font-weight-boldtext-lg-h6 font-weight-bold">Visualização</v-title>
                                     <v-text class="text-lg-h6 font-weight-boldtext-lg-h6 font-weight-bold">dado1</v-text>
                                 </div>
-                                <div class="dashboard-marca-btns mt-16  px-5">
-                                    <v-btn class="portifolio-btn my-1" width="50%">Macro</v-btn>
-                                </div>
+
                             </div>
                         </v-card>
                         <v-card class="ma-2" width="800" height="auto">
@@ -241,9 +237,7 @@
                                         class="text-lg-h6 font-weight-boldtext-lg-h6 font-weight-bold">Visualização</v-title>
                                     <v-text class="text-lg-h6 font-weight-boldtext-lg-h6 font-weight-bold">dado1</v-text>
                                 </div>
-                                <div class="dashboard-marca-btns mt-16  px-5">
-                                    <v-btn class="portifolio-btn my-1" width="50%">Macro</v-btn>
-                                </div>
+
                             </div>
                         </v-card>
                         <v-card class="ma-2" width="800" height="auto">
@@ -276,9 +270,7 @@
                                     <v-title class="text-lg-h6 font-weight-bold">Visualização</v-title>
                                     <v-text class="text-lg-h6 font-weight-bold">dado1</v-text>
                                 </div>
-                                <div class="dashboard-marca-btns mt-16  px-5">
-                                    <v-btn class="portifolio-btn my-1" width="50%">Macro</v-btn>
-                                </div>
+
                             </div>
 
                         </v-card>

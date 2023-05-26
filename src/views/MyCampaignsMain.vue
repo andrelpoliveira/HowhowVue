@@ -6,11 +6,11 @@
 
 
 //Import Components
-import CampanhaComponent from '../components/Campanhas/MyCampaignsMarca.vue'
+import CampanhaComponent from '../components/Campanhas/MyCampaignsMain.vue'
 
 export default ({
 
-    name: 'MyCampaignsMarca',
+    name: 'MyCampaignsMain',
 
     components: {
         CampanhaComponent,
