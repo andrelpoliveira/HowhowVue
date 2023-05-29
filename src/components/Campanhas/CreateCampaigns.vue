@@ -419,8 +419,7 @@
 <style></style>
 
 <script>
-import axios from 'axios';
-import Cookie from 'js-cookie';
+
 export default {
     data: () => ({
         //Tooltip info campanha
@@ -458,6 +457,8 @@ export default {
 }
 </script>
 <script setup>
+import axios from 'axios';
+import Cookie from 'js-cookie';
 import { ref } from 'vue';
 import { onMounted } from 'vue';
 import { useAuthStore } from '../../store/auth';

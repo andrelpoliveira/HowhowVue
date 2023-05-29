@@ -51,19 +51,15 @@
                                     </div>
                                     <div class="show-dados-direcao">
                                         <v-title>E-MAIL 2</v-title>
-                                        <v-text v-if="email2 === null">Email secundário não
-                                            cadastrado</v-text>
-                                        <v-text v-else>{{ email2 }}</v-text>
+                                        <v-text >{{ email2 }}</v-text>
                                     </div>
                                     <div class="show-dados-direcao">
                                         <v-title>TELEFONE 1</v-title>
-                                        <v-text v-if="phone === null">Telefone não cadastrado</v-text>
-                                        <v-text v-else>{{ phone }}</v-text>
+                                        <v-text >{{ phone }}</v-text>
                                     </div>
                                     <div class="show-dados-direcao">
                                         <v-title>TELEFONE 2</v-title>
-                                        <v-text v-if="phone2 === null">Telefone não cadastrado</v-text>
-                                        <v-text v-else>{{ phone2 }}</v-text>
+                                        <v-text >{{ phone2 }}</v-text>
                                     </div>
                                     <div class="show-dados-direcao">
                                         <v-title>CAMPANHAS ATIVAS</v-title>
@@ -116,7 +112,7 @@
             </v-window-item>
             <!--Edição de Profile-->
             <v-window-item value="editProfile">
-                <v-form >
+                <v-form @submit.prevent="updateBrand">
                     <v-row class="ma-2">
                         <v-card-title class="profile-influencer-edit-title">Dados
                             Profissionais</v-card-title>
@@ -213,11 +209,12 @@
                         </v-col>
                         <v-col cols="12" md="12">
                             <v-file-input :rules="rulesFile" accept="image/png, image/jpeg, image/bmp"
-                                prepend-icon="mdi-camera" label="Wallpaper" density="comfortable"></v-file-input>
+                                prepend-icon="mdi-camera" label="Wallpaper" density="comfortable" 
+                                @change="uploadWallpaper"></v-file-input>
                         </v-col>
 
                         <v-col cols="12" md="12" class="d-flex">
-                            <v-btn append-icon="mdi-arrow-right-bold" color="blue-darken-3" variant="elevated" :width="200"
+                            <v-btn append-icon="mdi-arrow-right-bold" type="submit" color="blue-darken-3" variant="elevated" :width="200"
                                 location="bottom">Atualizar perfil</v-btn>
                         </v-col>
 
@@ -230,6 +227,8 @@
 
 <script setup>
 //Import Components
+import axios from 'axios';
+import Cookie from 'js-cookie'
 import { ref } from 'vue';
 import { onMounted } from 'vue';
 import { useAuthStore } from '../../store/auth';
@@ -257,6 +256,7 @@ onMounted(async () => {
     phone2.value = authStore.owner.phone2 || 'Não cadastrado'
     about_me.value = authStore.owner.about_me || 'Ainda não possui nenhuma informação, edite seu perfil e mostre um pouco sobre sua marca'
     profile_photo.value = authStore.owner.profile_photo_path
+    wallpaper.value = authStore.owner.background_photo_path
     if (address.value.adress === null) {
         address.value.adress = 'Não cadastrado'
         address.value.numberadress = 'Não cadastrado'
@@ -278,7 +278,8 @@ onMounted(async () => {
 })
 
 //Form Update
-//let urlBase = '/api/userUpdate/brand'
+let urlBase = '/api/userUpdate/brand'
+let errors = ref([])
 let business_name = ref(null)
 let line_of_business = ref(null)
 let country = ref(null)
@@ -291,7 +292,8 @@ let phone2 = ref(null)
 let about_me = ref(null)
 let profile_photo = ref(null)
 let uploadedImage = ref(null)
-// let wallpaper = ref(null)
+let wallpaper = ref(null)
+let uploadedWallpaper = ref(null)
 let address = ref({
     adress: null,
     numberadress: null,
@@ -308,7 +310,86 @@ const uploadImage = (e) => {
     profile_photo.value = file
     console.log(profile_photo, uploadedImage.value);
 }
+const uploadWallpaper = (e) =>{
+    const file = e.target.files[0];
+    uploadedWallpaper.value = URL.createObjectURL(file)
+    wallpaper.value = file
+    console.log(wallpaper, uploadedWallpaper.value);
+}
 
+const updateBrand = async () => {
+    errors.value = []
+
+    let formData = new FormData();
+    if(business_name.value != authStore.owner.business_name)
+    {
+        formData.append('business_name', business_name.value || '')
+    }
+    if(country.value != authStore.owner.country)
+    {
+        formData.append('country', country.value || '')
+    }
+    if(line_of_business.value != authStore.owner.line_of_business)
+    {
+        formData.append('line_of_business', line_of_business.value || '')
+    }
+    if(cnpj.value != authStore.owner.cnpj)
+    {
+        formData.append('cnpj', cnpj.value || '')
+    }
+    if(email.value != authStore.owner.email)
+    {
+        formData.append('email', email.value || '')
+    }
+    if(email2.value != authStore.owner.email2)
+    {
+        formData.append('email2', email2.value || '')
+    }
+    if(phone.value != authStore.owner.phone)
+    {
+        formData.append('phone', phone.value || '')
+    }
+    if(phone2.value != authStore.owner.phone2)
+    {
+        formData.append('phone2', phone2.value || '')
+    }
+    if(address.value.adress != null)
+    {
+        formData.append('adress', JSON.stringify(address.value))
+    }
+    if(state.value != authStore.owner.state)
+    {
+        formData.append('state', state.value || '')
+    }
+    if(about_me.value != authStore.owner.about_me)
+    {
+        formData.append('about_me', about_me.value || '')
+    }
+    if(profile_photo.value != authStore.owner.profile_photo_path)
+    {
+        formData.append('profile_photo_path', profile_photo.value)
+    }
+    if(wallpaper.value != authStore.owner.background_photo_path)
+    {
+        formData.append('background_photo_path', wallpaper.value)
+    }
+    
+    let config = {
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'enctype': 'multipart/form-data',
+            'Authorization': Cookie.get('token')
+        }
+    }
+
+    try{
+        await axios.post(urlBase, formData, config)
+        this.modelProfile.value = 'detalhesProfile'
+
+    } catch (err){
+        errors.value = err.response.data.errors
+    }
+}
 </script>
 
 <script>
