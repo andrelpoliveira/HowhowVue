@@ -1,18 +1,18 @@
 <template>
-    <TestWalletFace/>
+    <InterfaceWallet/>
   </template>
   
   <script>
   import { defineComponent } from 'vue';
   
   // Components
-  import TestWalletFace from "@/components/CarteiraDigital/TestWalletFace.vue";
+  import InterfaceWallet from "@/components/CarteiraDigital/InterfaceWallet.vue";
   
   export default defineComponent({
     name: 'InterfaceWalletView',
   
     components: {
-      TestWalletFace,
+      InterfaceWallet,
     },
   });
   </script>
