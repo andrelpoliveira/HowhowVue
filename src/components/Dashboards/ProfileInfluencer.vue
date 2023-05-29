@@ -189,8 +189,8 @@
                             </v-avatar>
                         </div>
                         <div class="profile-banner-detalhes">
-                            <v-card-title class="profile-banner-username">Username</v-card-title>
-                            <v-card-text class="profile-banner-categorias">Categorias</v-card-text>
+                            <v-card-title class="profile-banner-username">{{ name_artistic }}</v-card-title>
+                            <v-card-text class="profile-banner-categorias">{{ category }}</v-card-text>
                         </div>
                     </div>
 
@@ -199,19 +199,19 @@
                     <v-card class="pessoal-section">
                         <div class="dados-direcao my-1 mr-16">
                             <v-title>NOME</v-title>
-                            <v-text>dado1</v-text>
+                            <v-text>{{ name }}</v-text>
                         </div>
                         <div class="dados-direcao my-1 mr-16">
                             <v-title>SE IDENTIFICA</v-title>
-                            <v-text>dado1</v-text>
+                            <v-text>{{ gender }}</v-text>
                         </div>
                         <div class="dados-direcao my-1 mr-16">
                             <v-title>IDADE</v-title>
-                            <v-text>dado1</v-text>
+                            <v-text>{{ ageActual }}</v-text>
                         </div>
                         <div class="dados-direcao my-1">
                             <v-title>IDIOMA NATIVO</v-title>
-                            <v-text>dado1</v-text>
+                            <v-text>{{ language }}</v-text>
                         </div>
                     </v-card>
                 </div>
@@ -281,9 +281,14 @@
                 </v-container>
 
                 <v-col cols="12" md="12" class="d-flex">
-                        <v-btn append-icon="mdi-arrow-right-bold" color="blue-darken-3" variant="elevated" :width="200"
-                            location="bottom">Gerar Portifólio</v-btn>
-                    </v-col>
+                    <v-dialog v-model="dialog" width="1024">
+                        <template v-slot:activator="{ props }">
+                            <v-btn class="my-1" append-icon="mdi-arrow-right-bold" color="blue-darken-3"
+                                variant="elevated" :width="200" location="bottom" v-bind="props">Gerar Portifólio</v-btn>
+                        </template>
+                        <portifolio-preview />
+                    </v-dialog>
+                </v-col>
 
             </v-window-item>
             <!-- Editar Perfil Influencer-->
@@ -291,7 +296,7 @@
                 <v-card-title class="profile-edit-title">Dados Pessoais</v-card-title>
                 <v-divider></v-divider>
 
-                <v-form >
+                <v-form>
                     <v-row class="ma-2">
                         <v-col cols="12" md="6">
                             <v-text-field density="comfortable" prepend-inner-icon="mdi-account-circle"
@@ -324,22 +329,22 @@
                         <v-col cols="12" md="6">
                             <!-- <v-text-field label="Categorias" prepend-inner-icon="mdi-clipboard-edit-outline"
                                 density="comfortable"></v-text-field> -->
-                            <v-select v-model="category" :items="categoriesStore.categories" item-title="categorie" item-value="categorie" chips label="Categorias"
-                                        multiple></v-select>                                       
+                            <v-select v-model="category" :items="categoriesStore.categories" item-title="categorie"
+                                item-value="categorie" chips label="Categorias" multiple></v-select>
                         </v-col>
                         <v-col cols="12" md="6">
-                            <v-text-field prepend-inner-icon="mdi-office-building-outline" label="CPF"
-                                density="comfortable" v-model="cpf">
+                            <v-text-field prepend-inner-icon="mdi-office-building-outline" label="CPF" density="comfortable"
+                                v-model="cpf">
                             </v-text-field>
                         </v-col>
-                        
+
                         <v-col cols="12" md="6">
                             <v-text-field prepend-inner-icon="mdi-cellphone-message" density="comfortable" label="Telefone"
                                 v-model="phone"></v-text-field>
                         </v-col>
                         <v-col cols="12" md="6">
-                            <v-text-field prepend-inner-icon="mdi-cellphone-message" density="comfortable" label="Telefone 2"
-                                v-model="phone2"></v-text-field>
+                            <v-text-field prepend-inner-icon="mdi-cellphone-message" density="comfortable"
+                                label="Telefone 2" v-model="phone2"></v-text-field>
                         </v-col>
                         <v-col cols="12" md="6">
                             <v-text-field prepend-inner-icon="mdi-email" density="comfortable" label="E-mail"
@@ -355,24 +360,24 @@
                         </v-col>
                         <v-divider></v-divider>
                         <v-col cols="12" md="6">
-                            <v-text-field prepend-inner-icon="mdi-home-edit" density="comfortable"
-                                label="Nome da rua" v-model="address.adress"></v-text-field>
+                            <v-text-field prepend-inner-icon="mdi-home-edit" density="comfortable" label="Nome da rua"
+                                v-model="address.adress"></v-text-field>
                         </v-col>
                         <v-col cols="12" md="6">
-                            <v-text-field prepend-inner-icon="mdi-home-circle" density="comfortable"
-                                label="Número" v-model="address.numberadress"></v-text-field>
+                            <v-text-field prepend-inner-icon="mdi-home-circle" density="comfortable" label="Número"
+                                v-model="address.numberadress"></v-text-field>
                         </v-col>
                         <v-col cols="12" md="6">
-                            <v-text-field prepend-inner-icon="mdi-home-floor-a" density="comfortable"
-                                label="complemento" v-model="address.complement"></v-text-field>
+                            <v-text-field prepend-inner-icon="mdi-home-floor-a" density="comfortable" label="complemento"
+                                v-model="address.complement"></v-text-field>
                         </v-col>
                         <v-col cols="12" md="6">
-                            <v-text-field prepend-inner-icon="mdi-home-group" density="comfortable"
-                                label="Bairro" v-model="address.neighborhood"></v-text-field>
+                            <v-text-field prepend-inner-icon="mdi-home-group" density="comfortable" label="Bairro"
+                                v-model="address.neighborhood"></v-text-field>
                         </v-col>
                         <v-col cols="12" md="6">
-                            <v-text-field prepend-inner-icon="mdi-map-marker" density="comfortable"
-                                label="Cidade" v-model="address.city"></v-text-field>
+                            <v-text-field prepend-inner-icon="mdi-map-marker" density="comfortable" label="Cidade"
+                                v-model="address.city"></v-text-field>
                         </v-col>
                         <v-col cols="12" md="6">
                             <v-autocomplete v-model="state" :items="statesDB.statesDB" item-title="state" item-value="state"
@@ -381,12 +386,12 @@
                             </v-autocomplete>
                         </v-col>
                         <v-col cols="12" md="6">
-                            <v-text-field prepend-inner-icon="mdi-map-marker-distance" density="comfortable"
-                                label="País" v-model="country"></v-text-field>
+                            <v-text-field prepend-inner-icon="mdi-map-marker-distance" density="comfortable" label="País"
+                                v-model="country"></v-text-field>
                         </v-col>
                         <v-col cols="12" md="6">
-                            <v-text-field prepend-inner-icon="mdi-book-marker" density="comfortable"
-                                label="CEP" v-model="address.zipcode"></v-text-field>
+                            <v-text-field prepend-inner-icon="mdi-book-marker" density="comfortable" label="CEP"
+                                v-model="address.zipcode"></v-text-field>
                         </v-col>
 
                         <v-card-title class="profile-edit-title">Sobre
@@ -454,6 +459,7 @@ import { onMounted } from 'vue';
 import { useAuthStore } from '../../store/auth';
 import { useStatesDB } from '@/store/statesbd';
 import { useCategories } from '@/store/categories';
+import PortifolioPreview from '../Modals/PortifolioPreview.vue';
 
 const authStore = useAuthStore();
 const categoriesStore = useCategories();
@@ -559,11 +565,12 @@ const calculateAge = () => {
 export default {
 
     components: {
-        
-    },
+    PortifolioPreview
+},
 
     data: () => ({
         modelProfile: null,
+        dialog: false,
     }),
 
 }
