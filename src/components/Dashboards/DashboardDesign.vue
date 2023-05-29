@@ -30,6 +30,8 @@
 
     <v-spacer></v-spacer>
     <!-- List Gerenciamento -->
+    <div v-if="authStore.user">
+      <div v-if="authStore.user.role === 'influencer'">
     <v-card flat class="mx-auto" max-width="300">
       <v-list density="compact" v-model="tab">
         <v-list-subheader class="text-h8">GERENCIAMENTO</v-list-subheader>
@@ -41,6 +43,36 @@
         </v-tabs>
       </v-list>
     </v-card>
+    </div>
+    <div v-if="authStore.user.role === 'agency'">
+    <v-card flat class="mx-auto" max-width="300">
+      <v-list density="compact" v-model="tab">
+        <v-list-subheader class="text-h8">GERENCIAMENTO</v-list-subheader>
+        <v-tabs v-model="tab" flat direction="vertical" color="rgba(1,137,255,1)">
+          <v-tab v-for="([title, icon, options], i) in menu" :key="i" :value="options">
+            <v-list-item :title="title" :prepend-icon="icon" class="align-menu">
+            </v-list-item>
+          </v-tab>
+        </v-tabs>
+      </v-list>
+    </v-card>
+    </div>
+
+    <div v-if="authStore.user.role === 'brand'">
+    <v-card flat class="mx-auto" max-width="300">
+      <v-list density="compact" v-model="tab">
+        <v-list-subheader class="text-h8">GERENCIAMENTO</v-list-subheader>
+        <v-tabs v-model="tab" flat direction="vertical" color="rgba(1,137,255,1)">
+          <v-tab v-for="([title, icon, options], i) in menuMarca" :key="i" :value="options">
+            <v-list-item :title="title" :prepend-icon="icon" class="align-menu">
+            </v-list-item>
+          </v-tab>
+        </v-tabs>
+      </v-list>
+    </v-card>
+    </div>
+  
+  </div>
 
 
     <!-- List Campanhas Influencer -->
@@ -235,12 +267,11 @@ export default {
     menu: [
       ['Dashboard', 'mdi-widgets', 'op1'],
       ['Profile', 'mdi-account-circle', 'op2'],
-      ['Macros', 'mdi-checkbox-blank-circle', 'op10'],
       ['Wallet', 'mdi-wallet', 'op3'],
     ],
 
-        //Menu Vertical (List Gerenciamento Marca)
-        marcaMenu: [
+    //Menu Vertical (List Gerenciamento da Marca)
+      menuMarca: [
       ['Dashboard', 'mdi-widgets', 'op1'],
       ['Profile', 'mdi-account-circle', 'op2'],
       ['Macros', 'mdi-checkbox-blank-circle', 'op10'],
