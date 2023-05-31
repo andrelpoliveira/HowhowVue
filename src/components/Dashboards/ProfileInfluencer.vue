@@ -98,7 +98,7 @@
                                 <div class="text-disposition py-1">
                                     <div class="show-dados-direcao">
                                         <v-title>RUA</v-title>
-                                        <v-text>{{ address.adress }}</v-text>
+                                        <v-text>{{ address.street }}</v-text>
                                     </div>
                                     <div class="show-dados-direcao">
                                         <v-title>NÚMERO</v-title>
@@ -283,8 +283,8 @@
                 <v-col cols="12" md="12" class="d-flex">
                     <v-dialog v-model="dialog" width="1024">
                         <template v-slot:activator="{ props }">
-                            <v-btn class="my-1" append-icon="mdi-arrow-right-bold" color="blue-darken-3"
-                                variant="elevated" :width="200" location="bottom" v-bind="props">Gerar Portifólio</v-btn>
+                            <v-btn class="my-1" append-icon="mdi-arrow-right-bold" color="blue-darken-3" variant="elevated"
+                                :width="200" location="bottom" v-bind="props">Gerar Portifólio</v-btn>
                         </template>
                         <portifolio-preview />
                     </v-dialog>
@@ -296,7 +296,7 @@
                 <v-card-title class="profile-edit-title">Dados Pessoais</v-card-title>
                 <v-divider></v-divider>
 
-                <v-form>
+                <v-form @submit.prevent="updateInfluencer">
                     <v-row class="ma-2">
                         <v-col cols="12" md="6">
                             <v-text-field density="comfortable" prepend-inner-icon="mdi-account-circle"
@@ -307,9 +307,12 @@
                                 label="Nome Artístico" v-model="name_artistic"></v-text-field>
                         </v-col>
                         <v-col cols="12" md="6">
-                            <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable"
+                            <!-- <v-text-field prepend-inner-icon="mdi-rename-box" density="comfortable"
                                 label="Como se identifica" v-model="gender">
-                            </v-text-field>
+                                
+                            </v-text-field> -->
+                            <v-select v-model="gender" :items="genderDB.gendersDB" item-title="gender" item-value="gender"
+                                chips label="Como se identifica"></v-select>
                         </v-col>
                         <v-col cols="12" md="6">
                             <v-text-field type="date" prepend-inner-icon="mdi-cake-variant-outline"
@@ -361,7 +364,7 @@
                         <v-divider></v-divider>
                         <v-col cols="12" md="6">
                             <v-text-field prepend-inner-icon="mdi-home-edit" density="comfortable" label="Nome da rua"
-                                v-model="address.adress"></v-text-field>
+                                v-model="address.street"></v-text-field>
                         </v-col>
                         <v-col cols="12" md="6">
                             <v-text-field prepend-inner-icon="mdi-home-circle" density="comfortable" label="Número"
@@ -436,8 +439,8 @@
                         </v-col>
 
                         <v-col cols="12" md="12" class="d-flex">
-                            <v-btn append-icon="mdi-arrow-right-bold" color="blue-darken-3" variant="elevated" :width="200"
-                                location="bottom">Atualizar perfil</v-btn>
+                            <v-btn append-icon="mdi-arrow-right-bold" type="submit" color="blue-darken-3" variant="elevated"
+                                :width="200" location="bottom">Atualizar perfil</v-btn>
                         </v-col>
                     </v-row>
                 </v-form>
@@ -459,13 +462,19 @@ import { onMounted } from 'vue';
 import { useAuthStore } from '../../store/auth';
 import { useStatesDB } from '@/store/statesbd';
 import { useCategories } from '@/store/categories';
+import { useGendersDb } from '@/store/gender';
+import Cookie from 'js-cookie';
 import PortifolioPreview from '../Modals/PortifolioPreview.vue';
+import axios from 'axios';
 
 const authStore = useAuthStore();
 const categoriesStore = useCategories();
 const statesDB = useStatesDB();
+const genderDB = useGendersDb();
 let ageActual = ref(null)
-//Variáveis do form
+//Form Update
+let urlBase = '/api/userUpdate/influencer'
+let errors = ref([])
 let name = ref(null)
 let name_artistic = ref(null)
 let country = ref(null)
@@ -488,7 +497,7 @@ let uploadedImage = ref(null)
 let background_photo_url = ref(null)
 let uploadedBackground = ref(null)
 let address = ref({
-    adress: null,
+    street: null,
     numberadress: null,
     neighborhood: null,
     city: null,
@@ -496,20 +505,22 @@ let address = ref({
     complement: null,
 })
 
+
 onMounted(async () => {
-    await authStore.getOwnProfile();
-    statesDB.getStatesDb();
-    categoriesStore.getCategories();
+    // await authStore.getOwnProfile();
+    // statesDB.getStatesDb();
+    // categoriesStore.getCategories();
+    // genderDB.getGendersDb();
     calculateAge;
-    //Dados Form
+    //Form Mount front
     name.value = authStore.owner.name || 'Não cadastrado'
     name_artistic.value = authStore.owner.name_artistic || 'Não cadastrado'
     state.value = authStore.owner.state || 'Não cadastrado'
     country.value = authStore.owner.country || 'Não cadastrado'
     email.value = authStore.owner.email || 'Não cadastrado'
-    email2.value = authStore.owner.email2 || 'Não cadastrado'
+    email2.value = authStore.owner.email2 || ''
     category.value = authStore.owner.category
-    gender.value = authStore.owner.gender || 'Não cadastrado'
+    gender.value = authStore.owner.gender || ''
     cpf.value = authStore.owner.cpf || 'Não cadastrado'
     cnpj.value = authStore.owner.cnpj || 'Não cadastrado'
     birthday.value = authStore.owner.birthday || 'Não cadastrado'
@@ -519,17 +530,17 @@ onMounted(async () => {
     about_me.value = authStore.owner.about_me || 'Não cadastrado'
     theme.value = authStore.owner.theme || 'Não cadastrado'
     language.value = authStore.owner.language || 'Não cadastrado'
-    profile_photo_url.value = authStore.owner.profile_photo_url
+    profile_photo_url.value = authStore.owner.profile_photo_path
     background_photo_url.value = authStore.owner.background_photo_path
-    if (address.value.adress === null) {
-        address.value.adress = 'Não cadastrado'
+    if (authStore.owner.street === null) {
+        address.value.street = 'Não cadastrado'
         address.value.numberadress = 'Não cadastrado'
         address.value.neighborhood = 'Não cadastrado'
         address.value.city = 'Não cadastrado'
         address.value.zipcode = 'Não cadastrado'
         address.value.complement = 'Não cadastrado'
     } else {
-        address.value.adress = authStore.owner.adress.adress
+        address.value.street = authStore.owner.adress.adress
         address.value.numberadress = authStore.owner.adress.numberadress
         address.value.neighborhood = authStore.owner.adress.neighborhood
         address.value.city = authStore.owner.adress.city
@@ -559,14 +570,94 @@ const calculateAge = () => {
     console.log(ageActual);
 }
 
+//Update Info Influencer
+const updateInfluencer = async () => {
+    errors.value = []
+
+    let formData = new FormData();
+    if (name.value != authStore.owner.name) {
+        formData.append('name', name.value || '')
+    }
+    if (name_artistic.value != authStore.owner.name_artistic) {
+        formData.append('name_artistic', name_artistic.value || '')
+    }
+    if (state.value != authStore.owner.state) {
+        formData.append('state', state.value || '')
+    }
+    if (email.value != authStore.owner.email) {
+        formData.append('email', email.value || '')
+    }
+    if (email2.value != authStore.owner.email2) {
+        formData.append('email2', email2.value || '')
+    }
+    if (category.value != authStore.owner.category) {
+        formData.append('category', category.value || '')
+    }
+    if (gender.value != authStore.owner.gender) {
+        formData.append('gender', gender.value || '')
+    }
+    if (cpf.value != authStore.owner.cpf) {
+        formData.append('cpf', cpf.value || '')
+    }
+    if (cnpj.value != authStore.owner.cnpj) {
+        formData.append('cnpj', cnpj.value || '')
+    }
+    if (birthday.value != authStore.owner.birthday) {
+        formData.append('birthday', birthday.value || '')
+    }
+    if (landline.value != authStore.owner.landline) {
+        formData.append('landline', landline.value || '')
+    }
+    if (phone.value != authStore.owner.phone) {
+        formData.append('phone', phone.value || '')
+    }
+    if (phone2.value != authStore.owner.phone2) {
+        formData.append('phone2', phone2.value || '')
+    }
+    if (about_me.value != authStore.owner.about_me) {
+        formData.append('about_me', about_me.value || '')
+    }
+    if (theme.value != authStore.owner.theme) {
+        formData.append('theme', theme.value || '')
+    }
+    if (language.value != authStore.owner.language) {
+        formData.append('language', language.value || '')
+    }
+    if (profile_photo_url.value != authStore.owner.profile_photo_path) {
+        formData.append('profile_photo_path', profile_photo_url.value)
+    }
+    if (background_photo_url.value != authStore.owner.background_photo_path) {
+        formData.append('background_photo_path', background_photo_url.value)
+    }
+    if (address.value.adress != null) {
+        formData.append('adress', JSON.stringify(address.value))
+    }
+
+    let config = {
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'enctype': 'multipart/form-data',
+            'Authorization': Cookie.get('token')
+        }
+    }
+
+    try {
+        await axios.post(urlBase, formData, config)
+
+    } catch (err) {
+        errors.value = err.response.data.errors
+    }
+}
+
+
 </script>
 
 <script>
 export default {
 
     components: {
-    PortifolioPreview
-},
+        PortifolioPreview
+    },
 
     data: () => ({
         modelProfile: null,

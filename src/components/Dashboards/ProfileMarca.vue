@@ -78,7 +78,7 @@
                                 <div class="text-disposition py-5">
                                     <div class="show-dados-direcao">
                                         <v-title>RUA</v-title>
-                                        <v-text>{{ address.adress }}</v-text>
+                                        <v-text>{{ address.street }}</v-text>
                                     </div>
                                     <div class="show-dados-direcao">
                                         <v-title>NÚMERO</v-title>
@@ -98,7 +98,7 @@
                                     </div>
                                     <div class="show-dados-direcao">
                                         <v-title>PAÍS</v-title>
-                                        <v-text>{{ address.countryadress }}</v-text>
+                                        <v-text>{{ country }}</v-text>
                                     </div>
                                     <div class="show-dados-direcao">
                                         <v-title>CEP</v-title>
@@ -117,7 +117,6 @@
                         <v-card-title class="profile-influencer-edit-title">Dados
                             Profissionais</v-card-title>
                         <v-divider></v-divider>
-
                         <v-col cols="12" md="6">
                             <v-text-field density="comfortable" prepend-inner-icon="mdi-account-circle" label="Nome"
                                 v-model="business_name"></v-text-field>
@@ -162,7 +161,7 @@
                         <v-divider></v-divider>
                         <v-col cols="12" md="6">
                             <v-text-field prepend-inner-icon="mdi-home-edit" density="comfortable" label="Nome da rua"
-                                v-model="address.adress"></v-text-field>
+                                v-model="address.street"></v-text-field>
                         </v-col>
                         <v-col cols="12" md="6">
                             <v-text-field prepend-inner-icon="mdi-home-circle" density="comfortable" label="Número"
@@ -240,15 +239,14 @@ const statesDB = useStatesDB();
 const lineBussiness = useLineBusiness();
 
 onMounted(async () => {
-    //await authStore.getUser();
-    await authStore.getOwnProfile();
-    statesDB.getStatesDb();
-    lineBussiness.getLineOfBusiness();
+    //await authStore.getOwnProfile();
+    //statesDB.getStatesDb();
+    //lineBussiness.getLineOfBusiness();
     //Form Mount front
     business_name.value = authStore.owner.business_name || 'Não cadastrado'
     line_of_business.value = authStore.owner.line_of_business || 'Não informado'
     country.value = authStore.owner.country || 'Não cadastrado'
-    state.value = authStore.owner.state || ''
+    state.value = authStore.owner.state || 'Não cadastrado'
     cnpj.value = authStore.owner.cnpj || 'Não cadastrado'
     email.value = authStore.owner.email || 'Não cadastrado'
     email2.value = authStore.owner.email2 || 'Não cadastrado'
@@ -257,8 +255,8 @@ onMounted(async () => {
     about_me.value = authStore.owner.about_me || 'Ainda não possui nenhuma informação, edite seu perfil e mostre um pouco sobre sua marca'
     profile_photo.value = authStore.owner.profile_photo_path
     wallpaper.value = authStore.owner.background_photo_path
-    if (address.value.adress === null) {
-        address.value.adress = 'Não cadastrado'
+    if (authStore.owner.adress === null) {
+        address.value.street = 'Não cadastrado'
         address.value.numberadress = 'Não cadastrado'
         address.value.neighborhood = 'Não cadastrado'
         address.value.city = 'Não cadastrado'
@@ -266,7 +264,7 @@ onMounted(async () => {
         address.value.zipcode = 'Não cadastrado'
         address.value.complement = 'Não cadastrado'
     } else {
-        address.value.adress = authStore.owner.adress.adress 
+        address.value.street = authStore.owner.adress.adress
         address.value.numberadress = authStore.owner.adress.numberadress 
         address.value.neighborhood = authStore.owner.adress.neighborhood 
         address.value.city = authStore.owner.adress.city 
@@ -295,7 +293,7 @@ let uploadedImage = ref(null)
 let wallpaper = ref(null)
 let uploadedWallpaper = ref(null)
 let address = ref({
-    adress: null,
+    street: null,
     numberadress: null,
     neighborhood: null,
     city: null,
@@ -304,6 +302,7 @@ let address = ref({
     complement: null,
 })
 
+//Upload de Imagens - Perfil e Wallpaper
 const uploadImage = (e) => {
     const file = e.target.files[0];
     uploadedImage.value = URL.createObjectURL(file)
@@ -317,6 +316,7 @@ const uploadWallpaper = (e) =>{
     console.log(wallpaper, uploadedWallpaper.value);
 }
 
+//Update Info Marca
 const updateBrand = async () => {
     errors.value = []
 

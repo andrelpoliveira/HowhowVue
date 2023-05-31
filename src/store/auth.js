@@ -14,8 +14,7 @@ export const useAuthStore = defineStore("auth", {
         //Token
         authtoken: Cookie.get('token') || '',
         //Campaigns
-        campaigns: [],
-        
+        campaigns: null,
     }),
     getters: {
         user: (state) => state.authUser,
@@ -23,6 +22,7 @@ export const useAuthStore = defineStore("auth", {
         status: (state) => state.authStatus,
         owner: (state) => state.authOwner,
         profilephoto: (state) => state.authPhoto,
+        allcampaigns: (state) => state.campaigns,
     },
     actions: {
         //Retorna dados da db
@@ -43,7 +43,7 @@ export const useAuthStore = defineStore("auth", {
                     'Authorization': Cookie.get('token')
                 },
             }).then(resp => {
-                this.campaigns = resp.data.data;
+                this.campaigns = resp.data;
             })
             
         },
@@ -137,28 +137,8 @@ export const useAuthStore = defineStore("auth", {
             this.router.push('/')
             this.authtoken = null
             this.authStatus = 'logged in'
+            this.campaigns = null
         },
-        //Registro Campanhas
-        // async handleCreateCampaign(data) {
-        //     await axios.post("/api/campaign/create", {
-        //         headers: {
-        //             'Authorization': Cookie.get('token')
-        //         },
-        //         name: data.name,
-        //         campaign_purpose: data.campaign_purpose,
-        //         states: data.states,
-        //         social_media: data.social,
-        //         content_type: data.content,
-        //         type: data.type,
-        //         private: data.private,
-        //         campaign_photo: data.campaign_photo,    
-        //     }).then(resp=>{
-        //         console.log(resp.data);
-        //     })
-            
-        // },
-        
-
         
     }
 });

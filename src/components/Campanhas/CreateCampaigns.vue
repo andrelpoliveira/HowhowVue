@@ -16,7 +16,7 @@
                     <v-col cols="12" md="6">
                         <v-autocomplete v-model="states" :items="statesDB.statesDB" item-title="state" item-value="state"
                             prepend-inner-icon="mdi-map-marker" label="Localização da audiência" placeholder="Selecione.."
-                            density="comfortable">
+                            density="comfortable" multiple>
 
                         </v-autocomplete>
                     </v-col>
@@ -427,8 +427,6 @@ export default {
         locationAlign: 'center',
         originSide: 'auto',
         originAlign: '',
-        //Tipos de Custo Campanha
-        types: ['CPM Marca', 'CPM Howhow', 'Tabelado', 'Comissão'],
         //Input file
         rulesFile: [
             value => {
@@ -436,11 +434,99 @@ export default {
             },
         ],
 
-        
+        urlBase: '/api/campaign/create',
+        errors: [],
+        name: null,
+        campaign_purpose: null,
+        states: null,
+        isPrivate: 0,
+        campaign_photo: null,
+        uploadedImage: null,
+        social: {
+            youtube: false,
+            instagram: false,
+            facebook: false,
+            twitter: false,
+            kwai: false,
+            tiktok: false,
+            howhow: false
+        },
+        content: {
+            yt_vd_insertion: '',
+            yt_vd_dedicated: '',
+            yt_repost: '',
+            yt_post_community: '',
+            yt_short: '',
+            yt_sh_insertion: '',
+            yt_live: false,
+            yt_presential: false,
+            ist_combo: '',
+            ist_insertion: '',
+            ist_vd_dedicated: '',
+            ist_post: '',
+            ist_repost: '',
+            ist_live: false,
+            fb_combo: '',
+            fb_post_feed: '',
+            fb_vd_dedicated: '',
+            fb_repost: '',
+            fb_story: '',
+            fb_live: false,
+            tw_retweet: '',
+            tw_post: '',
+            kw_insertion: '',
+            kw_vd_insertion: '',
+            kw_repost: '',
+            kw_live: '',
+            tk_insertion: '',
+            tk_vd_dedicated: '',
+            tk_repost: '',
+            tk_live: '',
+            tk_impulse: '',
+            tk_selectedRadio: 0,
+            hw_remarketing: '',
+            hw_link_bio: '',
+            hw_link_description: '',
+            hw_link_comment: ''
+        },
 
     }),
     methods: {
-        
+
+        uploadImage(e) {
+            const file = e.target.files[0];
+            this.uploadedImage = URL.createObjectURL(file)
+            this.campaign_photo = file
+            console.log(this.campaign_photo, this.uploadedImage);
+        },
+
+        createCampaign() {
+            this.errors = []
+
+            let formData = new FormData();
+            formData.append('campaign_photo', this.campaign_photo)
+            formData.append('name', this.name || '')
+            formData.append('campaign_purpose', this.campaign_purpose || '')
+            formData.append('states', this.states || '')
+            formData.append('social_media', JSON.stringify(this.social))
+            formData.append('content_type', JSON.stringify(this.content))
+            formData.append('private', this.isPrivate)
+
+            let config = {
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'enctype': 'multipart/form-data',
+                    'Authorization': Cookie.get('token')
+                }
+            }
+
+            try {
+                axios.post(this.urlBase, formData, config)
+
+            } catch (err) {
+                this.errors = err.response.data.errors
+            }
+        },
     },
     created() {
     },
@@ -459,109 +545,111 @@ export default {
 <script setup>
 import axios from 'axios';
 import Cookie from 'js-cookie';
-import { ref } from 'vue';
-import { onMounted } from 'vue';
+//import { ref } from 'vue';
+//import { onMounted } from 'vue';
 import { useAuthStore } from '../../store/auth';
 import { useStatesDB } from '@/store/statesbd';
 
 const authStore = useAuthStore();
 const statesDB = useStatesDB();
 
-let urlBase = '/api/campaign/create'
-let errors = ref([])
-let name = ref(null)
-let campaign_purpose = ref(null)
-let states = ref(null)
-let isPrivate = ref(null)
-let campaign_photo = ref(null)
-let uploadedImage = ref(null)
-let social = ref({
-    youtube: false,
-    instagram: false,
-    facebook: false,
-    twitter: false,
-    kwai: false,
-    tiktok: false,
-    howhow: false,
-})
-let content = ref({
-    yt_vd_insertion: '',
-    yt_vd_dedicated: '',
-    yt_repost: '',
-    yt_post_community: '',
-    yt_short: '',
-    yt_sh_insertion: '',
-    yt_live: false,
-    yt_presential: false,
-    ist_combo: '',
-    ist_insertion: '',
-    ist_vd_dedicated: '',
-    ist_post: '',
-    ist_repost: '',
-    ist_live: false,
-    fb_combo: '',
-    fb_post_feed: '',
-    fb_vd_dedicated: '',
-    fb_repost: '',
-    fb_story: '',
-    fb_live: false,
-    tw_retweet: '',
-    tw_post: '',
-    kw_insertion: '',
-    kw_vd_insertion: '',
-    kw_repost: '',
-    kw_live: '',
-    tk_insertion: '',
-    tk_vd_dedicated: '',
-    tk_repost: '',
-    tk_live: '',
-    tk_impulse: '',
-    tk_selectedRadio: 0,
-    hw_remarketing: '',
-    hw_link_bio: '',
-    hw_link_description: '',
-    hw_link_comment: ''
-})
+// let urlBase = '/api/campaign/create'
+// let errors = ref([])
+// let name = ref(null)
+// let campaign_purpose = ref(null)
+// let states = ref(null)
+// let isPrivate = ref(null)
+// let campaign_photo = ref(null)
+// let uploadedImage = ref(null)
+// let social = ref(
+//     {
+//         youtube: false,
+//         instagram: false,
+//         facebook: false,
+//         twitter: false,
+//         kwai: false,
+//         tiktok: false,
+//         howhow: false
+//     }
+// )
+// let content = ref({
+//     yt_vd_insertion: '',
+//     yt_vd_dedicated: '',
+//     yt_repost: '',
+//     yt_post_community: '',
+//     yt_short: '',
+//     yt_sh_insertion: '',
+//     yt_live: false,
+//     yt_presential: false,
+//     ist_combo: '',
+//     ist_insertion: '',
+//     ist_vd_dedicated: '',
+//     ist_post: '',
+//     ist_repost: '',
+//     ist_live: false,
+//     fb_combo: '',
+//     fb_post_feed: '',
+//     fb_vd_dedicated: '',
+//     fb_repost: '',
+//     fb_story: '',
+//     fb_live: false,
+//     tw_retweet: '',
+//     tw_post: '',
+//     kw_insertion: '',
+//     kw_vd_insertion: '',
+//     kw_repost: '',
+//     kw_live: '',
+//     tk_insertion: '',
+//     tk_vd_dedicated: '',
+//     tk_repost: '',
+//     tk_live: '',
+//     tk_impulse: '',
+//     tk_selectedRadio: 0,
+//     hw_remarketing: '',
+//     hw_link_bio: '',
+//     hw_link_description: '',
+//     hw_link_comment: ''
+// })
 
-const uploadImage = (e) => {
-    const file = e.target.files[0];
-    uploadedImage.value = URL.createObjectURL(file)
-    campaign_photo.value = file
-    console.log(campaign_photo, uploadedImage.value);
-}
+// const uploadImage = (e) => {
+//     const file = e.target.files[0];
+//     uploadedImage.value = URL.createObjectURL(file)
+//     campaign_photo.value = file
+//     console.log(campaign_photo, uploadedImage.value);
+// }
 
-onMounted(async () => {
-    await authStore.getUser();
-    statesDB.getStatesDb();
-})
+// onMounted(async () => {
+//     await authStore.getUser();
+//     statesDB.getStatesDb();
+// })
 
-const createCampaign = async () => {
-    errors.value = []
+// const createCampaign = async () => {
+//     errors.value = []
 
-    let formData = new FormData();
-    formData.append('campaign_photo', campaign_photo.value)
-    formData.append('name', name.value || '')
-    formData.append('campaign_purpose', campaign_purpose.value || '')
-    formData.append('state', states.value || '')
-    formData.append('social_media', JSON.stringify(social.value))
-    formData.append('content_type', JSON.stringify(content.value))
-    formData.append('private', isPrivate.value || '')
+//     let formData = new FormData();
+//     formData.append('campaign_photo', campaign_photo.value)
+//     formData.append('name', name.value || '')
+//     formData.append('campaign_purpose', campaign_purpose.value || '')
+//     formData.append('state', states.value || '')
+//     formData.append('social_media', JSON.stringify(social.value))
+//     formData.append('content_type', JSON.stringify(content.value))
+//     formData.append('private', isPrivate.value || '')
 
-    let config = {
-        headers: {
-            'Access-Control-Allow-Origin': '*',
-            'enctype': 'multipart/form-data',
-            'Authorization': Cookie.get('token')
-        }
-    }
+//     let config = {
+//         headers: {
+//             'Access-Control-Allow-Origin': '*',
+//             'enctype': 'multipart/form-data',
+//             'Authorization': Cookie.get('token')
+//         }
+//     }
 
-    try {
-        await axios.post(urlBase, formData, config)
+//     try {
+//         await axios.post(urlBase, formData, config)
 
-    } catch (err) {
-        errors.value = err.response.data.errors
-    }
-}
+//     } catch (err) {
+//         errors.value = err.response.data.errors
+//     }
+// }
 
 </script>
 <style>

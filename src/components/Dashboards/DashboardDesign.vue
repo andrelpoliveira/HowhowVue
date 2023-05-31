@@ -195,7 +195,7 @@
             </div>
           </v-window-item>
           <!-- Todas as Campanhas Influenciador -op05 -->
-          <AllCampaignsInfluencer />
+          <AllCampaignsInfluencer/>
           <!-- Campanhas do Influenciador -op06 -->
           <MyCampaignsInfluencer />
           <!-- Criação de Campanhas da Marca -op07 -->
@@ -229,16 +229,26 @@ import ProfileMarcatoInfluencer from './ProfileMarcatoInfluencer.vue';
 import DashboardInfluencer from './DashboardInfluencer.vue';
 import DashboardMarca from './DashboardMarca.vue';
 import DashboardAgencia from './DashboardAgencia.vue';
-
+import MarcaMacros from '../Campanhas/MarcaMacros.vue';
+//Auth Data
 import { onMounted } from 'vue';
 import { useAuthStore } from '../../store/auth';
-import MarcaMacros from '../Campanhas/MarcaMacros.vue';
+import { useStatesDB } from '@/store/statesbd';
+import { useLineBusiness } from '@/store/linebusiness';
+import { useGendersDb } from '@/store/gender';
 
 const authStore = useAuthStore();
+const statesDB = useStatesDB();
+const lineBussiness = useLineBusiness();
+const genderDB = useGendersDb();
 
 onMounted(async () => {
   await authStore.getUser();
   await authStore.getOwnProfile();
+  await authStore.getCampaigns();
+  statesDB.getStatesDb();
+  lineBussiness.getLineOfBusiness();
+  genderDB.getGendersDb();
 })
 
 </script>
