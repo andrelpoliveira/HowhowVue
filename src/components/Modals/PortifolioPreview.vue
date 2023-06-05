@@ -115,7 +115,7 @@
 export default {
 
     props: {
-        nozes: String
+        cardValue: Object
     },
 
     // created() {

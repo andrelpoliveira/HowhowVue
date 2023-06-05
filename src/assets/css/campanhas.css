@@ -136,14 +136,15 @@
     background-color: #fff !important;
     background-clip: border-box !important;
     border: 0 solid rgba(34, 41, 47, 0.125) !important;
-    
+
 }
 .info-modalidades-cards {
     display: flex !important;
     flex-direction: row !important;
     flex-wrap: wrap !important;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
+    
 }
 .solicitacao-profile-card {
     background-color: var(--secundary-color-main) !important;

@@ -50,7 +50,7 @@
 
                 <!--  -->
                 <v-main>
-                    <div class="gerenciar-section">
+                    <div class="gerenciar-section-marca">
                         <!-- Cards dos influenciadores -->
                         <div v-for="activeinfluencer in activeinfluencers" :key="activeinfluencer.id" class="side-panel">
                             <v-item>
@@ -338,10 +338,11 @@
 </template>
 
 <style>
-.gerenciar-section {
+.gerenciar-section-marca {
     width: 1300px !important;
     display: flex !important;
     flex-wrap: wrap !important;
+    flex-direction: row !important;
 }
 
 .side-panel {

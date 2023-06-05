@@ -15,29 +15,47 @@
                 <span class="dashboard-topbar-icons">Settings</span>
             </v-btn>
         </template>
-        <v-lis>
-            <v-list-item v-for="([title, icon]) in itemsSettings" :key="title">
-                <v-list-item-title :prepend-icon="icon" @click="authStore.handleLogout()">
-                    {{ title }}
-                </v-list-item-title>
+
+            <v-list-item>
+                <v-dialog v-model="dialog" fullscreen :scrim="false" transition="dialog-bottom-transition">
+                    <template v-slot:activator="{ props }">
+                        <v-btn density="compact" v-bind="props">
+                            <v-icon size="x-large">mdi-cog-outline</v-icon>
+                            <span class="dashboard-topbar-icons">Config</span>
+                        </v-btn>
+                    </template>
+                    <ManageAccount />
+                </v-dialog>
             </v-list-item>
-        </v-lis>
+            <v-list-item>
+                <v-btn density="compact" @click="authStore.handleLogout()">
+                    <v-icon size="x-large">mdi-account-cog</v-icon>
+                    <span class="dashboard-topbar-icons">Logout</span>
+                </v-btn>
+            </v-list-item>
+
     </v-menu>
 </template>
 <script>
 export default {
     data: () => ({
-        itemsSettings: [
-            ['Logout', 'mdi-logout'],
-            ['Manager', 'mdi-account-cog']
-        ]
+        dialog: false,
+        notifications: false,
+        sound: false,
+        widgets: false,
+        // itemsSettings: [
+        //     ["Logout", "mdi-logout"],
+        //     ["Manager", "mdi-account-cog"]
+        // ]
     }),
-
-
+    components: {
+        ManageAccount,
+    },
 }
 </script>
 <script setup>
 import { useAuthStore } from '@/store/auth';
+import ManageAccount from '../Modals/ManageAccount.vue';
 
 const authStore = useAuthStore();
 </script>
