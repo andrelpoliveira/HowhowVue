@@ -5,12 +5,12 @@
                 <v-row dense>
                     <v-col cols="12">
                         <v-card class="marca-avatar mx-10">
-                            <v-img :src="activeinfluencers.src" class="align-end"
+                            <v-img :src="campaignInfo.campaign_photo" class="align-end"
                                 gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="250px" cover>
                                 <v-row class="mx-0">
                                     <v-card color="rgba(255,255,255,0)">
                                         <v-card-title class="info-campanha-title">
-                                            {{ activeinfluencers.title }}
+                                            {{ campaignInfo.name || "Não informado"}}
                                         </v-card-title>
                                     </v-card>
                                 </v-row>
@@ -34,36 +34,37 @@
                 <v-card class="campanha-info-card mx-2 py-2" width="450px" height="128px">
                     <div class="info-dados-direcao">
                         <v-title>CAMPANHA</v-title>
-                        <v-text>dado1</v-text>
+                        <v-text>{{ campaignInfo.name || "Não informado"}}</v-text>
                     </div>
                     <div class="info-dados-direcao">
                         <v-title>MARCA</v-title>
-                        <v-text>dado1</v-text>
+                        <v-text>{{ campaignInfo.brand_name || "Não informado"}}</v-text>
                     </div>
                     <div class="info-dados-direcao">
-                        <v-title>CATEGORIA</v-title>
-                        <v-text>dado1</v-text>
+                        <v-title>RAMO</v-title>
+                        <v-text>{{ campaignInfo.line_of_business || "Não informado"}}</v-text>
                     </div>
                     <div class="info-dados-direcao">
                         <v-title>LOCAL</v-title>
-                        <v-text>dado1</v-text>
+                        <v-text>{{ campaignInfo.country || "Não informado" }}</v-text>
                     </div>
                     <div class="info-dados-direcao">
                         <v-title>VISIBILIDADE</v-title>
-                        <v-text>dado1</v-text>
+                        <v-text v-if="campaignInfo.private === 0">Pública</v-text>
+                        <v-text v-else>Privada</v-text>
                     </div>
                 </v-card>
                 <v-card class="campanha-info-card mx-2" width="450px" height="128px">
                     <div class="proposta-content">
                         <v-title>PROPOSTA</v-title>
-                        <v-text class="mt-2 px-2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum repellendus ut exercitationem voluptate ea accusantium distinctio veniam, commodi nesciunt aperiam, placeat a, perspiciatis hic suscipit optio adipisci possimus fugiat molestiae!</v-text>
+                        <v-text class="mt-2 px-2">{{ campaignInfo.campaign_purpose || "Não informado" }}</v-text>
                     </div>
                 </v-card>
             </div>
         </v-container>
 
         <v-container class="info-modalidades-cards px-12">
-            <v-card class="campanha-info-card ma-2 py-2" width="200" height="auto">
+            <v-card class="campanha-info-card ma-2 py-2" width="200" height="auto" v-if="campaignInfo.social_media.youtube === true">
                 <div class="edit-icons ml-3 mb-2">
                     <div class="influencer-card-btns">
                         <v-img class="card-youtube-icon " src="./../../assets/images/redes/redes-icons/youtube.svg">
@@ -71,40 +72,40 @@
                     </div>
                     <v-card-title class="text-h8 text-md-h6 text-lg-h5 font-weight-bold">Youtube</v-card-title>
                 </div>
-                <div class="info-dados-direcao">
+                <div class="info-dados-direcao" v-if="campaignInfo.content_type.yt_vd_insertion > 0">
                     <v-title>Inserção em vídeo</v-title>
-                    <v-text>dado1</v-text>
+                    <v-text>{{ campaignInfo.content_type.yt_vd_insertion }}</v-text>
                 </div>
-                <div class="info-dados-direcao">
+                <div class="info-dados-direcao" v-if="campaignInfo.content_type.yt_vd_dedicated > 0">
                     <v-title>Vídeo dedicado</v-title>
-                    <v-text>dado1</v-text>
+                    <v-text>{{ campaignInfo.content_type.yt_vd_dedicated }}</v-text>
                 </div>
-                <div class="info-dados-direcao">
+                <div class="info-dados-direcao" v-if="campaignInfo.content_type.yt_repost > 0">
                     <v-title>Repost</v-title>
-                    <v-text>dado1</v-text>
+                    <v-text>{{ campaignInfo.content_type.yt_repost }}</v-text>
                 </div>
-                <div class="info-dados-direcao">
+                <div class="info-dados-direcao" v-if="campaignInfo.content_type.yt_post_community > 0">
                     <v-title>Post na Comunidade</v-title>
-                    <v-text>dado1</v-text>
+                    <v-text>{{ campaignInfo.content_type.yt_post_community }}</v-text>
                 </div>
-                <div class="info-dados-direcao">
+                <div class="info-dados-direcao" v-if="campaignInfo.content_type.yt_short > 0">
                     <v-title>Short dedicado</v-title>
-                    <v-text>dado1</v-text>
+                    <v-text>{{ campaignInfo.content_type.yt_short }}</v-text>
                 </div>
-                <div class="info-dados-direcao">
+                <div class="info-dados-direcao" v-if="campaignInfo.content_type.yt_sh_insertion > 0">
                     <v-title>Inserção em short</v-title>
-                    <v-text>dado1</v-text>
+                    <v-text>{{ campaignInfo.content_type.yt_sh_insertion }}</v-text>
                 </div>
-                <div class="info-dados-direcao">
+                <div class="info-dados-direcao" v-if="campaignInfo.content_type.yt_live">
                     <v-title>Live Patrocinada</v-title>
-                    <v-text>dado1</v-text>
+                    <v-text>Sim</v-text>
                 </div>
-                <div class="info-dados-direcao">
+                <div class="info-dados-direcao" v-if="campaignInfo.content_type.yt_presential">
                     <v-title>Campanha Presencial</v-title>
-                    <v-text>dado1</v-text>
+                    <v-text>Sim</v-text>
                 </div>
             </v-card>
-            <v-card class="campanha-info-card ma-2 py-2" width="200" height="auto">
+            <v-card class="campanha-info-card ma-2 py-2" width="200" height="auto" v-if="campaignInfo.social_media.instagram === true">
                 <div class="edit-icons ml-3 mb-2">
                     <div class="influencer-card-btns">
                         <v-img class="card-instagram-icon " src="./../../assets/images/redes/redes-icons/instagram.svg">
@@ -112,15 +113,15 @@
                     </div>
                     <v-card-title class="text-h8 text-md-h6 text-lg-h5 font-weight-bold">Instagram</v-card-title>
                 </div>
-                <div class="info-dados-direcao">
+                <div class="info-dados-direcao" v-if="campaignInfo.content_type.ist_insertion > 0">
                     <v-title>Inserção em vídeo</v-title>
                     <v-text>dado1</v-text>
                 </div>
-                <div class="info-dados-direcao">
+                <div class="info-dados-direcao" v-if="campaignInfo.content_type.ist_vd_dedicated > 0">
                     <v-title>Vídeo dedicado</v-title>
                     <v-text>dado1</v-text>
                 </div>
-                <div class="info-dados-direcao">
+                <div class="info-dados-direcao" v-if="campaignInfo.content_type.ist_repost > 0">
                     <v-title>Repost</v-title>
                     <v-text>dado1</v-text>
                 </div>
@@ -137,7 +138,7 @@
                     <v-text>dado1</v-text>
                 </div>
             </v-card>
-            <v-card class="campanha-info-card ma-2 py-2" width="200" height="auto">
+            <v-card class="campanha-info-card ma-2 py-2" width="200" height="auto" v-if="campaignInfo.social_media.facebook === true">
                 <div class="edit-icons ml-3 mb-2">
                     <div class="influencer-card-btns">
                         <v-img class="card-facebook-icon " src="./../../assets/images/redes/redes-icons/facebook.svg">
@@ -171,7 +172,7 @@
                     <v-text>dado1</v-text>
                 </div>
             </v-card>
-            <v-card class="campanha-info-card ma-2 py-2" width="200" height="auto">
+            <v-card class="campanha-info-card ma-2 py-2" width="200" height="auto" v-if="campaignInfo.social_media.twitter === true">
                 <div class="edit-icons ml-3 mb-2">
                     <div class="influencer-card-btns">
                         <v-img class="card-twitter-icon " src="./../../assets/images/redes/redes-icons/twitter.svg">
@@ -191,7 +192,7 @@
                 </div>
 
             </v-card>
-            <v-card class="campanha-info-card ma-2 py-2" width="200" height="auto">
+            <v-card class="campanha-info-card ma-2 py-2" width="200" height="auto" v-if="campaignInfo.social_media.kwai === true"> 
                 <div class="edit-icons ml-3 mb-2">
                     <div class="influencer-card-btns">
                         <v-img class="card-kwai-icon" src="./../../assets/images/redes/redes-icons/kwai.svg">
@@ -218,7 +219,7 @@
                 </div>
 
             </v-card>
-            <v-card class="campanha-info-card ma-2 py-2" width="200" height="auto">
+            <v-card class="campanha-info-card ma-2 py-2" width="200" height="auto" v-if="campaignInfo.social_media.tiktok === true">
                 <div class="edit-icons ml-3 mb-2">
                     <div class="influencer-card-btns">
                         <v-img class="card-tiktok-icon " src="./../../assets/images/redes/redes-icons/tik_tok.svg">
@@ -247,7 +248,7 @@
                     <v-text>dado1</v-text>
                 </div>
             </v-card>
-            <v-card class="campanha-info-card ma-2 py-2" width="200" height="auto">
+            <v-card class="campanha-info-card ma-2 py-2" width="200" height="auto" v-if="campaignInfo.social_media.howhow === true">
                 <div class="edit-icons ml-3 mb-2">
                     <div class="influencer-card-btns">
                         <v-img class="card-howhow-icon " src="./../../assets/images/icon-logo/favicon-32x32.png">
@@ -280,9 +281,10 @@
 
     </v-window-item>
 </template>
-<script setup>
-</script>
+
 <script>
+import { useCampaignStore} from '@/store/campaign';
+
 export default {
     name: 'InfoCampaignsMarca',
     data: () => ({
@@ -303,6 +305,14 @@ export default {
             { id: '12', title: 'Username 12', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', idade: '35 anos', seIdentifica: 'ela/dela', idioma: 'Português BR', categoria: 'Make up', },
         ],
     }),
+    setup(){
+        const campaignStore = useCampaignStore();
+        const campaignInfo = campaignStore.campaignSelected;
+
+        return{
+            campaignInfo
+        };
+    },
 
     components: {
     }

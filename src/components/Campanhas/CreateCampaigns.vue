@@ -364,7 +364,7 @@
                                 </v-col>
                                 <v-col cols="12" md="3">
                                     <v-radio prepend-inner-icon="mdi-rename-box" density="comfortable"
-                                        label="Com impulsionamento (Marca)" :value="2"></v-radio>
+                                        label="Com impulsionamento (Influenciador)" :value="2"></v-radio>
                                 </v-col>
                                 <v-col cols="12" md="3">
                                     <v-radio prepend-inner-icon="mdi-rename-box" density="comfortable"

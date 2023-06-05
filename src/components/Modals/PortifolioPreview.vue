@@ -1,5 +1,5 @@
 <template>
-    <v-card>
+    <v-card >
         <v-toolbar color="primary" title="PORTIFÓLIO PREVIEW"></v-toolbar>
         <v-container>
             <v-card class="profile-banner-section mx-auto">
@@ -17,8 +17,8 @@
                         </v-avatar>
                     </div>
                     <div class="profile-banner-detalhes">
-                        <v-card-title class="profile-banner-username">Username</v-card-title>
-                        <v-card-text class="profile-banner-categorias">Categorias</v-card-text>
+                        <v-card-title class="profile-banner-username">{{ infos.name_artistic || "Não cadastrado" }}</v-card-title>
+                        <v-card-text class="profile-banner-categorias">{{ infos.category || "Não informado" }}</v-card-text>
                     </div>
                 </div>
 
@@ -27,11 +27,11 @@
                 <v-card class="pessoal-section">
                     <div class="dados-direcao my-1 mr-16">
                         <v-title>NOME</v-title>
-                        <v-text>dado1</v-text>
+                        <v-text>{{ infos.name || "Não informado"}}</v-text>
                     </div>
                     <div class="dados-direcao my-1 mr-16">
                         <v-title>SE IDENTIFICA</v-title>
-                        <v-text>dado1</v-text>
+                        <v-text>{{ infos.gender || "Não informado"}}</v-text>
                     </div>
                     <div class="dados-direcao my-1 mr-16">
                         <v-title>IDADE</v-title>
@@ -39,7 +39,7 @@
                     </div>
                     <div class="dados-direcao my-1">
                         <v-title>IDIOMA NATIVO</v-title>
-                        <v-text>dado1</v-text>
+                        <v-text>{{ infos.language || "Não informado" }}</v-text>
                     </div>
                 </v-card>
             </div>
@@ -49,10 +49,7 @@
                     <v-card class="mt-5" width="1000" rounded="xl">
                         <v-card-title class="profile-sobre-title">SOBRE MIM</v-card-title>
                         <div class="profile-content">
-                            <v-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non veniam eos
-                                eligendi blanditiis ullam. Obcaecati repudiandae repellendus vitae, velit voluptates
-                                animi, asperiores fugit aut assumenda consequatur sapiente dolor dolorem
-                                eius.</v-text>
+                            <v-text>{{ infos.about_me || "Não informado" }}</v-text>
                         </div>
                     </v-card>
                 </div>
@@ -107,29 +104,26 @@
 
     </v-card>
 </template>
-<script setup>
-
-</script>
 
 <script>
+import { useInfluencerInfo} from '@/store/influencerinfo'
+
 export default {
-
-    props: {
-        nozes: String
-    },
-
-    // created() {
-
-    //     console.log(this.nozes)
-    // },
+    name: 'PortifolioPreview',
 
     data: () => ({
 
     }),
+    setup() {
+        const infoInfluencer = useInfluencerInfo();
+        const infos = infoInfluencer.influencerSelected;
+        return{
+            infos
+        };
+    },
 
     methods: {
 
     }
 }
-
 </script>

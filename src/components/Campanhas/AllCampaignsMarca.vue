@@ -155,7 +155,7 @@
                                             <v-row justify="center" class="ma-0">
                                                 <!-- <v-list-item :title="`${card.campanhaId.toString()}`"></v-list-item> -->
                                                 <v-col cols="12" md="6">
-                                                    <v-btn @click="$emit('openEdit');   campaignStore.getCampaign(card)"
+                                                    <v-btn @click="$emit('openEdit'); campaignStore.getCampaign(card)"
                                                         append-icon="mdi-eye-settings" block size="x-large"
                                                         color="blue-darken-1" variant="elevated"
                                                         :value="card.name">Visualizar</v-btn>
@@ -232,7 +232,6 @@
 export default {
     name: 'AllCampaignsMarca',
 
-    //const store = useStore();
     data: () => ({
         show: false,
         tab: null,
@@ -250,16 +249,16 @@ export default {
 }
 </script>
 <script setup>
-//import { onMounted } from 'vue';
+import { onMounted } from 'vue';
 import { useAuthStore } from '../../store/auth';
 import { useCampaignStore } from '@/store/campaign';
-//import { mapActions } from 'pinia';
 
 const authStore = useAuthStore();
 const campaignStore = useCampaignStore();
 
-//const { getCampaign } = mapActions(useCampaignStore, ["getCampaign"]);
-// onMounted(async () => {
-//     await authStore.getCampaigns();
-// })
+onMounted(async () => {
+  await authStore.getCampaigns();
+ 
+})
+
 </script>

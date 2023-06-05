@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 import Cookie from 'js-cookie';
+//Imports
 
 export const useAuthStore = defineStore("auth", {
     state: () => ({
@@ -15,6 +16,7 @@ export const useAuthStore = defineStore("auth", {
         authtoken: Cookie.get('token') || '',
         //Campaigns
         campaigns: null,
+        influencers: null,
     }),
     getters: {
         user: (state) => state.authUser,
@@ -23,6 +25,7 @@ export const useAuthStore = defineStore("auth", {
         owner: (state) => state.authOwner,
         profilephoto: (state) => state.authPhoto,
         allcampaigns: (state) => state.campaigns,
+        allinfluencers: (state) => state.influencers,
     },
     actions: {
         //Retorna dados da db
@@ -55,6 +58,16 @@ export const useAuthStore = defineStore("auth", {
                 },
             }).then(resp => {
                 this.authOwner = resp.data.data
+            })
+        },
+        //Trazer as informações de todos os influenciadores da plataforma
+        async getBrandInfluencers(){
+            await axios.get("/api/brand/getInfluencers", {
+                headers: {
+                    'Authorization': Cookie.get('token')
+                },
+            }).then(resp => {
+                this.influencers = resp.data.data
             })
         },
         //Login com token
@@ -138,6 +151,7 @@ export const useAuthStore = defineStore("auth", {
             this.authtoken = null
             this.authStatus = 'logged in'
             this.campaigns = null
+            this.influencers = null
         },
         
     }

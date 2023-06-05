@@ -50,16 +50,18 @@
 
                 <!--  -->
                 <v-main>
-                    <div class="gerenciar-section">
+                    <div class="gerenciar-section" v-if="influencersStore.allinfluencers">
                         <!-- Cards dos influenciadores -->
-                        <div v-for="activeinfluencer in activeinfluencers" :key="activeinfluencer.id" class="side-panel">
+                        <div v-for="activeinfluencer in influencersStore.allinfluencers" :key="activeinfluencer.name"
+                            class="side-panel">
                             <v-item>
                                 <v-card class="campanhas-cards my-2" height="auto" min-width="240">
 
-                                    <v-img class="influencer-card-img overflow-visible" :src="activeinfluencer.src"
+                                    <v-img class="influencer-card-img overflow-visible"
+                                        :src="activeinfluencer.profile_photo_path || 'https://cdn.vuetifyjs.com/images/cards/house.jpg'"
                                         linear-gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" cover>
-                                        <v-card-title class="card-influencer-title">{{ activeinfluencer.title
-                                        }}</v-card-title>
+                                        <v-card-title class="card-influencer-title">{{ activeinfluencer.name_artistic ||
+                                            "Não informado" }}</v-card-title>
                                     </v-img>
                                     <v-divider></v-divider>
                                     <div class="influencer-card-btns">
@@ -111,24 +113,19 @@
                                     <!-- Dados pessoais dos influenciadores -->
                                     <div class="influencer-info-short">
                                         <div class="influencer-info">
-                                            <v-text>{{ activeinfluencer.categoria }}</v-text>
-                                            <v-text>{{ activeinfluencer.genero }}</v-text>
-                                            <v-text>{{ activeinfluencer.idade }}</v-text>
-                                            <v-text>{{ activeinfluencer.idioma }}</v-text>
+                                            <v-text>{{ activeinfluencer.category || "Não informado" }}</v-text>
+                                            <v-text>{{ activeinfluencer.gender || "Não informado" }}</v-text>
+                                            <v-text>{{ activeinfluencer.idade || "Não informado" }}</v-text>
+                                            <v-text>{{ activeinfluencer.language || "Não informado" }}</v-text>
                                         </div>
                                     </div>
                                     <!--  -->
-
+                                    <div class="influencer-card-btn">
+                                        <v-btn class="perfil-btn" width="80%" color="blue-darken-1"
+                                            @click="influencerInfo.getInfluencer(activeinfluencer); dialog = true">Perfil</v-btn>
+                                    </div>
                                     <v-divider></v-divider>
-                                    <v-dialog v-model="dialog" width="1024">
-                                        <template v-slot:activator="{ props }">
-                                            <div class="influencer-card-btn">
-                                                <v-btn class="perfil-btn" width="80%" color="blue-darken-1"
-                                                    v-bind="props" @click="cardValue = activeinfluencer">Perfil</v-btn>
-                                            </div>
-                                        </template>
-                                        <portifolio-preview />
-                                    </v-dialog>
+
                                     <v-divider></v-divider>
 
                                     <div class="influencer-card-btn">
@@ -140,7 +137,7 @@
                             <!-- Tansition Redes -->
                             <div>
                                 <v-col>
-                                    <v-expand-transition v-if="activeinfluencer.id === cardValue.id" class="expanded">
+                                    <v-expand-transition v-if="activeinfluencer.name === cardValue.name" class="expanded">
                                         <v-card v-if="expand" width="220" height="220" class="mx-auto">
                                             <v-card-title
                                                 class="text-h8 text-md-h6 text-lg-h5 font-weight-bold">Youtube</v-card-title>
@@ -330,7 +327,9 @@
                             <!--  -->
                         </div>
                     </div>
-
+                    <v-dialog v-model="dialog" width="1024">
+                        <portifolio-preview />
+                    </v-dialog>
                 </v-main>
             </v-container>
         </v-item-group>
@@ -365,7 +364,7 @@ export default {
         expand4: false,
         expand5: false,
         expand6: false,
-        cardValue: "",
+        cardValue: '',
         dialog: false,
         requer: ["atencao"],
         em: ["processo"],
@@ -393,6 +392,9 @@ export default {
             this.index = index;
             console.log(index);
         },
+        verificaInfluencer() {
+            this.dialog = true
+        }
     },
     components: {
         PortifolioPreview
@@ -401,29 +403,15 @@ export default {
 </script>
 <script setup>
 import PortifolioPreview from '../Modals/PortifolioPreview.vue';
+import { useAuthStore } from '@/store/auth';
+import { useInfluencerInfo } from '@/store/influencerinfo';
+import { onMounted } from 'vue';
 
+const influencersStore = useAuthStore();
+const influencerInfo = useInfluencerInfo();
+
+onMounted(async () => {
+    await influencersStore.getBrandInfluencers();
+})
 
 </script>
-
-
-                                        <!-- Submenu de cada rede social -->
-                                        <!-- <v-dialog v-model="dialog" width="50rem">
-                                            <template v-slot:activator="{ props }">
-                                                <v-img class="card-youtube-icon "
-                                                    src="./../../assets/images/redes/redes-icons/youtube.svg">
-
-                                                    <v-btn flat color="rgba(255,255,255,0)" v-bind="props" @click="dialog = true;cardValue = activeinfluencer">
-                                                    </v-btn>
-                                                </v-img>
-                                            </template>
-                                            <v-card>
-                                                <v-card-text>
-                                                    {{ cardValue.title }}
-                                                </v-card-text>
-                                                <v-card-actions>
-                                                    <v-btn color="primary" block @click="dialog = false">Close
-                                                        Dialog</v-btn>
-                                                </v-card-actions>
-                                            </v-card>
-                                        </v-dialog> -->
-                                        <!--  -->

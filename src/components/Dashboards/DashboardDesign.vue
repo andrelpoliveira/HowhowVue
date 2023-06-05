@@ -201,7 +201,7 @@
           <!-- Criação de Campanhas da Marca -op07 -->
           <CreateCampaigns />
           <!-- Todas as Campanhas Marca -op08 -->
-          <AllCampaignsMarca @open-edit="openEdit" @v-bind="getCampaigns"/>
+          <AllCampaignsMarca @open-edit="openEdit"/>
           <!-- Editar campanhas Marca -edit-campanha -->
           <MyCampaignsMain />
           <!-- Apresentar profile do influencer acessado via marca -->
@@ -242,13 +242,13 @@ const statesDB = useStatesDB();
 const lineBussiness = useLineBusiness();
 const genderDB = useGendersDb();
 
+
 onMounted(async () => {
   await authStore.getUser();
   await authStore.getOwnProfile();
-  await authStore.getCampaigns();
-  statesDB.getStatesDb();
-  lineBussiness.getLineOfBusiness();
-  genderDB.getGendersDb();
+  await statesDB.getStatesDb();
+  await lineBussiness.getLineOfBusiness();
+  await genderDB.getGendersDb();
 })
 
 </script>
