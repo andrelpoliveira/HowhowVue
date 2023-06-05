@@ -278,15 +278,3 @@ export default {
     }),
 }
 </script>
-<script setup>
-//import { onMounted } from 'vue';
-import { useAuthStore } from '@/store/auth';
-//import { useCampaignStore } from '@/store/campaign';
-
-const authStore = useAuthStore();
-//const campaignStore = useCampaignStore();
-
-// onMounted(async () => {
-//     await authStore.getCampaigns();
-// })
-</script>
