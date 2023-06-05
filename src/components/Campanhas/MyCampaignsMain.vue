@@ -18,20 +18,13 @@
             </div>
 
             <div v-if="authStore.user.role === 'influencer'">
-
                 <v-window v-model="modelCampaigns">
                     <InfoCampaignsMarca />
                 </v-window>
             </div>
 
             <div v-if="authStore.user.role === 'agency'">
-                <v-tabs v-model="modelCampaigns" color="blue-lighten-4" align-tabs="center">
-                    <v-tab value="gerenciarCampanha">Gerenciar Campanha</v-tab>
-                    <v-tab value="infoCampanha">Informações Campanha</v-tab>
-                </v-tabs>
-
                 <v-window v-model="modelCampaigns">
-                    <GerenciarCampanha />
                     <InfoCampaignsMarca />
                 </v-window>
             </div>
@@ -46,8 +39,14 @@ import GerenciarCampanha from './GerenciarCampanha.vue';
 import SolicitacoesMarca from './SolicitacoesMarca.vue';
 //Auth
 import { useAuthStore } from '../../store/auth';
+import { onMounted } from 'vue';
 
 const authStore = useAuthStore();
+
+onMounted(async () => {
+  await authStore.getUser();
+  await authStore.getOwnProfile();
+})
 </script >
 
 <script>

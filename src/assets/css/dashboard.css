@@ -63,6 +63,21 @@ padding-left: 5px !important;
   justify-content: space-evenly;
   width: 1200px !important;
 }
+
+.top-dashboard-agency {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-evenly; */
+  width: 1200px !important;
+}
+.influencer-searchbar{
+  display: flex !important;
+  align-items: center !important;
+  width: 300px !important;
+  height: 50px !important;
+  margin: 20px !important;
+}
+
 .profile-redes-section {
   display: flex !important;
   justify-content: center !important;
@@ -132,6 +147,18 @@ padding-left: 5px !important;
   display: flex !important;
   flex-direction: row !important;
   justify-content: center !important;
+  align-items: center !important;
+}
+
+.dashboard-agency {
+  border-radius: 12px !important;
+  box-shadow: rgba(145, 158, 171, 0.2) 0px 0px 2px 0px, rgba(145, 158, 171, 0.12) 0px 12px 24px -4px, 0 7px 0px -5px #7777771c !important;
+  background-color: #fff !important;
+  background-clip: border-box !important;
+  border: 0 solid rgba(34, 41, 47, 0.125) !important;
+  border-radius: 12px !important;
+  display: flex !important;
+  flex-direction: column !important;
   align-items: center !important;
 }
 .dashboard-avatar-cover {

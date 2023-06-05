@@ -125,7 +125,7 @@
                   active-color="rgba(1,137,255,1)" class="align-campanha"></v-list-item>
               </template>
               <v-tabs v-model="tab" flat direction="vertical" color="rgba(1,137,255,1)">
-                <v-tab v-for="([title, icon, options], i) in campanhasInf" :key="i" :value="options">
+                <v-tab v-for="([title, icon, options], i) in agenciaInf" :key="i" :value="options">
                   <v-list-item :title="title" :prepend-icon="icon" class="align-submenu"></v-list-item>
                 </v-tab>
               </v-tabs>
@@ -197,7 +197,12 @@
           <!-- Todas as Campanhas Influenciador -op05 -->
           <AllCampaignsInfluencer/>
           <!-- Campanhas do Influenciador -op06 -->
-          <MyCampaignsInfluencer />
+          <div v-if="authStore.user.role === 'influencer'">
+            <MyCampaignsInfluencer />
+          </div>
+          <div v-if="authStore.user.role === 'agency'">
+          <MyInfluencers/>
+          </div>
           <!-- Criação de Campanhas da Marca -op07 -->
           <CreateCampaigns />
           <!-- Todas as Campanhas Marca -op08 -->
@@ -230,6 +235,8 @@ import DashboardInfluencer from './DashboardInfluencer.vue';
 import DashboardMarca from './DashboardMarca.vue';
 import DashboardAgencia from './DashboardAgencia.vue';
 import MarcaMacros from '../Campanhas/MarcaMacros.vue';
+import MyInfluencers from '../Campanhas/MyInfluencers.vue';
+
 //Auth Data
 import { onMounted } from 'vue';
 import { useAuthStore } from '../../store/auth';
@@ -267,6 +274,10 @@ export default {
     campanhasInf: [
       ['Campanhas', 'mdi-checkbox-blank-circle', 'op5'],
       ['Minhas Campanhas', 'mdi-checkbox-blank-circle', 'op6'],
+    ],
+    agenciaInf: [
+      ['Campanhas', 'mdi-checkbox-blank-circle', 'op5'],
+      ['Meus Influencers', 'mdi-checkbox-blank-circle', 'op6'],
     ],
     //Menu Vertical (List Campanhas Marca)
     campanhasMar: [
@@ -330,7 +341,8 @@ export default {
     DashboardMarca,
     DashboardAgencia,
     WalletView,
-    MarcaMacros
-  },
+    MarcaMacros,
+    MyInfluencers
+},
 }
 </script>
